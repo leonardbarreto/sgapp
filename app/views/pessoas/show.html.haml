@@ -1,0 +1,48 @@
+%p#notice= notice
+
+%p
+  %b Nome:
+  = @pessoa.nome
+%p
+  %b Data nas:
+  = @pessoa.data_nas
+%p
+  %b Sexo:
+  = @pessoa.sexo
+%p
+  %b Naturalidade:
+  = @pessoa.naturalidade
+%p
+  %b Nacionalidade:
+  = @pessoa.nacionalidade
+%p
+  %b Identidade:
+  = @pessoa.identidade
+%p
+  %b Cpf:
+  = @pessoa.cpf
+%p
+  %b Nome pai:
+  = @pessoa.nome_pai
+%p
+  %b Nome mae:
+  = @pessoa.nome_mae
+%p
+  %b Endereco:
+  = @pessoa.endereco
+%p
+  %b Bairro:
+  = @pessoa.bairro
+%p
+  %b Municipio:
+  = @pessoa.municipio_id
+%p
+  %b Telefone:
+  = @pessoa.telefone
+%p
+  %b Telefonecel:
+  = @pessoa.telefonecel
+
+= link_to 'Edit', edit_pessoa_path(@pessoa)
+\|
+= link_to 'Back', pessoas_path

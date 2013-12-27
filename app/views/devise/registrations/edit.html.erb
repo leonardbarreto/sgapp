@@ -1,0 +1,23 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class=>"form-signin" }) do |f| %>
+  <%= devise_error_messages! %>
+  <h2 class="form-signin-heading">Editar usuário</h2>
+
+  <div><%= f.email_field :email, :class=>"input-block-level" %></div>
+
+  <div><i>(leave blank if you don't want to change it)</i><br />
+  <%= f.password_field :password, :autocomplete => "off", :class=>"input-block-level", :placeholder=>"Nova senha" %></div>
+
+  <div><%= f.password_field :password_confirmation,  :class=>"input-block-level", :placeholder=>"Confirme a nova Senha" %></div>
+
+  <div><i>(precisamos da sua senha atual para confirmar as mudanças)</i><br />
+  <%= f.password_field :current_password, :class=>"input-block-level", :placeholder=>"Senha atual" %></div>
+
+  <div><%= f.submit "Update", :class=>"btn btn-large btn-primary" %></div>
+  <h3>Cancel my account</h3>
+
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+
+<%= link_to "Back", :back %>
+<% end %>
+
+

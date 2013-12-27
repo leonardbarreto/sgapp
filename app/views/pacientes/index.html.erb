@@ -1,0 +1,61 @@
+<%- model_class = Paciente -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %><small> - Listagem</small></h1>
+</div>
+
+<form class="form-search">
+  <div class="well well-small">
+    <div class="input-append">
+      <%= form_tag pacientes_path, :method => 'get' do %>  
+        <%= hidden_field_tag :direction, params[:direction] %>  
+        <%= hidden_field_tag :sort, params[:sort] %>  
+        <%= text_field_tag :search, params[:search], :class=>'search-query input-xlarge', :placeholder=>'Digite aqui o NOME do paciente' %>  
+        <%= button_tag(type: 'submit', :class=>'btn') do %>
+          <i class="icon-search"></i>   Localizar
+        <% end %>
+      <% end %> 
+    </div>
+  </div>
+</form>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><%= model_class.human_attribute_name(:prontuario) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pacientes.each_with_index do |p,index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td class="teste"><%= p.prontuario %></td>
+        <td><%= link_to p.pessoa.nome, paciente_path(p) %><br /><i>Idade <%= p.pessoa.calc_idade(p.pessoa.data_nas) %> anos, Última consulta em:</i></td>
+        
+        <td>
+          <%= link_to edit_paciente_path(p), :class=>'btn btn-mini' do %> 
+            <i class="icon-edit"></i> Alterar
+          <% end %>          
+          <%= link_to paciente_path(p),:method=>:delete, :class=>'btn btn-mini btn-danger',:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Tem certeza?')) } do %> 
+            <i class="icon-trash icon-white"></i> Apagar
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate_bootstrap(@pacientes) %>
+<%= link_to new_paciente_path, :class=>'btn btn-primary' do %> 
+  <i class="icon-file icon-white"></i> Novo
+<% end %>
+<p></p>
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".teste")
+    .mouseover(function() {
+      alert("Olá mundo");
+    })
+});
+</script>

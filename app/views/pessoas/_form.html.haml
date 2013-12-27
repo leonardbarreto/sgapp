@@ -1,0 +1,19 @@
+= semantic_form_for @pessoa,:html=>{:class=>'form-horizontal'} do |f|
+  = f.inputs do
+    = f.input :nome, :class=>"controls"
+    = f.input :data_nas
+    = f.input :sexo
+    = f.input :naturalidade
+    = f.input :nacionalidade
+    = f.input :identidade
+    = f.input :cpf
+    = f.input :nome_pai
+    = f.input :nome_mae
+    = f.input :endereco
+    = f.input :bairro
+    = f.input :municipio_id
+    = f.input :telefone
+    = f.input :telefonecel
+
+  = f.actions do
+    = f.action :submit, :as => :input

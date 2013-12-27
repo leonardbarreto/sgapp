@@ -1,0 +1,73 @@
+<%= form_for @paciente, :html => { :class => 'form-horizontal' } do |f| %>
+	<%= f.fields_for :pessoa do |p| %>
+
+		<dl class="dl-horizontal">
+			<dt>Prontuário</dt>
+			<dd><%= @paciente.prontuario %></dd>
+			<dt>Cadastrado em:</dt>
+			<dd><%= @paciente.created_at.strftime("%d/%m/%Y") %></dd>
+			<dt>Nome</dt>	
+			<dd><%= (@paciente.pessoa.nome.nil?)?"---":@paciente.pessoa.nome %></dd><br />
+			<dt>Dados gerais</dt>
+			<dd><table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Telefone</th>
+							<th>Data de nascimento</th>
+							<th>Estado civil</th>
+							<th>Sexo</th>
+							<th>Cor</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= @paciente.pessoa.telefone %></td>
+							<td><%= @paciente.pessoa.data_nas.strftime("%d/%m/%Y") %></td>
+							<td><%= @paciente.pessoa.estado_civil.descricao %></td>
+							<td><%= @paciente.pessoa.sexo %></td>
+							<td><%= @paciente.pessoa.cor.descricao %></td>
+						</tr>
+					</tbody>
+				</table>
+			<dt>Endereço</dt>
+				<dd>
+				<address>
+					<%= @paciente.pessoa.endereco %>,
+					<%= @paciente.pessoa.bairro %> - 
+					<%= @paciente.pessoa.municipio.nome %> /
+					<%= @paciente.pessoa.municipio.estado.uf %>
+				</address>
+				</dd>
+			<dt>Nome do pai</dt>
+			<dd><%= @paciente.pessoa.nome_pai %></dd>
+			<dt>Nome da mãe</dt>
+			<dd><%= @paciente.pessoa.nome_mae %></dd><br />
+			
+			<dt>Identificação</dt>
+			<dd>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Identidade</th>
+							<th>CPF</th>
+							<th>Nacionalidade</th>
+							<th>Naturalidade</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= @paciente.pessoa.identidade %></td>
+							<td><%= @paciente.pessoa.cpf %></td>
+							<td><%= @paciente.pessoa.nacionalidade %></td>
+							<td><%= @paciente.pessoa.naturalidade %></td>
+						</tr>
+					</tbody>
+				</table>
+			</dd>
+			
+		</dl>
+		<% end %>
+	<% end %>
+<div class="form-actions">
+    <%= link_to 'Voltar', pacientes_path, :class => 'btn' %>
+  </div>

@@ -1,0 +1,47 @@
+%h1 Listing pessoas
+
+%table
+  %tr
+    %th Nome
+    %th Data nas
+    %th Sexo
+    %th Naturalidade
+    %th Nacionalidade
+    %th Identidade
+    %th Cpf
+    %th Peso
+    %th Nome pai
+    %th Nome mae
+    %th Endereco
+    %th Bairro
+    %th Municipio
+    %th Telefone
+    %th Telefonecel
+    %th
+    %th
+    %th
+
+  - @pessoas.each do |pessoa|
+    %tr
+      %td= pessoa.nome
+      %td= pessoa.data_nas
+      %td= pessoa.sexo
+      %td= pessoa.naturalidade
+      %td= pessoa.nacionalidade
+      %td= pessoa.identidade
+      %td= pessoa.cpf
+      %td= pessoa.peso
+      %td= pessoa.nome_pai
+      %td= pessoa.nome_mae
+      %td= pessoa.endereco
+      %td= pessoa.bairro
+      %td= pessoa.municipio_id
+      %td= pessoa.telefone
+      %td= pessoa.telefonecel
+      %td= link_to 'Show', pessoa
+      %td= link_to 'Edit', edit_pessoa_path(pessoa)
+      %td= link_to 'Destroy', pessoa, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Pessoa', new_pessoa_path
