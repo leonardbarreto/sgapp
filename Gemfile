@@ -68,5 +68,8 @@ group :development, :test do
   gem 'valid_attribute', '~> 1.2.0'
   gem 'timecop', '~> 0.3.5'
 end
-
+group :production do
+  gem 'pg', '~> 0.14.0'
+end
 ruby '1.9.3' #heroku
+gem 'heroku'
