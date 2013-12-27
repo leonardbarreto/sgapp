@@ -14,6 +14,7 @@ gem 'state_machine'
 gem 'ransack'
 gem 'formtastic-bootstrap'
 gem 'will_paginate', '~>3.0'
+gem 'rails_12factor', group: :production #Necessário para o heroku
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -68,3 +69,4 @@ group :development, :test do
   gem 'timecop', '~> 0.3.5'
 end
 
+ruby '1.9.3' #heroku
