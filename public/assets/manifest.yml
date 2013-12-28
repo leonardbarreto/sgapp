@@ -51,3 +51,5 @@ twitter/bootstrap/glyphicons-halflings.png: twitter/bootstrap/glyphicons-halflin
 twitter/bootstrap/glyphicons-halflings/index.png: twitter/bootstrap/glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png
 jquery.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
 jquery/index.min.map: jquery.min-6336c5bca4c709e809647cdfcb484d0a.map
+modernizr.rb: modernizr-c48bde5a006d918d03762d45da8083e6.rb
+modernizr/index.rb: modernizr-c48bde5a006d918d03762d45da8083e6.rb

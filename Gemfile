@@ -27,7 +27,7 @@ group :assets do
   gem 'therubyracer', :platform => :ruby
   gem 'execjs'
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails', '~> 2.1.3'
+  gem 'twitter-bootstrap-rails', '~> 2.1.6'
   gem 'jquery-ui-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -71,5 +71,6 @@ end
 group :production do
   gem 'pg', '~> 0.14.0'
 end
-ruby '1.9.3' #heroku
-gem 'heroku'
+#linhas necessárias para o heroku
+#ruby '1.9.3' 
+#gem 'heroku'
