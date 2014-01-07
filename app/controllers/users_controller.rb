@@ -10,7 +10,7 @@
     end
   end
 
-    def show
+  def show
     @user = User.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
@@ -32,6 +32,16 @@
         format.html { render action: "edit" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+ 
+   def create
+      @user = User.new(params[:user])
+      @user.role = 'admin'
+      if @user.save
+        redirect_to user_path(@user), notice: "Administrador criado com sucesso!"
+      else
+        render 'new'
     end
   end
   # DELETE /users

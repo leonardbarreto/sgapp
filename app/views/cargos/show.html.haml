@@ -1,0 +1,12 @@
+%p#notice= notice
+%p
+	%b Descricao:
+	= @cargo.descricao
+%p
+	%b Tipodoc:
+	= @cargo.tipodoc
+%p
+	%b Funcao:
+	= @cargo.funcao_id
+.form-actions
+	= link_to "Voltar", cargos_path, :class => 'btn'

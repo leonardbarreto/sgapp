@@ -1,10 +1,10 @@
 <div class="tabbable tabs-left">
   <ul class="nav nav-tabs" id="myTab">
-      <li class="<%= 'active' if params[:tab] == 'tab1' %>"><a href="#tab1" data-toggle="tab">DADOS PESSOAIS</a></li>
-      <li class="<%= 'active' if params[:tab] == 'tab2' %>"><a href="#tab2" data-toggle="tab">FICHA MÉDICA</a></li>
+      <li class="<%= 'active' if params[:tab] == 'tab1' %>"><a href="#tab1" data-toggle="tab">PERFIL DO IDOSO</a></li>
+      <!--li class="<%= 'active' if params[:tab] == 'tab2' %>"><a href="#tab2" data-toggle="tab">FICHA MÉDICA</a></li-->
   </ul>
   <div class="tab-content">
-      <div class="<%= if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end%>" id="tab1"><%= render 'pacientes/dadosPessoais' %>
+      <div class="<%= if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end%>" id="tab1"><%= render 'pacientes/ficha' %>
       </div>
       
       

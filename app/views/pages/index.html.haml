@@ -1,6 +1,22 @@
 .hero-unit
 	%h1 Heading
-	%p 
-		Tagline
 	%p
-		%a.btn.btn-primary.btn-large Leia mais
+		Texto Institucional
+	%p
+		%a.btn.btn-primary.btn-large Leia mais &raquo;
+.row
+	.span4
+		%h2 Agenda
+		%p
+			Agenda do dia 
+			= I18n.localize(Time.now,:format => "%A, %d/%m/%y")
+		%a.btn Leia mais &raquo;
+	.span4
+		%h2 Pacientes
+		%p
+			= render 'pacientes/info'
+		%a.btn Leia mais &raquo;
+	.span4
+		%h2 Atendimento
+		%a.btn Leia mais &raquo;
+

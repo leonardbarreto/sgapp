@@ -1,5 +1,8 @@
 Sga::Application.routes.draw do
   
+  resources :funcaos
+  resources :cargos
+  resources :funcionarios
   resources :pacientes
   resources :pessoas
   

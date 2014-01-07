@@ -1,6 +1,28 @@
-= semantic_form_for @user do |f|
-  = f.input :email
-  = f.input :password
-
-  = f.submit 'Salvar'
+= form_for @user, :html => { :class => 'form-horizontal' } do |f|
+	-if @user.errors.any?
+		.span12
+		.alert.alert-error
+			.a &#215;
+			.flash_alert
+			%h3 
+				Não foi possível salvar, pois existe(m)	
+				= pluralize(@user.errors.count, "erro") 
+			%ul
+				- @user.errors.full_messages.each do |msg| 
+					%li
+						= msg
+	.well
+		%strong DADOS DE IDENTIFICAÇÃO
+	.control-group
+		= f.label 'e-mail', :class => 'control-label'
+		.controls
+			= f.text_field :email, :class => 'span5',:readonly=>:true
+	
+	.control-group
+		= f.label 'Permissão', :class => 'control-label'
+		.controls
+			= f.collection_select(:role, User::ROLES, :to_s, :humanize,{:prompt=>true})
+	.form-actions
+		= f.submit 'Atualizar', :class => 'btn btn-primary'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
 

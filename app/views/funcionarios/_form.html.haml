@@ -1,0 +1,59 @@
+= form_for @funcionario, :html => { :class => 'form-horizontal' } do |f|
+	-if @funcionario.errors.any?
+		.span12
+		.alert.alert-error
+			.a &#215;
+			.flash_alert
+			%h3 
+				Não foi possível salvar, pois existe(m)	
+				= pluralize(@funcionario.errors.count, "erro") 
+			%ul
+				- @funcionario.errors.full_messages.each do |msg| 
+					%li
+						= msg
+	= f.fields_for :pessoa do |p|
+		.well
+			%strong DADOS DE IDENTIFICAÇÃO
+		.control-group
+			= p.label 'Nome', :class => 'control-label'
+			.controls
+				= p.text_field :nome, :class => 'span7',:id=>'pacientes_pathnome'
+		.control-group
+			= p.label 'Data de nascimento', :class => 'control-label'
+			.controls.controls-row
+				= p.text_field :data_nas, :class => 'span2', :id=>'data',:onfocus=>'$("#data").mask("99/99/9999");'
+				.span1 Sexo
+				= p.collection_select(:sexo, Pessoa::SEXO, :to_s, :humanize,{:prompt=>true}, {:class=>'span1',:id=>'sexu'})
+				.span1 Cor:
+				= p.collection_select(:cor_id, Cor.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'span2'})
+		.control-group
+			= p.label :naturalidade, :class => 'control-label'
+			.controls.controls-row
+				= p.text_field :naturalidade, :class => 'span3' 
+				.span1 Nacionalidade
+				= p.text_field :nacionalidade, :class => 'span3'
+		.control-group
+			= p.label :telefone, :class => 'control-label'
+			.controls.controls-row
+				= p.phone_field :telefone, :class => 'span3', :id=>'tel',:onfocus=>'$("#tel").mask("(99)9999-9999");' 
+				.span1 Celular
+				= p.phone_field :telefonecel, :class => 'span3', :id=>'cel',:onfocus=>'$("#cel").mask("(99)9999-9999");'
+		.well
+			%strong DADOS GERAIS
+		.control-group
+			= f.label 'Matrícula', :class => 'control-label'
+			.controls
+				= f.text_field :matricula, :class => 'span3'
+		.control-group
+			= f.label 'Data de admissão', :class => 'control-label'
+			.controls
+				= f.text_field :dt_admissao, :class => 'span2', :id=>'data_adm',:onfocus=>'$("#data_adm").mask("99/99/9999");' 
+		.control-group
+			= f.label 'Cargo', :class => 'control-label'
+			.controls
+				= f.collection_select(:cargo_id, Cargo.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'span2'})
+		.control-group
+	.form-actions
+		= f.submit 'Atualizar', :class => 'btn btn-primary'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), funcionarios_path, :class => 'btn'
+	

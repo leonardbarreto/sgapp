@@ -1,0 +1,32 @@
+= form_for @cargo, :html => { :class => 'form-horizontal' } do |c|
+	-if @cargo.errors.any?
+		.span12
+		.alert.alert-error
+			.a &#215;
+			.flash_alert
+			%h3 
+				Não foi possível salvar, pois existe(m)	
+				= pluralize(@cargo.errors.count, "erro") 
+			%ul
+				- @cargo.errors.full_messages.each do |msg| 
+					%li
+						= msg
+	
+	.well
+		%strong DADOS GERAIS
+	.control-group
+		= c.label 'Descrição', :class => 'control-label'
+		.controls
+			= c.text_field :descricao,:class => 'span7'
+	.control-group
+		= c.label 'Tipo de documento', :class => 'control-label'
+		.controls
+			= c.text_field :tipodoc, :class => 'span2'
+	.control-group
+		= c.label 'Função', :class => 'control-label'
+		.controls
+			= c.collection_select(:funcao_id, Funcao.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'span2'})
+	.form-actions
+		= c.submit 'Atualizar', :class => 'btn btn-primary'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), cargos_path, :class => 'btn'
+

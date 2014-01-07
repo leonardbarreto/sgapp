@@ -1,0 +1,13 @@
+/%p#notice= notice
+
+%p
+	%b Matricula:
+	= @funcionario.matricula
+%p
+	%b Dt admissao:
+	= @funcionario.dt_admissao
+%p
+	%b Pessoa:
+	= @funcionario.pessoa_id
+.form-actions
+	= link_to "Voltar", funcionarios_path, :class => 'btn'

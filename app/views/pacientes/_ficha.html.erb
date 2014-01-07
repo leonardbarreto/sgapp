@@ -1,0 +1,296 @@
+<%= form_for @paciente, :html => { :class => 'form-horizontal' } do |f| %>
+  <!-- Verificando erros -->
+  <% if @paciente.errors.any? %>
+    <div class="span12">
+	    <div class="alert alert-error">
+	    	<a class="close" data-dismiss="alert">&#215;</a>
+	      <div id="flash_alert"><h3>Não foi possível salvar, pois existe(m) <%= pluralize(@paciente.errors.count, "erro") %>:
+	  		</h3>
+	      	<ul>
+	      	<% @paciente.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	  </div>
+	    </div>
+	</div>
+  <% end %> <!-- Fim de verificação de erros -->
+	<div class="well"><strong>DADOS DE IDENTIFICAÇÃO</strong></div>
+	<div class="control-group">
+			<%= f.label 'Prontuário', :class => 'control-label' %>
+			<div class="controls">
+				<%= f.text_field :prontuario, :class => 'input-medium' %>
+			</div>
+		</div>
+	<%= f.fields_for :pessoa do |p| %>
+		<div class="control-group">
+			<%= p.label 'Nome', :class => 'control-label' %>
+			<div class="controls">
+				<%= p.text_field :nome, :class => 'span7',:id=>'pacientes_pathnome'%>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label 'Data de nascimento', :class => 'control-label' %>
+			<div class="controls controls-row">
+			 <%= p.text_field :data_nas, :class => 'span2', :id=>'data',:onfocus=>'$("#data").mask("99/99/9999");' %>
+		    <div class="span1">Sexo</div>
+		    <%= p.collection_select(:sexo, Pessoa::SEXO, :to_s, :humanize,{:prompt=>true}, {:class=>'span1',:id=>'sexu'}) %>
+		   <div class="span1">Cor:</div>
+		    <%= p.collection_select(:cor_id, Cor.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'span2'}) %>
+		</div>
+	    </div>
+
+		<div class="control-group">
+			<%= p.label :naturalidade, :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.text_field :naturalidade, :class => 'span3' %>
+				<div class="span1">Nacionalidade</div>
+				<%= p.text_field :nacionalidade, :class => 'span3' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :identidade, :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.text_field :identidade, :class => 'span2' %>
+				<div class="span1">CPF:</div>
+				<%= p.text_field :cpf, :class => 'span2', :id=>'cpf', :onfocus=>'$("#cpf").mask("999.999.999-99");',:onblur=>'alert("validar CPF");' %>
+				<div class="span1">Peso</div>
+				<%= f.text_field :peso, :class => 'span1' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :nome_pai, :class => 'control-label' %>
+			<div class="controls">
+				<%= p.text_field :nome_pai, :class => 'span7' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :nome_mae, :class => 'control-label' %>
+			<div class="controls">
+				<%= p.text_field :nome_mae, :class => 'span7' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :endereco, :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.text_field :endereco, :class => 'span7' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :bairro, :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.text_field :bairro, :class => 'span3' %>
+				<div class="span1">Município</div>
+				<%= p.collection_select(:municipio_id, Municipio.order(:nome), :id, :nome, {:selected => '6699' },{:class=>'span3'}) %>
+
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :telefone, :class => 'control-label' %>
+			<div class="controls">
+				<%= p.phone_field :telefone, :class => 'phone_field', :id=>'tel', :onfocus=>'$("#tel").mask("(99)9999-9999");' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label 'Grau de Instrução', :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.collection_select(:grau_instrucao_id, GrauInstrucao.order(:descricao), :id, :descricao, {:prompt=>true},{:class=>'input-medium'}) %>
+				
+				Religião.........: <%= f.text_field :religiao, :class => 'input-xlarge' %>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<%= f.label :plano_de_saude, :class => 'control-label' %>
+			<div class="controls">
+				<%= f.text_field :plano_de_saude, :class => 'input-medium' %>
+				Estado Civil....: <%= p.collection_select(:estado_civil_id, EstadoCivil.order(:descricao), :id, :descricao, {:prompt=>true},{:class=>'input-xlarge',:onblur=>'clickTab()'}) %>
+			</div>
+		</div>
+	<!-- Início item 2.0 Situação Familiar -->
+	<div class="well"><strong>SITUAÇÃO FAMILIAR</strong></div>
+	<div class="control-group">
+		<%= f.label 'Com que mora', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.collection_select(:residencia_id, Residencia.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'input-large'}) %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Relacionamento com família', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.collection_select(:relacionamento_id, Relacionamento.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'input-large',:onblur=>'clickTab3();'}) %>
+		</div>
+	</div>
+	
+	<!-- Início item 3.0 Recursos Econômicos -->
+	<div class="well"><strong>RECURSOS ECONÔMICOS</strong></div>
+  	<div class="control-group">
+		<%= f.label 'Moradia', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.collection_select(:moradia_id, Moradia.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'input-xlarge'}) %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Atividade Remunerada Anterior', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.collection_select :atremuneracaoant, Pessoa::SIMNAO, :to_s, :humanize,{},{:class=>'input-mini'} %>
+			Qual ?<%= f.text_field :descatremuneradaant, :class=>'input-medium' %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Atividade Remunerada Atual', :class => 'control-label' %>
+		
+		<div class="controls">
+			<%= f.collection_select(:atremuneradatual, Pessoa::SIMNAO, :to_s, :humanize,{},{:class=>'input-mini'}) %>
+			Qual ?<%= f.text_field :descatremuneracaoatual, :class=>'input-medium' %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Situação Previdenciária', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.collection_select(:previdencia_id, Previdencia.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'input-xlarge',:onblur=>'clickTab4();'}) %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Ajuda Familiar', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.collection_select(:ajudafamiliar, Pessoa::SIMNAO, :to_s, :humanize,{},{:class=>'input-mini'}) %>
+			Outras rendas: <%= f.collection_select(:outrasrendas, Pessoa::SIMNAO, :to_s, :humanize,{},{:class=>'input-mini'}) %>
+		</div>
+	</div>
+	<!-- Item 4.0 HPP -->
+	<div class="well"><strong>HPP</strong></div>
+	<div class="control-group">
+		<%= f.label 'Doença na família?', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :hpp, :rows=>'6', :class=> 'input-xxlarge' %>
+		</div>
+	</div>
+	<!-- Início 4.1 Co-morbidades -->
+	<div class="well"><strong>CO-MORBIDADES</strong></div>
+	<div class="control-group">
+		<%= f.label 'Co-Morbidades', :class => 'control-label' %>
+		<div class="controls">
+			<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Presente</th>
+							<th>Ausente</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Insuficiência cardíaca grave</td>
+							<td><%= f.radio_button :it1,1 %></td>
+							<td><%= f.radio_button :it1,0 %></td>
+						</tr>
+						<tr>
+							<td>Arritmia cardíaca não controlada</td>
+							<td><%= f.radio_button :it2,1 %></td>
+							<td><%= f.radio_button :it2,0 %></td>
+						</tr>
+						<tr>
+							<td>Síndrome parkinsoniana</td>
+							<td><%= f.radio_button :it3,1 %></td>
+							<td><%= f.radio_button :it3,0 %></td>
+						</tr>
+						<tr>
+							<td>Doença péptica sem resposta ao tratamento</td>
+							<td><%= f.radio_button :it4,1 %></td>
+							<td><%= f.radio_button :it4,0 %></td>
+						</tr>
+						<tr>
+							<td>Diarréia crônica ou persistente</td>
+							<td><%= f.radio_button :it5,1 %></td>
+							<td><%= f.radio_button :it5,0 %></td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Outras co-morbidades', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :outras, :rows=>'6', :class=> 'input-xxlarge' %>
+		</div>
+	</div>
+	<!-- 5.0 Hábitos de Vida -->
+	<div class="well"><strong>HÁBITOS DE VIDA</strong></div>
+	<div class="control-group">
+		<%= f.label 'Alimentação', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :alimentacao, :rows=>'6', :class=> 'input-xxlarge' %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Sono', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :sono, :rows=>'6', :class=> 'input-xxlarge' %>
+		</div>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Distúrbio Comportamental', :class => 'control-label' %>
+		<div class="controls">
+			<%= f.text_area :disturbio, :rows=>'6', :class=> 'input-xxlarge' %>
+		</div>
+	</div>
+	<!-- História Pessoal Atual e Pregressa -->
+	<div class="well"><strong>HISTÓRIA PESSOAL ATUAL E PREGRESSA</strong></div>
+	<div class="control-group">
+		<%= f.label 'Etilismo', :class => 'control-label' %>
+		<div class="controls">
+			SIM <%= f.radio_button :etilismo,1 %>
+			NÃO <%= f.radio_button :etilismo,0 %>
+		</div>
+	</div>
+	<div class="controls">
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Tipo de bebida</th>
+					<th>Dose diária</th>
+					<th>Duração/Anos</th>
+				</tr>
+				</thead>
+					<tbody>
+						<tr>
+							<td><%= f.text_field :etilismo_tipo, :class=>'input-large' %></td>
+							<td><%= f.text_field :etilismo_dose,:class=>'input-medium' %></td>
+							<td><%= f.text_field :etilismo_duracao,:class=>'input-medium' %></td>
+						</tr>
+					</tbody>
+				</table>
+	</div>
+	<div class="control-group">
+		<%= f.label 'Tabagismo', :class => 'control-label' %>
+		<div class="controls">
+			SIM <%= f.radio_button :tabagismo,1 %>
+			NÃO <%= f.radio_button :tabagismo,0 %>
+		</div>
+	</div>
+	<div class="controls">
+		<table class="table table-condensed">
+			<thead>
+				<tr>
+					<th>Duração/Anos</th>
+					<th>Quantidade diária</th>
+					
+				</tr>
+				</thead>
+					<tbody>
+						<tr>
+							<td><%= f.text_field :tabagismo_duracao, :class=>'input-large' %></td>
+							<td><%= f.text_field :tabagismo_quantidade,:class=>'input-medium' %></td>
+							
+						</tr>
+					</tbody>
+				</table>
+	</div>
+	<% end %>
+<div class="form-actions">
+    <%= f.submit 'Atualizar', :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                pacientes_path, :class => 'btn' %>
+  </div>
+<% end %>

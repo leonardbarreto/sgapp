@@ -1,6 +1,18 @@
+
 <%= form_for @paciente, :html => { :class => 'form-horizontal' } do |f| %>
 	<%= f.fields_for :pessoa do |p| %>
-
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          DADOS DE IDENTIFICAÇÃO
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+    
 		<dl class="dl-horizontal">
 			<dt>Prontuário</dt>
 			<dd><%= @paciente.prontuario %></dd>
@@ -66,8 +78,187 @@
 			</dd>
 			
 		</dl>
-		<% end %>
+	  </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+         SITUAÇÃO FAMILIAR
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<dl class="dl-horizontal">
+      		<dt>Com quem mora</dt>
+      			<dd><%=@paciente.residencia.descricao %></dd>
+      		<dt>Relacionamento com família de convivência</dt>
+      			<dd><%=@paciente.relacionamento.descricao %></dd>
+      	</dl>
+    </div>
+  </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          RECURSOS ECONÔMICOS
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+       <dl class="dl-horizontal">
+      		<dt>Moradia</dt>
+      			<dd><%=@paciente.moradia.descricao %></dd>
+      		<dt>Ativ Remunerada Anterior</dt>
+      			<dd><%=@paciente.atremuneracaoant %></dd>
+      		<dt>Ativ Remunerada Atual</dt>
+      			<dd><%=@paciente.atremuneradatual %></dd>
+      		<dt>Situação Previdenciária</dt>
+      			<dd><%=@paciente.previdencia.descricao %></dd>
+      		<dt>Ajuda Familiar</dt>
+      			<dd><%=@paciente.ajudafamiliar %></dd>
+      	</dl>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+         HPP
+        </a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <div class="panel-body">
+       <dl class="dl-horizontal">
+      		<dt>Doença de Alzheimer na família?</dt>
+      			<dd><%=@paciente.hpp %></dd>
+      		<dt>Co-morbidades</dt>
+      			<dd><table class="table table-condensed">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Presente</th>
+							<th>Ausente</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Insuficiência cardíaca grave</td>
+							<td><%= @paciente.it1=="1"?"X":"" %></td>
+							<td><%= @paciente.it1=="0"?"X":"" %></td>
+						</tr>
+						<tr>
+							<td>Arritmia cardíaca não controlada</td>
+							<td><%= @paciente.it2=="1"?"X":"" %></td>
+							<td><%= @paciente.it2=="0"?"X":"" %></td>
+						</tr>
+						<tr>
+							<td>Síndrome Parkinsoniana</td>
+							<td><%= @paciente.it3=="1"?"X":"" %></td>
+							<td><%= @paciente.it3=="0"?"X":"" %></td>
+						</tr>
+						<tr>
+							<td>Doença péptica sem resposta ao tratamento</td>
+							<td><%= @paciente.it4=="1"?"X":"" %></td>
+							<td><%= @paciente.it4=="0"?"X":"" %></td>
+						</tr>
+						<tr>
+							<td>Diarréia crônica ou persistente</td>
+							<td><%= @paciente.it5=="1"?"X":"" %></td>
+							<td><%= @paciente.it5=="0"?"X":"" %></td>
+						</tr>
+					</tbody>
+				</table>
+      			</dd>
+      		<dt>Outras co-morbidades</dt>
+      			<dd><%=@paciente.outras %></dd>
+      	</dl>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+         HÁBITOS DE VIDA
+        </a>
+      </h4>
+    </div>
+    <div id="collapse5" class="panel-collapse collapse">
+      <div class="panel-body">
+        <dl class="dl-horizontal">
+      		<dt>Alimentação</dt>
+      			<dd><%=@paciente.alimentacao %></dd>
+      		<dt>Sono</dt>
+      			<dd><%=@paciente.sono %></dd>
+      		<dt>Distúrbio comportamental</dt>
+      			<dd><%=@paciente.disturbio %></dd>
+      	</dl>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+         HISTÓRIA PESSOAL ATUAL E PREGRESSA
+        </a>
+      </h4>
+    </div>
+    <div id="collapse6" class="panel-collapse collapse">
+      <div class="panel-body">
+       <dl class="dl-horizontal">
+      		<dt>Etilismo</dt>
+      			<dd><%=@paciente.etilismo %></dd>
+      		<dt></dt>
+      		<dd><table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Tipo de bebida</th>
+							<th>Dose diária</th>
+							<th>Duração/anos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= @paciente.etilismo_tipo %></td>
+							<td><%= @paciente.etilismo_dose %></td>
+							<td><%= @paciente.etilismo_duracao %></td>
+						</tr>
+					</tbody>
+				</table>	
+      		</dd>
+      		<dt>Tabagismo</dt>
+      			<dd><%=@paciente.tabagismo %></dd>
+      		<dt></dt>
+      		<dd><table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>Duração/anos</th>
+							<th>Quantidade diária</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><%= @paciente.tabagismo_duracao %></td>
+							<td><%= @paciente.tabagismo_quantidade %></td>
+						</tr>
+					</tbody>
+				</table>	
+      		</dd>
+      	</dl>
+      </div>
+    </div>
+  </div>
+</div>
 	<% end %>
+<% end %>
 <div class="form-actions">
     <%= link_to 'Voltar', pacientes_path, :class => 'btn' %>
   </div>

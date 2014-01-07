@@ -27,17 +27,21 @@
                     //%li
                       
                     //%li.divider{"role"=>"presentation"}
+                    - if current_user.admin?
+                      %li
+                        %a{:href=>users_path}
+                          %i{:class=>"icon-user"} 
+                          Usuários
                     %li
-                      %a{:href=>users_path}
-                        %i{:class=>"icon-user"} 
-                        Usuários
-                      
+                      %a{:href=>funcionarios_path} Funcionários
                     %li
-                      %a{:href=>"pages/index"} Funcionários
-                %li
-                  %a{:href=>"#"}Agenda
-                %li
-                  %a{:href=>"#"}Atendimento
+                      %a{:href=>cargos_path} Cargos
+                    %li
+                      %a{:href=>funcaos_path} Funções  
+                /%li
+                /  %a{:href=>"#"}Agenda
+                /%li
+                /  %a{:href=>"#"}Atendimento
                 %li
                   %a{:href=>pacientes_path} Pacientes
                 
