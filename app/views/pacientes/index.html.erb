@@ -46,7 +46,9 @@
     <% end %>
   </tbody>
 </table>
+<ul class="pagination">
 <%= paginate_bootstrap(@pacientes) %>
+</ul>
 <%= link_to new_paciente_path, :class=>'btn btn-primary' do %> 
   <i class="icon-file icon-white"></i> Novo
 <% end %>
