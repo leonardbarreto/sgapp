@@ -1,5 +1,8 @@
 Sga::Application.routes.draw do
   
+  resources :tipo_atendimentos
+
+
   resources :funcaos
   resources :cargos
   resources :funcionarios

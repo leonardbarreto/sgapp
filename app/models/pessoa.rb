@@ -9,9 +9,12 @@ class Pessoa < ActiveRecord::Base
   belongs_to :estado_civil, :foreign_key=>'estado_civil_id'
   belongs_to :cor, :foreign_key=>'cor_id'
   validates_presence_of :cor_id, :estado_civil_id, :municipio_id,:nome
+  validates_length_of :identidade, :maximum=>10, :allow_nil=>true
+  validates_length_of :telefone, :maximum=>10, :allow_nil=>true
+  validates_length_of :telefonecel, :maximum=>10, :allow_nil=>true
   SEXO=%w[M F]
 	COR=%w[NEGRO BRANCA PARDA]
-	SIMNAO=%W[S N]
+	SIMNAO=%W[S N -]
   def maiusculo()
   	#colocar para maiúsculo se existir algo digitado
     if (self.nome)

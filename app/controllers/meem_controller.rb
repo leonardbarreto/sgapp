@@ -1,0 +1,3 @@
+class MeemController < ApplicationController
+	
+end

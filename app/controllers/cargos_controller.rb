@@ -1,5 +1,8 @@
 class CargosController < InheritedResources::Base
 load_and_authorize_resource
+def index
+  @cargos=Cargo.order(params[:sort])
+end
 def create
     @cargo = Cargo.new(params[:cargo])
     

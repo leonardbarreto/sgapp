@@ -6,9 +6,12 @@
 %table.table.table-striped
     %thead
         %th #
-        %th Descrição
-        %th Tipo de Documento
-        %th Função
+        %th 
+            = link_to "Descrição", :sort=>"descricao"
+        %th 
+            = link_to "Tipo de Documento", :sort=>"tipodoc"
+        %th 
+            = link_to "Função", :sort=>"funcao_id"
         %th 
     %tbody
         -@cargos.each_with_index do |f,index|

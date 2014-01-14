@@ -32,7 +32,7 @@
 		<div class="control-group">
 			<%= p.label 'Data de nascimento', :class => 'control-label' %>
 			<div class="controls controls-row">
-			 <%= p.text_field :data_nas, :class => 'span2', :id=>'data',:onfocus=>'$("#data").mask("99/99/9999");' %>
+			 <%= p.text_field :data_nas,:class => 'span2', :id=>'data',:onfocus=>'$("#data").mask("99/99/9999");' %>
 		    <div class="span1">Sexo</div>
 		    <%= p.collection_select(:sexo, Pessoa::SEXO, :to_s, :humanize,{:prompt=>true}, {:class=>'span1',:id=>'sexu'}) %>
 		   <div class="span1">Cor:</div>
@@ -53,7 +53,7 @@
 			<div class="controls controls-row">
 				<%= p.text_field :identidade, :class => 'span2' %>
 				<div class="span1">CPF:</div>
-				<%= p.text_field :cpf, :class => 'span2', :id=>'cpf', :onfocus=>'$("#cpf").mask("999.999.999-99");',:onblur=>'alert("validar CPF");' %>
+				<%= p.text_field :cpf, :class => 'span2', :id=>'cpf', :onfocus=>'$("#cpf").mask("999.999.999-99");' %>
 				<div class="span1">Peso</div>
 				<%= f.text_field :peso, :class => 'span1' %>
 			</div>
@@ -81,20 +81,22 @@
 			<div class="controls controls-row">
 				<%= p.text_field :bairro, :class => 'span3' %>
 				<div class="span1">Município</div>
-				<%= p.collection_select(:municipio_id, Municipio.order(:nome), :id, :nome, {:selected => '6699' },{:class=>'span3'}) %>
+				<%= p.collection_select(:municipio_id, Municipio.order(:nome), :id, :nome, {:selected => '3579' },{:class=>'span3'}) %>
 
 			</div>
 		</div>
 		<div class="control-group">
 			<%= p.label :telefone, :class => 'control-label' %>
-			<div class="controls">
-				<%= p.phone_field :telefone, :class => 'phone_field', :id=>'tel', :onfocus=>'$("#tel").mask("(99)9999-9999");' %>
+			<div class="controls controls-row">
+				<%= p.phone_field :telefone, :class => 'span2', :id=>'tel', :onfocus=>'$("#tel").mask("(99)9999-9999");' %>
+				<div class="span1">Celular</div>
+				<%= p.phone_field :telefonecel, :class => 'span2', :id=>'cel', :onfocus=>'$("#cel").mask("(99)99999-9999");' %>
 			</div>
 		</div>
 		<div class="control-group">
 			<%= p.label 'Grau de Instrução', :class => 'control-label' %>
 			<div class="controls controls-row">
-				<%= p.collection_select(:grau_instrucao_id, GrauInstrucao.order(:descricao), :id, :descricao, {:prompt=>true},{:class=>'input-medium'}) %>
+				<%= p.collection_select(:grau_instrucao_id, GrauInstrucao.order(:descricao), :id, :descricao, {:prompt=>true},{:class=>'input-large'}) %>
 				
 				Religião.........: <%= f.text_field :religiao, :class => 'input-xlarge' %>
 			</div>

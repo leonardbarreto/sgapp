@@ -1,0 +1,19 @@
+%h1 Listing tipo_atendimentos
+
+%table
+  %tr
+    %th Descricao
+    %th
+    %th
+    %th
+
+  - @tipo_atendimentos.each do |tipo_atendimento|
+    %tr
+      %td= tipo_atendimento.descricao
+      %td= link_to 'Show', tipo_atendimento
+      %td= link_to 'Edit', edit_tipo_atendimento_path(tipo_atendimento)
+      %td= link_to 'Destroy', tipo_atendimento, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Tipo atendimento', new_tipo_atendimento_path

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140107124323) do
+ActiveRecord::Schema.define(:version => 20140113175446) do
+
+  create_table "atendimentos", :force => true do |t|
+    t.date     "data_at"
+    t.time     "horario"
+    t.integer  "tipo_atendimento_id"
+    t.integer  "paciente_id"
+    t.integer  "funcionario_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
 
   create_table "cargos", :force => true do |t|
     t.string   "descricao"
@@ -36,6 +46,11 @@ ActiveRecord::Schema.define(:version => 20140107124323) do
 
   create_table "estados_civis", :force => true do |t|
     t.string   "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "exames", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -70,6 +85,13 @@ ActiveRecord::Schema.define(:version => 20140107124323) do
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
     t.string   "descricao",  :limit => 40
+  end
+
+  create_table "meems", :force => true do |t|
+    t.integer  "score"
+    t.integer  "tipo_exame_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "moradia", :force => true do |t|
@@ -163,6 +185,12 @@ ActiveRecord::Schema.define(:version => 20140107124323) do
   end
 
   create_table "residencia", :force => true do |t|
+    t.string   "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tipo_atendimentos", :force => true do |t|
     t.string   "descricao"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

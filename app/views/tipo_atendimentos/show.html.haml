@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Descricao:
+  = @tipo_atendimento.descricao
+
+= link_to 'Edit', edit_tipo_atendimento_path(@tipo_atendimento)
+\|
+= link_to 'Back', tipo_atendimentos_path

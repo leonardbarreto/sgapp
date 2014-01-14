@@ -1,0 +1,2 @@
+class AtendimentoController < ApplicationController
+end

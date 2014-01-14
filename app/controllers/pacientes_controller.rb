@@ -5,7 +5,8 @@ load_and_authorize_resource
  
   def index
     #@pacientes = Paciente.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])  
-    @pacientes = Paciente.joins(:pessoa).search(params[:search]).paginate(:per_page => 7, :page => params[:page]).order('nome')  
+    #@pacientes = Paciente.joins(:pessoa).search(params[:search]).paginate(:per_page => 7, :page => params[:page]).order('nome')  
+    @pacientes = Paciente.joins(:pessoa).search(params[:search]).paginate(:per_page => 7, :page => params[:page]).order(params[:sort])  
     #@pacientes = Paciente.all
     #@pacientes = Paciente.paginate(:page=>params[:page],:per_page=>10).order('nome')
     #respond_to do |format|
@@ -61,9 +62,17 @@ load_and_authorize_resource
   # PUT /pacientes/1.json
   def update
     @paciente = Paciente.find(params[:id])
-
+    #verificar se existe atendimento cadastrado para o paciente
+    #@atendimentos=Atendimento.find_all_by_paciente_id(params[:paciente_id])
+    #if @atendimentos.empty?
+    #  @atendimento=Atendimento.new()
+    #  @atendimento.paciente_id=@paciente.id
+    #  @atendimento.save
+    #else
+    #  @atendimento.update_attributes(params[:paciente_id])
+    #end
     respond_to do |format|
-      if @paciente.update_attributes(params[:paciente])
+      if @paciente.update_attributes(params[:paciente]) 
         format.html { redirect_to @paciente, notice: 'Paciente atualizado com sucesso.' }
         format.json { head :no_content }
       else
