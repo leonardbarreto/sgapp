@@ -97,16 +97,38 @@
 			<%= p.label 'Grau de Instrução', :class => 'control-label' %>
 			<div class="controls controls-row">
 				<%= p.collection_select(:grau_instrucao_id, GrauInstrucao.order(:descricao), :id, :descricao, {:prompt=>true},{:class=>'input-large'}) %>
-				
-				Religião.........: <%= f.text_field :religiao, :class => 'input-xlarge' %>
+				 <label class="checkbox inline">
+					<%= p.radio_button :gi_completo,1,:checked=>true %> Completo 
+				 </label>
+				 <label class="checkbox inline">
+					<%= p.radio_button :gi_completo,0%> Incompleto
+				 </label>
+				 
 			</div>
 		</div>
-		
+		<div class="control-group">
+			<%= p.label 'Religião', :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= f.text_field :religiao, :class => 'input-xlarge' %>
+			</div>
+		</div>
+
 		<div class="control-group">
 			<%= f.label :plano_de_saude, :class => 'control-label' %>
 			<div class="controls">
 				<%= f.text_field :plano_de_saude, :class => 'input-medium' %>
-				Estado Civil....: <%= p.collection_select(:estado_civil_id, EstadoCivil.order(:descricao), :id, :descricao, {:prompt=>true},{:class=>'input-xlarge',:onblur=>'clickTab()'}) %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label 'Religião', :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= f.text_field :religiao, :class => 'input-xlarge' %>
+			</div>
+		</div>
+	<div class="control-group">
+			<%= f.label :estado_civil, :class => 'control-label' %>
+			<div class="controls">
+				<%= p.collection_select(:estado_civil_id, EstadoCivil.order(:descricao), :id, :descricao, {:prompt=>true},{:class=>'input-xlarge',:onblur=>'clickTab()'}) %>
 			</div>
 		</div>
 	<!-- Início item 2.0 Situação Familiar -->

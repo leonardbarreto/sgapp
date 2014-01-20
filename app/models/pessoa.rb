@@ -4,7 +4,7 @@ class Pessoa < ActiveRecord::Base
 	after_initialize :default_values
 	has_one :paciente
   has_one :funcionario
-  attr_accessible :bairro, :cpf, :data_nas, :endereco, :identidade, :municipio_id, :nacionalidade, :naturalidade, :nome, :nome_mae, :nome_pai, :peso, :sexo, :telefone, :telefonecel, :cor_id,:grau_instrucao_id, :estado_civil_id
+  attr_accessible :bairro, :cpf, :data_nas, :endereco, :identidade, :municipio_id, :nacionalidade, :naturalidade, :nome, :nome_mae, :nome_pai, :peso, :sexo, :telefone, :telefonecel, :cor_id,:grau_instrucao_id, :estado_civil_id,:gi_completo
   belongs_to :municipio, :foreign_key => 'municipio_id'
   belongs_to :estado_civil, :foreign_key=>'estado_civil_id'
   belongs_to :cor, :foreign_key=>'cor_id'
