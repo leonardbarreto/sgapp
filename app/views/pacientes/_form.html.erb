@@ -7,21 +7,7 @@
   <div class="tab-content">
       <div class="<%= if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end%>" id="tab1"><%= render 'pacientes/ficha' %>
       </div>
-        <!--div class="<%= if (params[:tab] == 'tab2' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end%>" id="tab2">
-          <!--%= render 'pacientes/fichaResumida' %-->
-          <!--div class="tabbable"--> <!-- Only required for left/right tabs -->
-            <!--ul class="nav nav-tabs">
-              <li class="active"><a href="#tab21" data-toggle="tab">MMSE</a></li>
-              <li><a href="#tab22" data-toggle="tab">AVD</a></li>
-              <li><a href="#tab23" data-toggle="tab">AIVD</a></li>
-              <li><a href="#tab24" data-toggle="tab">CDR</a></li>
-              <li><a href="#tab25" data-toggle="tab">GDS</a></li>
-            </ul-->
-            <!--div class="tab-content">
-              <%= render 'pacientes/exames' %>
-            </div>
-          </div>
-      </div-->
+      
   </div>
 </div>
 <script type="text/javascript">

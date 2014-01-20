@@ -1,19 +1,20 @@
+
+	  <!-- Verificando erros -->
+	  <% if @paciente.errors.any? %>
+	    <div class="span12">
+		    <div class="alert alert-error">
+		    	<a class="close" data-dismiss="alert">&#215;</a>
+		      	<div id="flash_alert"><h3>Não foi possível salvar, pois existe(m) <%= pluralize(@paciente.errors.count, "erro") %>:</h3>
+		      		<ul>
+		      			<% @paciente.errors.full_messages.each do |msg| %>
+		        			<li><%= msg %></li>
+		      			<% end %>
+		      		</ul>
+		  		</div>
+		    </div>
+		</div>
+	  <% end %> <!-- Fim de verificação de erros -->
 <%= form_for @paciente, :html => { :class => 'form-horizontal' } do |f| %>
-  <!-- Verificando erros -->
-  <% if @paciente.errors.any? %>
-    <div class="span12">
-	    <div class="alert alert-error">
-	    	<a class="close" data-dismiss="alert">&#215;</a>
-	      	<div id="flash_alert"><h3>Não foi possível salvar, pois existe(m) <%= pluralize(@paciente.errors.count, "erro") %>:</h3>
-	      		<ul>
-	      			<% @paciente.errors.full_messages.each do |msg| %>
-	        			<li><%= msg %></li>
-	      			<% end %>
-	      		</ul>
-	  		</div>
-	    </div>
-	</div>
-  <% end %> <!-- Fim de verificação de erros -->
 	<div class="well"><strong>DADOS DE IDENTIFICAÇÃO</strong></div>
 	<div class="control-group">
 			<%= f.label 'Prontuário', :class => 'control-label' %>
@@ -178,33 +179,39 @@
 							<th></th>
 							<th>Presente</th>
 							<th>Ausente</th>
+							<th>Não informado</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td>Insuficiência cardíaca grave</td>
-							<td><%= f.radio_button :it1,1 %></td>
 							<td><%= f.radio_button :it1,0 %></td>
+							<td><%= f.radio_button :it1,1 %></td>
+							<td><%= f.radio_button :it1,2,:checked=>true %></td>
 						</tr>
 						<tr>
 							<td>Arritmia cardíaca não controlada</td>
-							<td><%= f.radio_button :it2,1 %></td>
 							<td><%= f.radio_button :it2,0 %></td>
+							<td><%= f.radio_button :it2,1 %></td>
+							<td><%= f.radio_button :it2,2,:checked=>true %></td>
 						</tr>
 						<tr>
 							<td>Síndrome parkinsoniana</td>
-							<td><%= f.radio_button :it3,1 %></td>
 							<td><%= f.radio_button :it3,0 %></td>
+							<td><%= f.radio_button :it3,1 %></td>
+							<td><%= f.radio_button :it3,2,:checked=>true %></td>
 						</tr>
 						<tr>
 							<td>Doença péptica sem resposta ao tratamento</td>
-							<td><%= f.radio_button :it4,1 %></td>
 							<td><%= f.radio_button :it4,0 %></td>
+							<td><%= f.radio_button :it4,1 %></td>
+							<td><%= f.radio_button :it4,2,:checked=>true %></td>
 						</tr>
 						<tr>
 							<td>Diarréia crônica ou persistente</td>
-							<td><%= f.radio_button :it5,1 %></td>
 							<td><%= f.radio_button :it5,0 %></td>
+							<td><%= f.radio_button :it5,1 %></td>
+							<td><%= f.radio_button :it5,2,:checked=>true %></td>
 						</tr>
 					</tbody>
 				</table>
@@ -241,8 +248,9 @@
 	<div class="control-group">
 		<%= f.label 'Etilismo', :class => 'control-label' %>
 		<div class="controls">
-			SIM <%= f.radio_button :etilismo,1 %>
-			NÃO <%= f.radio_button :etilismo,0 %>
+			<%= f.radio_button :etilismo,1 %> SIM | 
+			<%= f.radio_button :etilismo,0 %> NÃO | 
+			<%= f.radio_button :etilismo,2,:checked=>true %> Não informado 
 		</div>
 	</div>
 	<div class="controls">
@@ -266,8 +274,9 @@
 	<div class="control-group">
 		<%= f.label 'Tabagismo', :class => 'control-label' %>
 		<div class="controls">
-			SIM <%= f.radio_button :tabagismo,1 %>
-			NÃO <%= f.radio_button :tabagismo,0 %>
+			<%= f.radio_button :tabagismo,1 %> SIM |
+			 <%= f.radio_button :tabagismo,0 %> NÃO |
+			 <%= f.radio_button :tabagismo,2,:checked=>true %> | Não informado
 		</div>
 	</div>
 	<div class="controls">
