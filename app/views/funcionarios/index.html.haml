@@ -31,7 +31,7 @@
                 %td
                     =f.cargo.descricao
                 %td
-                    =f.user.email
+                    =f.user.nil? ? "--": f.user.email
                 %td 
                     =f.dt_admissao
                 %td
