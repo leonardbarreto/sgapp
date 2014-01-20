@@ -1,6 +1,7 @@
 class Atendimento < ActiveRecord::Base
   belongs_to :paciente, :foreign_key=>'paciente_id'
-  has_one :exame
+  belongs_to :funcionario, :foreign_key=>'funcionario_id'
+  has_many :exame
   # attr_accessible :title, :body
   	after_initialize :init
 	def init #similar ao método default_values

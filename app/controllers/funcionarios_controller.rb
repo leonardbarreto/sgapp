@@ -2,12 +2,8 @@
 class FuncionariosController < InheritedResources::Base
 	load_and_authorize_resource
   def index
-		@funcionarios=Funcionario.all
-    respond_to do |format|
-      format.html
-      format.json { render :json => @funcionarios }
-      #format.xml  { render :xml => @users }
-    end
+		@funcionarios=Funcionario.order(params[:sort])
+    
 	end
 
   def show

@@ -53,6 +53,10 @@
 			.controls
 				= f.collection_select(:cargo_id, Cargo.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'span2'})
 		.control-group
+			= f.label 'Usuário', :class => 'control-label'
+			.controls
+				= f.collection_select(:user_id, User.order(:email),:id,:email,{:prompt=>true}, {:class=>'span3'})
+		.control-group
 	.form-actions
 		= f.submit 'Atualizar', :class => 'btn btn-primary'
 		= link_to t('.cancel', :default => t("helpers.links.cancel")), funcionarios_path, :class => 'btn'

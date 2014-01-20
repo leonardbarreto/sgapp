@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140113175446) do
+ActiveRecord::Schema.define(:version => 20140120123841) do
 
   create_table "atendimentos", :force => true do |t|
     t.date     "data_at"
@@ -51,8 +51,9 @@ ActiveRecord::Schema.define(:version => 20140113175446) do
   end
 
   create_table "exames", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "atendimento_id"
   end
 
   create_table "friendly_id_slugs", :force => true do |t|
@@ -76,9 +77,11 @@ ActiveRecord::Schema.define(:version => 20140113175446) do
     t.integer  "matricula"
     t.date     "dt_admissao"
     t.integer  "pessoa_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "cargo_id"
+    t.string   "ativo",       :limit => 1, :default => "1"
+    t.integer  "user_id",                  :default => 0
   end
 
   create_table "grau_instrucaos", :force => true do |t|
@@ -145,7 +148,7 @@ ActiveRecord::Schema.define(:version => 20140113175446) do
     t.integer  "tabagismo_duracao"
     t.string   "tabagismo_quantidade",   :limit => 50
     t.string   "religiao",               :limit => 40
-    t.string   "plano_de_saude",         :limit => 3
+    t.string   "plano_de_saude",         :limit => 15
   end
 
   add_index "pacientes", ["slug"], :name => "index_pacientes_on_slug", :unique => true

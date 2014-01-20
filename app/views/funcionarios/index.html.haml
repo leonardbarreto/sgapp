@@ -6,10 +6,18 @@
 %table.table.table-striped
     %thead
         %th #
-        %th Matrícula
-        %th Nome
-        %th Cargo
-        %th Data de admissão
+        %th 
+            = link_to "Matrícula",:sort=>"matricula"
+        %th 
+            = link_to "Nome",:sort=>"pessoa_id"
+        %th 
+            = link_to "Cargo",:sort=>"cargo_id"
+        %th 
+            = link_to "Email",:sort=>"user_id"
+        %th 
+            = link_to "Data de admissão",:sort=>"dt_admissao"
+        %th 
+            = link_to "Ativo",:sort=>"ativo"
         %th 
     %tbody
         -@funcionarios.each_with_index do |f,index|
@@ -22,8 +30,12 @@
                     =f.pessoa.nome
                 %td
                     =f.cargo.descricao
+                %td
+                    =f.user.email
                 %td 
                     =f.dt_admissao
+                %td
+                    =f.ativo
                 %td
                     = link_to edit_funcionario_path(f), :class=>'btn btn-mini' do 
                         %i.icon-edit

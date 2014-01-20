@@ -42,6 +42,6 @@ class Pessoa < ActiveRecord::Base
     self.municipio_id||=3579 #Campos
   end
   def calc_idade(data)
-    DateTime.now.year - data.year
+    data.nil? ? "-" : (DateTime.now.year - data.year)
   end
 end

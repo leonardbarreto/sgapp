@@ -6,7 +6,7 @@ load_and_authorize_resource
   def index
     #@pacientes = Paciente.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])  
     #@pacientes = Paciente.joins(:pessoa).search(params[:search]).paginate(:per_page => 7, :page => params[:page]).order('nome')  
-    @pacientes = Paciente.joins(:pessoa).search(params[:search]).paginate(:per_page => 7, :page => params[:page]).order(params[:sort])  
+    @pacientes = Paciente.joins(:pessoa).search(params[:search]).paginate(:per_page => 5, :page => params[:page]).order(params[:sort])  
     #@pacientes = Paciente.all
     #@pacientes = Paciente.paginate(:page=>params[:page],:per_page=>10).order('nome')
     #respond_to do |format|
