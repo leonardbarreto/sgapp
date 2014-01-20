@@ -10,7 +10,7 @@ class Pessoa < ActiveRecord::Base
   belongs_to :cor, :foreign_key=>'cor_id'
   validates_presence_of :cor_id, :estado_civil_id, :municipio_id,:nome
   validates_length_of :identidade, :maximum=>10, :allow_nil=>true
-  validates_length_of :telefone, :maximum=>10, :allow_nil=>true
+  validates_length_of :telefone, :maximum=>14, :allow_nil=>true
   validates_length_of :telefonecel, :maximum=>15, :allow_nil=>true
   SEXO=%w[M F]
 	COR=%w[NEGRO BRANCA PARDA]
