@@ -1,5 +1,7 @@
 class Paciente < ActiveRecord::Base
   extend FriendlyId
+  before_create :attrs_to_upcase
+  before_update :attrs_to_upcase
   belongs_to :residencia, :foreign_key=>'residencia_id'
   belongs_to :relacionamento, :foreign_key=>'relacionamento_id'
   belongs_to :moradia, :foreign_key=>'moradia_id'
@@ -24,6 +26,14 @@ class Paciente < ActiveRecord::Base
       scoped  
     end  
   end
+  def attrs_to_upcase
+    #grava atributos do tipo string para caixa alta
+     self.attributes.each do |attrib, val|
+      if val.is_a? String
+        self.send(attrib.to_sym).upcase!
+      end
+    end
+  end
   def init
     self.previdencia_id=0 #código do item "não informado"
   end
@@ -31,8 +41,9 @@ class Paciente < ActiveRecord::Base
     #indica um número do prontuário ao criar nova pessoa
     self.prontuario ||= Paciente.count+1
   end
-  def countPacientes()
-    @qtd=Paciente.count
-  end
-  
+  #def countPacientes()
+  #  @qtd=Paciente.count
+  #end
+     
+
 end

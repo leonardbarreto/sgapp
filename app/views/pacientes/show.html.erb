@@ -76,7 +76,16 @@
 					</tbody>
 				</table>
 			</dd>
-			
+			<dt>Grau de instrução</dt>
+			<dd><%= @paciente.pessoa.grau_instrucao.descricao %></dd>
+			<dt>Religião</dt>
+			<dd><%= @paciente.religiao %></dd>
+			<dt>Plano de saúde</dt>
+			<dd><%= @paciente.plano_de_saude %></dd>
+			<dt>Estado civil</dt>
+			<dd><%= @paciente.pessoa.estado_civil.descricao %></dd>
+			<dt>Encaminhamento</dt>
+			<dd><%= @paciente.encaminhamento.descricao %></dd>
 		</dl>
 	  </div>
     </div>
@@ -145,6 +154,7 @@
 							<th></th>
 							<th>Presente</th>
 							<th>Ausente</th>
+							<th>Não informado</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -152,26 +162,31 @@
 							<td>Insuficiência cardíaca grave</td>
 							<td><%= @paciente.it1=="1"?"X":"" %></td>
 							<td><%= @paciente.it1=="0"?"X":"" %></td>
+							<td><%= @paciente.it1=="2"?"X":"" %></td>
 						</tr>
 						<tr>
 							<td>Arritmia cardíaca não controlada</td>
 							<td><%= @paciente.it2=="1"?"X":"" %></td>
 							<td><%= @paciente.it2=="0"?"X":"" %></td>
+							<td><%= @paciente.it2=="2"?"X":"" %></td>
 						</tr>
 						<tr>
 							<td>Síndrome Parkinsoniana</td>
 							<td><%= @paciente.it3=="1"?"X":"" %></td>
 							<td><%= @paciente.it3=="0"?"X":"" %></td>
+							<td><%= @paciente.it3=="2"?"X":"" %></td>
 						</tr>
 						<tr>
 							<td>Doença péptica sem resposta ao tratamento</td>
 							<td><%= @paciente.it4=="1"?"X":"" %></td>
 							<td><%= @paciente.it4=="0"?"X":"" %></td>
+							<td><%= @paciente.it4=="2"?"X":"" %></td>
 						</tr>
 						<tr>
 							<td>Diarréia crônica ou persistente</td>
 							<td><%= @paciente.it5=="1"?"X":"" %></td>
 							<td><%= @paciente.it5=="0"?"X":"" %></td>
+							<td><%= @paciente.it5=="2"?"X":"" %></td>
 						</tr>
 					</tbody>
 				</table>

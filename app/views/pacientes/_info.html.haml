@@ -1,14 +1,8 @@
 -model_class = Paciente
 %strong 
 	Pacientes cadastrados: 
-= Paciente.count
+= countPacientes
 %p
 %strong 
 	Prontuários atualizados:
-= producao.map do |k,v|
-	%ul
-		%li
-			=k.to_date.strftime("%d/%m/%Y")
-			%strong :
-			=v
-			
+//= producao
