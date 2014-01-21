@@ -14,6 +14,7 @@ load_and_authorize_resource
     #  format.json { render json: @pacientes }
     #end
   end
+ 
 
   # GET /pacientes/1
   # GET /pacientes/1.json

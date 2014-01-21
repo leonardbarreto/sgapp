@@ -1,0 +1,2 @@
+class EncaminhamentoController < ApplicationController
+end

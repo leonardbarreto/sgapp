@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120175303) do
+ActiveRecord::Schema.define(:version => 20140120191829) do
 
   create_table "atendimentos", :force => true do |t|
     t.date     "data_at"
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(:version => 20140120175303) do
   end
 
   create_table "cores", :force => true do |t|
+    t.string   "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "encaminhamentos", :force => true do |t|
     t.string   "descricao"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -149,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20140120175303) do
     t.string   "tabagismo_quantidade",   :limit => 50
     t.string   "religiao",               :limit => 40
     t.string   "plano_de_saude",         :limit => 15
+    t.integer  "encaminhamento_id"
   end
 
   add_index "pacientes", ["slug"], :name => "index_pacientes_on_slug", :unique => true
