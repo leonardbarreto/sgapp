@@ -81,7 +81,7 @@
 			<dt>Religião</dt>
 			<dd><%= @paciente.religiao %></dd>
 			<dt>Plano de saúde</dt>
-			<dd><%= @paciente.plano_de_saude %></dd>
+			<dd><%= @paciente.plano_de_saude.empty? ? "---" : @paciente.plano_de_saude %></dd>
 			<dt>Estado civil</dt>
 			<dd><%= @paciente.pessoa.estado_civil.descricao %></dd>
 			<dt>Encaminhamento</dt>
