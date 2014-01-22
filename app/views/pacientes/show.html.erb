@@ -230,7 +230,13 @@
       <div class="panel-body">
        <dl class="dl-horizontal">
       		<dt>Etilismo</dt>
-      			<dd><%=@paciente.etilismo %></dd>
+      			<dd><%= if @paciente.etilismo==1 
+      				"SIM" 
+      					elseif	@paciente.etilismo==0
+      						  "NÃO"
+      						 else
+      						 	"Não informado"
+      					end%></dd>
       		<dt></dt>
       		<dd><table class="table table-condensed">
 					<thead>
@@ -250,7 +256,13 @@
 				</table>	
       		</dd>
       		<dt>Tabagismo</dt>
-      			<dd><%=@paciente.tabagismo %></dd>
+      			<dd><%= if @paciente.tabagismo==1 
+      				"SIM" 
+      					elseif	@paciente.tabagismo==0
+      						  "NÃO"
+      						 else
+      						 	"Não informado"
+      					end%></dd>
       		<dt></dt>
       		<dd><table class="table table-condensed">
 					<thead>
