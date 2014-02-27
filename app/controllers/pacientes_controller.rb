@@ -14,7 +14,6 @@ load_and_authorize_resource
     #  format.json { render json: @pacientes }
     #end
   end
- 
 
   # GET /pacientes/1
   # GET /pacientes/1.json
@@ -42,6 +41,14 @@ load_and_authorize_resource
   def edit
     @paciente = Paciente.find(params[:id])
   end
+    # GET /pacientes/1/edit
+  def prontuario
+    @paciente = Paciente.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @paciente }
+    end
+  end
 
   # POST /pacientes
   # POST /pacientes.json
@@ -50,7 +57,7 @@ load_and_authorize_resource
     
     respond_to do |format|
       if @paciente.save
-        format.html { redirect_to @paciente, notice: 'Paciente criado com sucesso.' }
+        format.html { redirect_to pacientes_path, notice: 'Paciente criado com sucesso.' }
         format.json { render json: @paciente, status: :created, location: @paciente }
       else
         format.html { render action: "new" }
@@ -74,7 +81,7 @@ load_and_authorize_resource
     #end
     respond_to do |format|
       if @paciente.update_attributes(params[:paciente]) 
-        format.html { redirect_to @paciente, notice: 'Paciente atualizado com sucesso.' }
+        format.html { redirect_to pacientes_path, notice: 'Paciente atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

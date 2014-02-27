@@ -6,10 +6,11 @@ class User < ActiveRecord::Base
   ROLES=%w[admin administrativo eqtecnica]
   after_initialize :default_values
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me,:role
   # attr_accessible :title, :body
+    
   def admin?
     	#role.permissao == 'admin'
     role == 'admin'

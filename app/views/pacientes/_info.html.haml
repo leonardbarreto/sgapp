@@ -3,6 +3,15 @@
 	Pacientes cadastrados: 
 = countPacientes
 %p
-%strong 
-	Prontuários atualizados:
-//= producao
+%strong	Prontuários atualizados:
+%table.table.table-condensed.table-striped
+	%thead
+		%tr
+			%th Data
+			%th Quantidade
+	%tbody
+		- producao.each do |k,v|
+			%tr
+				%td= k.to_time.strftime("%d/%m/%Y")  
+				%td= v
+		

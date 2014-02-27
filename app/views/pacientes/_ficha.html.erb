@@ -33,7 +33,7 @@
 		<div class="control-group">
 			<%= p.label 'Data de nascimento', :class => 'control-label' %>
 			<div class="controls controls-row">
-			 <%= p.text_field :data_nas,:class => 'span2', :id=>'data',:onfocus=>'$("#data").mask("99/99/9999");' %>
+			 <%= p.text_field :data_nas,:value=>dateFormat(@paciente.pessoa.data_nas),:class => 'span2', :id=>'data',:onfocus=>'$("#data").mask("99/99/9999");' %>
 		    <div class="span1">Sexo</div>
 		    <%= p.collection_select(:sexo, Pessoa::SEXO, :to_s, :humanize,{:prompt=>true}, {:class=>'span1',:id=>'sexu'}) %>
 		   <div class="span1">Cor:</div>

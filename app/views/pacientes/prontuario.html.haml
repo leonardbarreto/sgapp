@@ -1,0 +1,28 @@
+.page-header
+	%h1 
+		Paciente
+		%small - Prontuário
+=render 'fichaResumida'
+.tabbable.tabs-left
+	%ul.nav.nav-tabs
+		%li{:class=> "'active' if params[:tab] == 'tab1'"}
+			%a{:href=>"#tab1", 'data-toggle'=>"tab"}
+				PERFIL DO IDOSO
+		%li{:class=> "'active' if params[:tab] == 'tab2'"}
+			%a{:href=>"#tab2", 'data-toggle'=>"tab"}
+				ATENDIMENTOS
+		%li{:class=> "'active' if params[:tab] == 'tab3'"}
+			%a{:href=>"#tab3", 'data-toggle'=>"tab"}
+				EXAMES
+	.tab-content
+		%div{:id=>'tab1', :class=> "#{if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end}" }
+			=render 'pacientes/ficha'
+		%div{:id=>'tab2', :class=> "#{if (params[:tab] == 'tab2' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end} "}
+			=render 'pacientes/atendimentos'
+:javascript
+	window.onload=function() {clickTab1();};
+	function clickTab1(){
+		$('a[href="#tab1"]').tab('show'); //ativa aba 1
+		$("input:text:eq(0):visible").focus(); //Foco no primeiro elemento
+	}
+

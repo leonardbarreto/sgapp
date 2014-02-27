@@ -6,16 +6,19 @@ Sga::Application.routes.draw do
   resources :funcaos
   resources :cargos
   resources :funcionarios
-  resources :pacientes
+  resources :pacientes do
+    member do
+      get 'prontuario'
+    end
+  end
+    
   resources :pessoas
   
   root :to => 'pages#index'
   devise_for :users
   resources :users
   
-  
-
-  # The priority is based upon order of creation:
+    # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:

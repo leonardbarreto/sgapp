@@ -1,21 +1,6 @@
 <%= form_for @paciente, :html => { :class => 'form-horizontal' } do |f| %>
   <!-- Verificando erros -->
-  <% if @paciente.errors.any? %>
-    <div class="span12">
-	    <div class="alert alert-error">
-	    	<a class="close" data-dismiss="alert">&#215;</a>
-	      	<div id="flash_alert"><h3>Não foi possível salvar, pois existe(m) <%= pluralize(@paciente.errors.count, "erro") %>:	</h3>
-	      		<ul>
-	      			<% @paciente.errors.full_messages.each do |msg| %>
-	        			<li><%= msg %></li>
-	      			<% end %>
-	      		</ul>
-	  		</div>
-	  	</div>
-	</div>
-  <% end %> <!-- Fim de verificação de erros -->
-	<!--span class="input-xlarge uneditable-input">Some value here</span-->
-	<div class="alert alert-info">
+  	<div class="alert alert-info">
 		<%= f.fields_for :pessoa do |p| %>
 		<table class="table table-condensed">
  				<thead>
@@ -30,12 +15,11 @@
  					<tr>
  						<td><%= f.text_field :prontuario,:disabled=>true,:class=>'input-small' %></td>
  						<td><%= p.text_field :nome,:disabled=>true,:class=>'input-xxlarge' %></td>
-						<td><%= p.text_field :data_nas,:id=>'data',:disabled=>true,:class=>'input-small' %></td>
+ 						<td><%= p.text_field :data_nas,:id=>'data',:value=> dateFormat(@paciente.pessoa.data_nas) ,:disabled=>true,:class=>'input-small' %></td>
 		    			<td><%= p.text_field :sexo, :disabled=>true,:id=>'sexu',:class=>'input-small' %></td>
 					</tr>
  				</tbody>
 			</table>
 		<% end %>	
-	
 	</div>
 <% end %>
