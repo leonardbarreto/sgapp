@@ -1,0 +1,25 @@
+%h1 Listing aivds
+
+%table
+  %tr
+    %th Pontos
+    %th Dependencia
+    %th Atendimento
+    %th Tipo exame
+    %th
+    %th
+    %th
+
+  - @aivds.each do |aivd|
+    %tr
+      %td= aivd.pontos
+      %td= aivd.dependencia
+      %td= aivd.atendimento_id
+      %td= aivd.tipo_exame_id
+      %td= link_to 'Show', aivd
+      %td= link_to 'Edit', edit_aivd_path(aivd)
+      %td= link_to 'Destroy', aivd, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Aivd', new_aivd_path

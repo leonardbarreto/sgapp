@@ -1,0 +1,11 @@
+= semantic_form_for @avd do |f|
+  = f.inputs do
+    = f.input :banho
+    = f.input :vestir
+    = f.input :higiene
+    = f.input :transferencia
+    = f.input :continencia
+    = f.input :alimentacao
+
+  = f.actions do
+    = f.action :submit, :as => :input

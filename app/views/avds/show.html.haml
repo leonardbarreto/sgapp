@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Banho:
+  = @avd.banho
+%p
+  %b Vestir:
+  = @avd.vestir
+%p
+  %b Higiene:
+  = @avd.higiene
+%p
+  %b Transferencia:
+  = @avd.transferencia
+%p
+  %b Continencia:
+  = @avd.continencia
+%p
+  %b Alimentacao:
+  = @avd.alimentacao
+
+= link_to 'Edit', edit_avd_path(@avd)
+\|
+= link_to 'Back', avds_path

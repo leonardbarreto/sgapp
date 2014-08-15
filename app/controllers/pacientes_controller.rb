@@ -44,10 +44,13 @@ load_and_authorize_resource
     # GET /pacientes/1/edit
   def prontuario
     @paciente = Paciente.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @paciente }
-    end
+    @atendimentos = Atendimento.find(:all,:conditions=>{:paciente_id=>@paciente},:order=>:data_at)
+    
+    #@atendimentos=Atendimento.find_by_paciente_id(@paciente,:order=>:data_at)
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @paciente }
+    #end
   end
 
   # POST /pacientes

@@ -1,0 +1,250 @@
+.form-actions
+	= link_to 'Voltar', pacientes_path, :class => 'btn' 
+.accordion{:id=>'accordion'}
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{:href=>'#collapseOne',:data=>{:toggle=>'collapse',:parent=>'#accordion'}}
+				DADOS DE IDENTIFICAÇÃO
+		.accordion-body.collapse.in{:id=>'collapseOne'}
+			.accordion-inner
+				%dl.dl-horizontal
+					%dt Prontuário
+					%dd 
+						= @paciente.prontuario
+					%dt Cadastrado em
+					%dd 
+						= @paciente.created_at.strftime("%d/%m/%Y")
+					%dt Nome
+					%dd 
+						= (@paciente.pessoa.nome.nil?)?"---":@paciente.pessoa.nome
+					%dt Dados gerais
+					%dd
+						%table.table.table-condensed
+							%thead
+								%tr
+									%th Telefone
+									%th Data de nascimento
+									%th Estado civil
+									%th Sexo
+									%th Cor
+							%tbody
+								%tr
+									%td 
+										= @paciente.pessoa.telefone
+									%td 
+										= @paciente.pessoa.data_nas.strftime("%d/%m/%Y") 
+									%td 
+										= @paciente.pessoa.estado_civil.descricao
+									%td 
+										= @paciente.pessoa.sexo
+									%td 
+										= @paciente.pessoa.cor.descricao
+					%dt Endereço
+					%dd
+						%address
+							= @paciente.pessoa.endereco
+							= @paciente.pessoa.bairro + ' - ' 
+							= @paciente.pessoa.municipio.nome + ' / '
+							= @paciente.pessoa.municipio.estado.uf 
+						
+					%dt Nome do pai
+					%dd 
+						= @paciente.pessoa.nome_pai
+					%dt Nome da mãe
+					%dd 
+						= @paciente.pessoa.nome_mae 
+					%dt Identificação
+					%dd 
+						%table.table.table-condensed
+							%thead
+								%tr 
+									%th Identidade
+									%th CPF
+									%th Nacionalidade
+									%th Naturalidade
+							%tbody
+								%tr 
+									%td  
+										= @paciente.pessoa.identidade 
+									%td  
+										= @paciente.pessoa.cpf 
+									%td  
+										= @paciente.pessoa.nacionalidade 
+									%td  
+										= @paciente.pessoa.naturalidade 
+					%dt Grau de instrução
+					%dd  
+						= @paciente.pessoa.grau_instrucao.descricao 
+					%dt Religião
+					%dd 
+						= @paciente.religiao 
+					%dt Plano de saúde
+					%dd 
+						= @paciente.plano_de_saude.empty? ? "---" : @paciente.plano_de_saude 
+					%dt Estado civil
+					%dd 
+						= @paciente.pessoa.estado_civil.descricao 
+					%dt Encaminhamento
+					%dd 
+						= @paciente.encaminhamento.descricao 
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{:href=>'#collapseTwo',:data=>{:toggle=>'collapse',:parent=>'#accordion'}}
+				SITUAÇÃO FAMILIAR
+		.accordion-body.collapse.in{:id=>'collapseTwo'}
+			.accordion-inner
+				%dl.dl-horizontal
+					%dt Com quem mora
+					%dd
+						= @paciente.residencia.descricao
+					%dt Relacionamento com família de convivência
+					%dd	
+						= @paciente.relacionamento.descricao
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{:href=>'#collapseThree',:data=>{:toggle=>'collapse',:parent=>'#accordion'}}
+				RECURSOS ECONÔMICOS
+		.accordion-body.collapse.in{:id=>'collapseThree'}
+			.accordion-inner
+				%dl.dl-horizontal
+					%dt Moradia
+					%dd 
+						= @paciente.moradia.descricao
+					%dt Ativ Remunerada Anterior
+					%dd 
+						= @paciente.atremuneracaoant
+					%dt Ativ Remunerada Atual
+					%dd 
+						= @paciente.atremuneradatual
+					%dt Situação Previdenciária
+					%dd 
+						= @paciente.previdencia.descricao
+					%dt Ajuda Familiar
+					%dd 
+						= @paciente.ajudafamiliar 
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{:href=>'#collapseFour',:data=>{:toggle=>'collapse',:parent=>'#accordion'}}
+				HPP
+		.accordion-body.collapse.in{:id=>'collapseFour'}
+			.accordion-inner
+				%dl.dl-horizontal
+					%dt Doença de Alzheimer na família?
+					%dd
+						=@paciente.hpp
+					%dt Co-morbidades
+					%dd
+						%table.table.table-condensed
+							%thead
+								%tr 
+									%th 
+									%th Presente
+									%th Ausente
+									%th Não informado
+							%tbody
+								%tr 
+									%td Insuficiência cardíaca grave
+									%td  
+										= @paciente.it1=="1"? render_haml("%i.icon-ok") :"" 
+									%td  
+										= @paciente.it1=="0"?render_haml("%i.icon-ok"):"" 
+									%td  
+										= @paciente.it1=="2"?render_haml("%i.icon-ok"):"" 
+								
+								%tr 
+									%td Arritmia cardíaca não controlada
+									%td  
+										= @paciente.it2=="1"?render_haml("%i.icon-ok"):"" 
+									%td  
+										= @paciente.it2=="0"?render_haml("%i.icon-ok"):"" 
+									%td 
+										= @paciente.it2=="2"?render_haml("%i.icon-ok"):"" 
+								
+								%tr 
+									%td Síndrome Parkinsoniana
+									%td 
+										= @paciente.it3=="1"?render_haml("%i.icon-ok"):"" 
+									%td 
+										= @paciente.it3=="0"?render_haml("%i.icon-ok"):"" 
+									%td 
+										= @paciente.it3=="2"?render_haml("%i.icon-ok"):"" 
+								
+								%tr 
+									%td Doença péptica sem resposta ao tratamento
+									%td  
+										= @paciente.it4=="1"?render_haml("%i.icon-ok"):"" 
+									%td 
+										= @paciente.it4=="0"?render_haml("%i.icon-ok"):"" 
+									%td 
+										= @paciente.it4=="2"?render_haml("%i.icon-ok"):"" 
+								
+								%tr 
+									%td Diarréia crônica ou persistente
+									%td  
+										= @paciente.it5=="1"?render_haml("%i.icon-ok"):"" 
+									%td  
+										= @paciente.it5=="0"?render_haml("%i.icon-ok"):"" 
+									%td  
+										= @paciente.it5=="2"?render_haml("%i.icon-ok"):"" 
+					%dt Outras co-morbidades
+					%dd 
+						=@paciente.outras
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{:href=>'#collapseFive',:data=>{:toggle=>'collapse',:parent=>'#accordion'}}
+				HÁBITOS DE VIDA
+		.accordion-body.collapse.in{:id=>'collapseFive'}
+			.accordion-inner
+				%dl.dl-horizontal
+					%dt Alimentação
+					%dd 
+						= @paciente.alimentacao 
+					%dt Sono
+					%dd 
+						= @paciente.sono 
+					%dt Distúrbio comportamental
+					%dd 
+						= @paciente.disturbio 
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{:href=>'#collapseSix',:data=>{:toggle=>'collapse',:parent=>'#accordion'}}
+				HISTÓRIA PESSOAL ATUAL E PREGRESSA
+		.accordion-body.collapse.in{:id=>'collapseSix'}
+			.accordion-inner
+				%dl.dl-horizontal
+					%dt Etilismo
+					%dd 
+						= @paciente.etilismo==1 ? "SIM" : (@paciente.etilismo==0 ? "NÃO" : "Não informado")
+					%dt
+					%dd 
+						%table.table.table-condensed
+							%thead
+								%tr 
+									%th Tipo de bebida
+									%th Dose diária
+									%th Duração/anos
+							%tbody
+								%tr 
+									%td 
+										=  @paciente.etilismo_tipo 
+									%td 
+										=  @paciente.etilismo_dose 
+									%td 
+										=  @paciente.etilismo_duracao 
+					%dt Tabagismo
+					%dd 
+						= @paciente.tabagismo==1 ? "SIM" : (@paciente.tabagismo==0 ? "NÃO" : "Não informado")
+					%dt
+					%dd 
+						%table.table.table-condensed
+							%thead
+								%tr 
+									%th Duração/anos
+									%th Quantidade diária
+							%tbody
+								%tr 
+									%td 
+										=  @paciente.tabagismo_duracao 
+									%td 
+										=  @paciente.tabagismo_quantidade
+						

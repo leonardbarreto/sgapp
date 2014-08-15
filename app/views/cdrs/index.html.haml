@@ -1,0 +1,23 @@
+%h1 Listing cdrs
+
+%table
+  %tr
+    %th Pontos
+    %th Atendimento
+    %th Tipo exame
+    %th
+    %th
+    %th
+
+  - @cdrs.each do |cdr|
+    %tr
+      %td= cdr.pontos
+      %td= cdr.atendimento_id
+      %td= cdr.tipo_exame_id
+      %td= link_to 'Show', cdr
+      %td= link_to 'Edit', edit_cdr_path(cdr)
+      %td= link_to 'Destroy', cdr, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Cdr', new_cdr_path

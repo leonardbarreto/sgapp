@@ -1,0 +1,23 @@
+%h1 Listing camcogs
+
+%table
+  %tr
+    %th Pontos
+    %th Atendimento
+    %th Tipo exame
+    %th
+    %th
+    %th
+
+  - @camcogs.each do |camcog|
+    %tr
+      %td= camcog.pontos
+      %td= camcog.atendimento_id
+      %td= camcog.tipo_exame_id
+      %td= link_to 'Show', camcog
+      %td= link_to 'Edit', edit_camcog_path(camcog)
+      %td= link_to 'Destroy', camcog, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Camcog', new_camcog_path

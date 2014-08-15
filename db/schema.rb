@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140120191829) do
+ActiveRecord::Schema.define(:version => 20140811120555) do
+
+  create_table "aivds", :force => true do |t|
+    t.integer  "pontos"
+    t.integer  "dependencia"
+    t.integer  "atendimento_id"
+    t.integer  "tipo_exame_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "atendimentos", :force => true do |t|
     t.date     "data_at"
@@ -23,12 +32,40 @@ ActiveRecord::Schema.define(:version => 20140120191829) do
     t.datetime "updated_at",          :null => false
   end
 
+  create_table "avds", :force => true do |t|
+    t.string   "banho",          :limit => 1
+    t.string   "vestir",         :limit => 1
+    t.string   "higiene",        :limit => 1
+    t.string   "transferencia",  :limit => 1
+    t.string   "continencia",    :limit => 1
+    t.string   "alimentacao",    :limit => 1
+    t.integer  "atendimento_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "camcogs", :force => true do |t|
+    t.string   "pontos",         :limit => 1
+    t.integer  "atendimento_id"
+    t.integer  "tipo_exame_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
   create_table "cargos", :force => true do |t|
     t.string   "descricao"
     t.string   "tipodoc"
     t.integer  "funcao_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "cdrs", :force => true do |t|
+    t.string   "pontos",         :limit => 3
+    t.integer  "atendimento_id"
+    t.integer  "tipo_exame_id"
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "cores", :force => true do |t|
@@ -60,6 +97,16 @@ ActiveRecord::Schema.define(:version => 20140120191829) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "atendimento_id"
+    t.integer  "tipoexame_id"
+    t.string   "tipoexame_type"
+  end
+
+  create_table "fluencia_verbals", :force => true do |t|
+    t.string   "pontos"
+    t.integer  "atendimento_id"
+    t.integer  "tipo_exame_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "friendly_id_slugs", :force => true do |t|
@@ -90,6 +137,14 @@ ActiveRecord::Schema.define(:version => 20140120191829) do
     t.integer  "user_id",                  :default => 0
   end
 
+  create_table "gds", :force => true do |t|
+    t.integer  "pontos"
+    t.integer  "atendimento_id"
+    t.integer  "tipo_exame_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "grau_instrucaos", :force => true do |t|
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
@@ -99,8 +154,9 @@ ActiveRecord::Schema.define(:version => 20140120191829) do
   create_table "meems", :force => true do |t|
     t.integer  "score"
     t.integer  "tipo_exame_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "atendimento_id"
   end
 
   create_table "moradia", :force => true do |t|

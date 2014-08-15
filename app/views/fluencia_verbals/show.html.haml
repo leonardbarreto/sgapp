@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Pontos:
+  = @fluencia_verbal.pontos
+%p
+  %b Atendimento:
+  = @fluencia_verbal.atendimento_id
+%p
+  %b Tipo exame:
+  = @fluencia_verbal.tipo_exame_id
+
+= link_to 'Edit', edit_fluencia_verbal_path(@fluencia_verbal)
+\|
+= link_to 'Back', fluencia_verbals_path

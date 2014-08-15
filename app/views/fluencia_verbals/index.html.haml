@@ -1,0 +1,23 @@
+%h1 Listing fluencia_verbals
+
+%table
+  %tr
+    %th Pontos
+    %th Atendimento
+    %th Tipo exame
+    %th
+    %th
+    %th
+
+  - @fluencia_verbals.each do |fluencia_verbal|
+    %tr
+      %td= fluencia_verbal.pontos
+      %td= fluencia_verbal.atendimento_id
+      %td= fluencia_verbal.tipo_exame_id
+      %td= link_to 'Show', fluencia_verbal
+      %td= link_to 'Edit', edit_fluencia_verbal_path(fluencia_verbal)
+      %td= link_to 'Destroy', fluencia_verbal, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Fluencia verbal', new_fluencia_verbal_path

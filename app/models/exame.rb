@@ -1,5 +1,6 @@
 class Exame < ActiveRecord::Base
   # attr_accessible :title, :body
+  belongs_to :tipoexame, :polymorphic=>:true
   belongs_to :atendimento, :foreign_key=>'atendimento_id'
   after_initialize :init
 	def init #similar ao método default_values

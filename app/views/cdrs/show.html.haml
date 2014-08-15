@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Pontos:
+  = @cdr.pontos
+%p
+  %b Atendimento:
+  = @cdr.atendimento_id
+%p
+  %b Tipo exame:
+  = @cdr.tipo_exame_id
+
+= link_to 'Edit', edit_cdr_path(@cdr)
+\|
+= link_to 'Back', cdrs_path

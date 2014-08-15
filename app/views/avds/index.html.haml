@@ -1,0 +1,29 @@
+%h1 Listing avds
+
+%table
+  %tr
+    %th Banho
+    %th Vestir
+    %th Higiene
+    %th Transferencia
+    %th Continencia
+    %th Alimentacao
+    %th
+    %th
+    %th
+
+  - @avds.each do |avd|
+    %tr
+      %td= avd.banho
+      %td= avd.vestir
+      %td= avd.higiene
+      %td= avd.transferencia
+      %td= avd.continencia
+      %td= avd.alimentacao
+      %td= link_to 'Show', avd
+      %td= link_to 'Edit', edit_avd_path(avd)
+      %td= link_to 'Destroy', avd, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Avd', new_avd_path

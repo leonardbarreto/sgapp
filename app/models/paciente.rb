@@ -41,9 +41,10 @@ class Paciente < ActiveRecord::Base
     #indica um número do prontuário ao criar nova pessoa
     self.prontuario ||= Paciente.count+1
   end
+
   #def countPacientes()
   #  @qtd=Paciente.count
   #end
-     
+  
 
 end

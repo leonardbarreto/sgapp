@@ -1,5 +1,23 @@
 Sga::Application.routes.draw do
   
+  resources :fluencia_verbals
+
+
+  resources :cdrs
+
+
+  resources :camcogs
+
+
+  resources :gds
+
+
+  resources :aivds
+
+
+  resources :avds
+
+
   resources :tipo_atendimentos
 
 

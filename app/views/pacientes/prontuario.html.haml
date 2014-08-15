@@ -13,12 +13,14 @@
 				ATENDIMENTOS
 		%li{:class=> "'active' if params[:tab] == 'tab3'"}
 			%a{:href=>"#tab3", 'data-toggle'=>"tab"}
-				EXAMES
+				AVALIAÇÕES
 	.tab-content
 		%div{:id=>'tab1', :class=> "#{if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end}" }
-			=render 'pacientes/ficha'
+			=render 'pacientes/dadosPessoais'
 		%div{:id=>'tab2', :class=> "#{if (params[:tab] == 'tab2' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end} "}
 			=render 'pacientes/atendimentos'
+		%div{:id=>'tab3', :class=> "#{if (params[:tab] == 'tab3' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end} "}
+			=render 'pacientes/exames'
 :javascript
 	window.onload=function() {clickTab1();};
 	function clickTab1(){

@@ -1,0 +1,141 @@
+<%= form_for @paciente, :html => { :class => 'form-horizontal' } do |f| %>
+  <!-- Verificando erros -->
+  <% if @paciente.errors.any? %>
+    <div class="span12">
+	    <div class="alert alert-error">
+	    	<a class="close" data-dismiss="alert">&#215;</a>
+	      <div id="flash_alert"><h3>Não foi possível salvar, pois existe(m) <%= pluralize(@paciente.errors.count, "erro") %>:
+	  		</h3>
+	      	<ul>
+	      	<% @paciente.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	  </div>
+	    </div>
+	</div>
+  <% end %> <!-- Fim de verificação de erros -->
+	<div class="control-group">
+			<%= f.label 'Prontuário', :class => 'control-label' %>
+			<div class="controls">
+				<%= f.text_field :prontuario, :class => 'input-medium' %>
+			</div>
+		</div>
+	<%= f.fields_for :pessoa do |p| %>
+		<div class="control-group">
+			<%= p.label 'Nome', :class => 'control-label' %>
+			<div class="controls">
+				<%= p.text_field :nome, :class => 'span7',:id=>'pacientes_pathnome'%>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label 'Data de nascimento', :class => 'control-label' %>
+			<div class="controls controls-row">
+			 <%= p.text_field :data_nas, :class => 'span2', :id=>'data',:onfocus=>'$("#data").mask("99/99/9999");' %>
+		    <div class="span1">Sexo</div>
+		    <%= p.collection_select(:sexo, Pessoa::SEXO, :to_s, :humanize,{:prompt=>true}, {:class=>'span1',:id=>'sexu'}) %>
+		   <div class="span1">Cor:</div>
+		    <%= p.collection_select(:cor_id, Cor.order(:descricao),:id,:descricao,{:prompt=>true}, {:class=>'span2'}) %>
+		</div>
+	    </div>
+
+		<div class="control-group">
+			<%= p.label :naturalidade, :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.text_field :naturalidade, :class => 'span3' %>
+				<div class="span1">Nacionalidade</div>
+				<%= p.text_field :nacionalidade, :class => 'span3' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :identidade, :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.text_field :identidade, :class => 'span2' %>
+				<div class="span1">CPF:</div>
+				<%= p.text_field :cpf, :class => 'span2', :id=>'cpf', :onfocus=>'$("#cpf").mask("999.999.999-99");',:onblur=>'alert("validar CPF");' %>
+				<div class="span1">Peso</div>
+				<%= f.text_field :peso, :class => 'span1' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :nome_pai, :class => 'control-label' %>
+			<div class="controls">
+				<%= p.text_field :nome_pai, :class => 'span7' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :nome_mae, :class => 'control-label' %>
+			<div class="controls">
+				<%= p.text_field :nome_mae, :class => 'span7' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :endereco, :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.text_field :endereco, :class => 'span7' %>
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :bairro, :class => 'control-label' %>
+			<div class="controls controls-row">
+				<%= p.text_field :bairro, :class => 'span3' %>
+				<div class="span1">Município</div>
+				<%= p.collection_select(:municipio_id, Municipio.order(:nome), :id, :nome, {:selected => '6699' },{:class=>'span3'}) %>
+
+			</div>
+		</div>
+		<div class="control-group">
+			<%= p.label :telefone, :class => 'control-label' %>
+			<div class="controls">
+				<%= p.phone_field :telefone, :class => 'phone_field', :id=>'tel', :onfocus=>'$("#tel").mask("(99)9999-9999");' %>
+			</div>
+		</div>
+		
+	<% end %>
+<div class="form-actions">
+    <%= f.submit 'Atualizar', :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                pacientes_path, :class => 'btn' %>
+  </div>
+<% end %>
+<script type="text/javascript">
+window.onload = function() {getFocus();};
+function getFocus () {
+	document.getElementById('pacientenome').focus();
+}
+
+function clickTab(){
+       	$('a[href="#tab2"]').tab('show');
+       	$("select:eq(5)").focus(); //Foco no 5o elemento (o 1o da página)
+  }
+$(function($){
+   $("#data").mask("99/99/9999");
+   $("#tel").mask("(99)9999-9999");
+   $("#cpf").mask("999.999.999-99");
+});
+
+/*****************************
+VALIDA O CPF
+*****************************/
+	function valCpf($cpf){
+		$cpf = preg_replace('/[^0-9]/','',$cpf);
+		$digitoA = 0;
+		$digitoB = 0;
+		for($i = 0, $x = 10; $i <= 8; $i++, $x--){
+			$digitoA += $cpf[$i] * $x;
+		}
+		for($i = 0, $x = 11; $i <= 9; $i++, $x--){
+			if(str_repeat($i, 11) == $cpf){
+				return false;
+			}
+			$digitoB += $cpf[$i] * $x;
+		}
+		$somaA = (($digitoA%11) < 2 ) ? 0 : 11-($digitoA%11);
+		$somaB = (($digitoB%11) < 2 ) ? 0 : 11-($digitoB%11);
+		if($somaA != $cpf[9] || $somaB != $cpf[10]){
+			return false;	
+		}else{
+			return true;
+		}
+	}
+</script>

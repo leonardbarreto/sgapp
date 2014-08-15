@@ -1,0 +1,8 @@
+= semantic_form_for @cdr do |f|
+  = f.inputs do
+    = f.input :pontos
+    = f.input :atendimento_id
+    = f.input :tipo_exame_id
+
+  = f.actions do
+    = f.action :submit, :as => :input

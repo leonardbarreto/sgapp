@@ -1,0 +1,216 @@
+.accordion{:id=>'accordion2'}
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseMeem'}
+				MEEM
+		.accordion-body.collapse.in{:id=>'collapseMeem'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
+								Score
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							%tr
+								%td	
+									= dateFormat(at.created_at)	
+								%td	
+									- if (at.meem.nil?)
+										'--'
+									-else
+										= at.meem.score
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseAvd'}
+				AVD
+					
+		.accordion-body.collapse.in{:id=>'collapseAvd'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
+								Banho
+							%th 
+								Vestir-se
+							%th 
+								Higiene Pessoal
+							%th 
+								Transferência
+							%th 
+								Continência
+							%th 
+								Alimentação
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							- if (at.avd.nil? == false)
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td
+										-if (at.avd.banho=="1") 
+											%i.icon-ok
+										-else 
+											%i.icon-remove 
+									%td
+										-if (at.avd.vestir=="1") 
+											%i.icon-ok 
+										-else 
+											%i.icon-remove 
+									%td
+										-if (at.avd.higiene=="1") 
+											%i.icon-ok 
+										-else 
+											%i.icon-remove 
+									%td
+										-if (at.avd.transferencia=="1") 
+											%i.icon-ok 
+										-else 
+											%i.icon-remove 
+									%td
+										-if (at.avd.continencia=="1") 
+											%i.icon-ok 
+										-else 
+											%i.icon-remove 
+									%td
+										-if (at.avd.alimentacao=="1") 
+											%i.icon-ok 
+										-else 
+											%i.icon-remove
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseAivd'}
+				AIVD
+					
+		.accordion-body.collapse.in{:id=>'collapseAivd'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
+								Pontos
+							%th 
+								Grau de dependência
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							- if (at.aivd.nil? == false)
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td
+										-if (at.aivd.nil?) 
+											"--"
+										-else 
+											= at.aivd.pontos 
+									%td
+										-if (at.aivd.nil?) 
+											"--"
+										-else 
+											= at.aivd.dependencia
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseGds'}
+				GDS
+					
+		.accordion-body.collapse.in{:id=>'collapseGds'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
+								Pontos
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							- if (at.aivd.nil? == false)
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td
+										-if (at.gd.nil?) 
+											"--"
+										-else 
+											= at.gd.pontos 
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseCamcog'}
+				CAMCOG
+					
+		.accordion-body.collapse.in{:id=>'collapseCamcog'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
+								Pontos
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							- if (at.aivd.nil? == false)
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td
+										-if (at.camcog.nil?) 
+											"--"
+										-else 
+											= at.camcog.pontos 
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseCdr'}
+				CDR
+					
+		.accordion-body.collapse.in{:id=>'collapseCdr'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
+								Pontos
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							- if (at.aivd.nil? == false)
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td
+										-if (at.cdr.nil?) 
+											"--"
+										-else 
+											= at.cdr.pontos 
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseFluencia'}
+				FLUÊNCIA VERBAL
+					
+		.accordion-body.collapse.in{:id=>'collapseFluencia'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
+								Pontos
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							- if (at.aivd.nil? == false)
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td
+										-if (at.fluencia_verbal.nil?) 
+											"--"
+										-else 
+											= at.fluencia_verbal.pontos 

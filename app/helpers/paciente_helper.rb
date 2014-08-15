@@ -12,5 +12,9 @@ module PacienteHelper
         @prod=Paciente.count(:group=>'date(updated_at)',:order=>'date(updated_at) desc',:distinct=>true,:limit=>3)
     end
     
-
+    def render_haml(code)
+      engine = Haml::Engine.new(code)
+      engine.render
+    end
+    
 end

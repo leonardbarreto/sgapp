@@ -14,6 +14,8 @@ gem 'state_machine'
 gem 'ransack'
 gem 'formtastic-bootstrap'
 gem 'will_paginate', '~>3.0'
+#gem 'event_calendar','~> 0.0.2' #gem para calendário
+gem 'simple_calendar','~>1.1.0' # outra gem para calendário
 gem 'rails_12factor', group: :production #Necessário para o heroku
 
 # Bundle edge Rails instead:
@@ -29,6 +31,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'twitter-bootstrap-rails', '~> 2.1.6'
   gem 'jquery-ui-rails'
+  gem "font-awesome-rails"
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 end
