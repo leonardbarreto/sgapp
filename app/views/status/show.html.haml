@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Tipo:
+  = @status.tipo
+
+= link_to 'Edit', edit_status_path(@status)
+\|
+= link_to 'Back', status_index_path

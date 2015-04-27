@@ -13,7 +13,8 @@ class Ability
           can [:create,:read,:update], [Pessoa, Funcionario,Cargo,Funcao]
         end
         if user.eqtecnica?
-          can :manage,Paciente
+          can [:create,:read,:update], [Meem]
+          can [:read,:update],[Paciente, Atendimento]
           can [:read], Pessoa
        end
     #

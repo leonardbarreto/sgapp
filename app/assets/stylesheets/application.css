@@ -8,10 +8,13 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree
- *= require font-awesome
- *= require formtastic-bootstrap
- */
+ * bootstrap-sign => formatação para a tela de login
+*= require bootstrap-sign
+*= require bootstrap
+*= require bootstrap-responsive
 
-/* seleciona o link no exato momento em que passamos o mouse por cima dele */
+*= require_self
+
+  */
+
+

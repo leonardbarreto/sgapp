@@ -1,9 +1,27 @@
-.hero-unit
-	%h1 SGA
-	%p
-		Texto Institucional
-	%p
-		%a.btn.btn-primary.btn-large Leia mais &raquo;
+.carousel.slide#myCarousel
+	.carousel-inner
+		.active.item
+			=image_tag("/assets/1.jpg")
+			.carousel-caption
+				%h4 Caption
+		.item
+			=image_tag("/assets/2.jpg")
+			.carousel-caption
+				%h4 Caption
+		.item
+			=image_tag("/assets/3.jpg")
+			.carousel-caption
+				%h4 Caption
+
+	%a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+	%a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+
+//.hero-unit
+//	%h2 Sistema de Gestão Ambulatorial
+//	%p
+//		Texto Institucional
+//	%p
+//		%a.btn.btn-primary.btn-large Leia mais &raquo;
 .row
 	.span4
 		%h2 Agenda
@@ -15,7 +33,7 @@
 	.span4
 		%h2 Pacientes
 		%p
-			= render 'pacientes/info'
+			
 		%a.btn{:href=>'pacientes'} Leia mais &raquo;
 	/ .span4
 	/	%h2 Atendimento

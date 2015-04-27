@@ -1,0 +1,23 @@
+.well.well-small
+	%table.table.table-condensed
+		%thead
+			%th #
+			%th Horário
+			%th
+			%th
+			%th
+		%tbody
+			-if params[:getHorario]
+				-@horarios.each_with_index do |h,index|
+					%tr
+						%td
+							= index+1
+						%td.horario_ini
+							= @horarios.nil? ? "--": timeFormat(h.horario) 
+						%td
+							\-
+						%td.horario_fim
+							= timeFormat(calcDuracao(h.horario,h.tipo_atendimento.duracao))
+						%td
+							= printStatus(h.status_id,h.status.tipo)
+

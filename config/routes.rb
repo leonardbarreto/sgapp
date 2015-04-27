@@ -1,8 +1,24 @@
 Sga::Application.routes.draw do
   
+  resources :status
+
+  resources :meems
+
+  resources :agenda_profissionals 
+    put :controller=>'agenda_profissionals', :action=>'update'
   resources :fluencia_verbals
 
+  #get "project/new_release" => 'project#new_release', :as => :new_release
 
+  resources :atendimentos do
+    get :autocomplete_paciente_nome, :on => :collection
+    get :edit_content
+   
+  end
+  
+  
+  #resources :atendimentos 
+    
   resources :cdrs
 
 
@@ -19,7 +35,7 @@ Sga::Application.routes.draw do
 
 
   resources :tipo_atendimentos
-
+  
 
   resources :funcaos
   resources :cargos

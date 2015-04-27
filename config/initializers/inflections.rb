@@ -6,6 +6,7 @@
 #   inflect.plural /^(ox)$/i, '\1en'
 	inflect.irregular 'estado_civil','estados_civis'
 	inflect.irregular 'cor','cores'
+	inflect.irregular 'status','status'
 	#inflect.plural /^([a-zA-z]*)r$/i, '\1res' #palavras que terminam em 'r' colocar 'es' para plural
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'

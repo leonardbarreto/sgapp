@@ -1,0 +1,21 @@
+- if params[:search]
+  - if !(@funcionario.diaDeTrabalho?(params[:date]))
+    //- @funcionario.errors.add(:id,"Nao eh o dia de trabalho")
+    %h4
+      .alert.alert-error
+        %a.close{"data-dismiss"=>"alert"}
+          &#215
+        Funcionário não atende em
+        = params[:date]
+        %small
+          \-
+          tente outro dia
+  - else
+    -if !(@atendimentos.empty?) #Atendimento não vazio?
+      - if (@atendimentos.last.funcionario.agendaLotada?(params[:date]))
+        - @funcionario.errors.add(:id,"Agenda Lotada")
+        %h4
+          .alert.alert-error
+            %a.close{"data-dismiss"=>"alert"}
+              &#215
+            Agenda Lotada

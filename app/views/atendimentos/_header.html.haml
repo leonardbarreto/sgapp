@@ -1,0 +1,23 @@
+:css
+	.header img{
+		float: left;
+		margin: 10px 10px 0 0;
+		padding: 2px;
+	}
+	.clear{
+		clear: both;
+	}
+.header
+	=image_tag("person-icon.png",size: "80x80");
+	%h3
+		=@atendimento.paciente.pessoa.nome
+	%p
+		Idade:
+		%b
+			=@atendimento.paciente.pessoa.calcIdade()
+			anos.
+	%p
+		Última consulta em:
+	
+	.clear
+	

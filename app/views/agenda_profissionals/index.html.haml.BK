@@ -1,0 +1,25 @@
+%h1 Listing agenda_profissionals
+
+%table
+  %tr
+    %th Dia
+    %th Hora ini
+    %th Hora fim
+    %th Funcionario
+    %th
+    %th
+    %th
+
+  - @agenda_profissionals.each do |agenda_profissional|
+    %tr
+      %td= agenda_profissional.dia
+      %td= agenda_profissional.hora_ini
+      %td= agenda_profissional.hora_fim
+      %td= agenda_profissional.funcionario_id
+      %td= link_to 'Show', agenda_profissional
+      %td= link_to 'Edit', edit_agenda_profissional_path(agenda_profissional)
+      %td= link_to 'Destroy', agenda_profissional, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Agenda profissional', new_agenda_profissional_path

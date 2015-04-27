@@ -1,0 +1,25 @@
+.modal-header 
+  %button.close(type="button" data-dismiss="modal" aria-hidden="true") &times;  
+  %h2 
+    Exibir agenda
+    %small
+      = @agenda_profissional.funcionario.pessoa.nome  
+%p#notice= notice
+
+%p
+  %b Dia:
+  = Date::DAYNAMES[@agenda_profissional.dia]
+%p
+  %b Hora ini:
+  = timeFormat(@agenda_profissional.hora_ini)
+%p
+  %b Hora fim:
+  = timeFormat(@agenda_profissional.hora_fim)
+%p
+  
+.modal-footer
+  = link_to 'Editar', edit_agenda_profissional_path(@agenda_profissional), {:class=>'btn btn-primary'}
+  
+//= 
+//\|
+//= link_to 'Back', agenda_profissionals_path*/

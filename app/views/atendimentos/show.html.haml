@@ -1,0 +1,30 @@
+
+.page-header
+	%h2 Dados do agendamento
+%p
+.well
+	%dl
+		%dt
+			%strong
+				Data da consulta
+		%dd
+			= @atendimento.data_at.strftime("%A")
+			\,
+			= dateFormat(@atendimento.data_at)
+		%dt
+			%strong 
+				Horário de atendimento previsto
+		%dd
+			das
+			%b
+				= timeFormat(@atendimento.horario)
+			às
+			%b
+				= timeFormat(@atendimento.horario_fim)
+		%dt
+			%strong
+				Profissional
+		%dd
+			= @atendimento.funcionario.pessoa.nome
+.modal-footer
+	= link_to 'Voltar', atendimentos_path(:search=>@atendimento.funcionario_id,:date=>@atendimento.data_at), {:class=>'btn'}

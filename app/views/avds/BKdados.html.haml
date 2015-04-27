@@ -1,0 +1,35 @@
+= form_for @avd, :remote=> true, :html=>{:class=>'form-horizontal'} do |f|
+	=f.hidden_field :atendimento_id
+	.control-group
+		= f.label :banho, :class=>'control-label'
+		.controls
+			= f.text_field :banho, :class=>'form-control input-small', :readonly=>true
+
+	.control-group
+		= f.label :vestir, :class=>'control-label'
+		.controls
+			= f.text_field :vestir, :class=>'form-control input-small',:readonly=>true
+
+	.control-group
+		= f.label :higiene, :class=>'control-label'
+		.controls
+			= f.text_field :higiene, :class=>'form-control input-small',:readonly=>true
+
+	.control-group
+		= f.label 'Transferência', :class=>'control-label'
+		.controls
+			= f.text_field :transferencia, :class=>'form-control input-small',:readonly=>true
+
+	.control-group
+		= f.label 'Continência', :class=>'control-label'
+		.controls
+			= f.text_field :continencia, :class=>'form-control input-small',:readonly=>true
+
+	.control-group
+		= f.label 'Alimentação', :class=>'control-label'
+		.controls
+			= f.text_field :alimentacao, :class=>'form-control input-small',:readonly=>true
+
+	= link_to edit_avd_path(@avd), :class=>'btn btn-default', :remote=>true do 
+		%i.icon-edit
+		Alterar

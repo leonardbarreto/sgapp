@@ -1,11 +1,37 @@
-= semantic_form_for @avd do |f|
-  = f.inputs do
-    = f.input :banho
-    = f.input :vestir
-    = f.input :higiene
-    = f.input :transferencia
-    = f.input :continencia
-    = f.input :alimentacao
-
-  = f.actions do
-    = f.action :submit, :as => :input
+:css
+	.no-space [class*="span"] {
+		margin-left: 0;
+		text-align: center;
+	}
+.container-fluid
+	.row-fluid.no-space
+		.span2
+			Banho
+		.span2
+			Vestir
+		.span2
+			Higiene
+		.span2
+			Transferência
+		.span2
+			Continência
+		.span2
+			Alimentação
+	.row-fluid
+		= form_for @avd, :remote=> true do |f|
+		
+			=f.hidden_field :atendimento_id
+			
+			= f.text_field :banho, :class=>'span2'
+		
+			= f.text_field :vestir, :class=>'span2'
+		
+			= f.text_field :higiene,:class=>'span2'
+		
+			= f.text_field :transferencia,:class=>'span2'
+		
+			= f.text_field :continencia,:class=>'span2'
+		
+			= f.text_field :alimentacao,:class=>'span2'
+		
+			= f.submit class: 'btn btn-primary'

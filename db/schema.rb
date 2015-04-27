@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140811120555) do
+ActiveRecord::Schema.define(:version => 20150128160244) do
+
+  create_table "agenda_profissionals", :force => true do |t|
+    t.integer  "dia"
+    t.time     "hora_ini"
+    t.time     "hora_fim"
+    t.integer  "funcionario_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.boolean  "ativo"
+  end
 
   create_table "aivds", :force => true do |t|
     t.integer  "pontos"
@@ -30,6 +40,9 @@ ActiveRecord::Schema.define(:version => 20140811120555) do
     t.integer  "funcionario_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.integer  "status_id"
+    t.time     "horario_fim"
+    t.integer  "user_id"
   end
 
   create_table "avds", :force => true do |t|
@@ -257,10 +270,17 @@ ActiveRecord::Schema.define(:version => 20140811120555) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "status", :force => true do |t|
+    t.string   "tipo"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "tipo_atendimentos", :force => true do |t|
     t.string   "descricao"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "duracao"
   end
 
   create_table "users", :force => true do |t|

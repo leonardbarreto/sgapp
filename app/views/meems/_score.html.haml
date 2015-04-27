@@ -1,0 +1,9 @@
+-# Renderizar o valor do exame
+%form.form-inline
+	%label.control-label
+		Score
+	%input{:type=>'text', :value=> @meem.score, :readonly=>true, :class=>'input-mini'}
+	
+	= link_to edit_meem_path(@meem), :class=>'btn btn-default', :remote=>true do 
+		%i.icon-edit
+		Alterar

@@ -1,8 +1,11 @@
 %p#notice= notice
 
 %p
-  %b Descricao:
+  %b Descrição:
   = @tipo_atendimento.descricao
+%p
+  %b Duração (min):
+  = @tipo_atendimento.duracao
 
 = link_to 'Edit', edit_tipo_atendimento_path(@tipo_atendimento)
 \|

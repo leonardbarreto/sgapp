@@ -1,0 +1,19 @@
+.lead
+	Horário de atendimento do
+	%b
+		= @agenda_profissional.funcionario.pessoa.nome
+	na(o)
+	%b
+		= Date::DAYNAMES[@agenda_profissional.dia]
+= semantic_form_for @agenda_profissional do |f|
+	= f.inputs do
+		= f.input :hora_ini, :label=>"Horário de entrada",:input_html=>{:class=>"input-mini"},:hint=>"Informe a hora INICIAL de atendimento no(a) #{Date::DAYNAMES[@agenda_profissional.dia]}"
+		= f.input :hora_fim, :label=>"Horário de saída ",:input_html=>{:class=>"input-mini"},:hint=>"Informe a hora FINAL de atendimento no(a) #{Date::DAYNAMES[@agenda_profissional.dia]}"
+		= f.input :ativo, :as=>:radio,:collection=>[["Sim",TRUE],["Não",FALSE]],:hint=>"Funcionário atende neste dia?"
+
+	.form-actions
+		= f.actions do
+			= f.action :submit, :as=>:button,  :label=>"Atualizar", :button_html=>{:class => "btn btn-primary"}
+			= f.action :cancel, :as=>:link,  :label=>"Cancelar", :button_html=>{:class => "btn"}
+			
+			

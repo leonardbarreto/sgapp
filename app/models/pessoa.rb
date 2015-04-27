@@ -36,6 +36,9 @@ class Pessoa < ActiveRecord::Base
     self.estado_civil_id||= "0"#não informado
     self.municipio_id||=3579 #Campos
   end
+  def calcIdade()
+    self.data_nas.nil? ? "---": (DateTime.now.year - self.data_nas.year)
+  end
   def calc_idade(data)
     data.nil? ? "-" : (DateTime.now.year - data.year)
   end

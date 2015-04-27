@@ -14,7 +14,7 @@
 						= @paciente.created_at.strftime("%d/%m/%Y")
 					%dt Nome
 					%dd 
-						= (@paciente.pessoa.nome.nil?)?"---":@paciente.pessoa.nome
+						= (@paciente.pessoa.nome.nil?)? "---" :@paciente.pessoa.nome
 					%dt Dados gerais
 					%dd
 						%table.table.table-condensed

@@ -47,10 +47,10 @@ load_and_authorize_resource
     @atendimentos = Atendimento.find(:all,:conditions=>{:paciente_id=>@paciente},:order=>:data_at)
     
     #@atendimentos=Atendimento.find_by_paciente_id(@paciente,:order=>:data_at)
-    #respond_to do |format|
-    #  format.html # show.html.erb
-    #  format.json { render json: @paciente }
-    #end
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js {head :ok}
+    end
   end
 
   # POST /pacientes

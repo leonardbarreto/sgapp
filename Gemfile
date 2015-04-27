@@ -9,13 +9,18 @@ gem 'pg', '~> 0.14.0'
 gem 'haml-rails', '~> 0.3.4'
 gem 'inherited_resources', '~> 1.3.1'
 gem 'formtastic', '~> 2.2.0'
-gem 'jquery-rails'
+
 gem 'state_machine'
-gem 'ransack'
+
+
+#Calendário
+#gem 'fullcalendar-rails'
+#gem 'ransack'
 gem 'formtastic-bootstrap'
 gem 'will_paginate', '~>3.0'
 #gem 'event_calendar','~> 0.0.2' #gem para calendário
-gem 'simple_calendar','~>1.1.0' # outra gem para calendário
+gem 'simple_calendar','1.1.9' # outra gem para calendário
+gem 'bootstrap_calendar_rails'
 gem 'rails_12factor', group: :production #Necessário para o heroku
 
 # Bundle edge Rails instead:
@@ -24,19 +29,31 @@ gem 'rails_12factor', group: :production #Necessário para o heroku
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  #gem 'sass',
+  #gem 'sass-rails',   '~> 3.2.3'
+  #gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', :platform => :ruby
   gem 'execjs'
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails', '~> 2.1.6'
+  #gem 'twitter-bootstrap-rails','2.2.6'
+  #gem 'twitter-bootstrap-rails'
   gem 'jquery-ui-rails'
-  gem "font-awesome-rails"
+  gem 'font-awesome-rails'
+  gem 'bootstrap_datepicker'
+  #gem 'jquery_datepicker'
+  #gem 'bootstrap-sass', '~>2.3.2'
+ 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 end
 
-gem 'jquery-rails'
+#autocomplete
+#gem 'rails3-jquery-autocomplete',  git: 'https://github.com/francisd/rails3-jquery-autocomplete'
+
+
+#gem 'jquery-rails','~> 2.3.0'
+#gem 'jquery-rails','2.2.1' #jquery 1.9.1
+gem 'jquery-rails','3.0.4' #jquery 1.10.2
 gem 'date-input-rails' #helper para data
 gem 'modernizr' #necessário para 'date-input-rails' funcionar
 gem 'will_paginate-bootstrap'

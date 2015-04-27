@@ -2,7 +2,7 @@
 class FuncionariosController < InheritedResources::Base
 	load_and_authorize_resource
   def index
-		@funcionarios=Funcionario .paginate(:per_page => 5, :page => params[:page]).order(params[:sort]) 
+		@funcionarios=Funcionario.paginate(:per_page => 5, :page => params[:page]).order(params[:sort]) 
     
 	end
 
@@ -20,6 +20,7 @@ class FuncionariosController < InheritedResources::Base
   def new
     @funcionario = Funcionario.new
     @funcionario.pessoa = Pessoa.new
+    
     #respond_to do |format|
     #  format.html # new.html.erb
     #  format.json { render json: @funcionario }
@@ -34,8 +35,10 @@ def create
     
     respond_to do |format|
       if @funcionario.save
-        format.html { redirect_to @funcionario, notice: 'funcionario criado com sucesso.' }
-        format.json { render json: @funcionario, status: :created, location: @funcionario }
+        criarAgenda()
+        format.html { redirect_to @funcionario, notice: 'Funcionario criado com sucesso.' }
+        #format.json { render json: @funcionario, status: :created, location: @funcionario }
+        
       else
         format.html { render action: "new" }
         format.json { render json: @funcionario.errors, status: :unprocessable_entity }
@@ -68,4 +71,11 @@ def create
       format.json { head :no_content }
     end
   end
+  def criarAgenda()
+      (1..6).each do |f|
+        ag=AgendaProfissional.new(:dia=>f,:funcionario_id=>@funcionario.id,:hora_ini=>'08:00',:hora_fim=>'17:00',:ativo=>FALSE)
+        ag.save
+      end
+  end
+
 end

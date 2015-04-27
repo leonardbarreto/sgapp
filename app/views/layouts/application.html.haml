@@ -4,9 +4,11 @@
     %meta(charset="utf-8")
     %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title Sga
+    %title Sistema de Gestão Ambulatorial
     = csrf_meta_tags
+
     = stylesheet_link_tag "application", :media => "all"
+
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -40,12 +42,23 @@
                       %a{:href=>funcaos_path} Funções  
                     %li
                       %a{:href=>tipo_atendimentos_path} Tipos de Atendimento  
-                /%li
-                /  %a{:href=>"#"}Agenda
+                    %li
+                      %a{:href=>"status#index"} Status de atendimento  
+                %li.dropdown
+                  %a.dropdown-toggle{"data-toggle"=>"dropdown", :href=>"#"}
+                    Agenda
+                    %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href=>atendimentos_path} Atendimentos  
+                    %li
+                      %a{:href=>agenda_profissionals_path} Profissional
                 /%li
                 /  %a{:href=>"#"}Atendimento
                 %li
                   %a{:href=>pacientes_path} Pacientes
+                
+
                 
             %form.navbar-form.pull-right
               %ul.nav
@@ -60,9 +73,13 @@
                 - else
                   %li= link_to('Login', new_user_session_path)
     .container
-      .content
-        .row
-          .span12  
-            = bootstrap_flash
-            = yield
-    = javascript_include_tag "application"
+      = bootstrap_flash
+      = yield
+     
+/      .content
+/        .row
+/          .span12  
+/           = bootstrap_flash
+/           = yield
+= javascript_include_tag "application"
+
