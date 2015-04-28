@@ -1,4 +1,5 @@
 class AvdsController < InheritedResources::Base
+	load_and_authorize_resource
 	def show
 		#@meems=Meem.find_by_atendimento_id(params[:id],:order=>:data_at)
 		@avds=Avd.find_by_atendimento_id(params[:atendimento])
@@ -34,6 +35,8 @@ class AvdsController < InheritedResources::Base
 			if @avd.update_attributes(params[:avd])
 	      		format.html {redirect_to @avd}
 	      		format.js 
+	      	else
+	      		format.js
 	      	end
 	    end
 	end

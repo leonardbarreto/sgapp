@@ -16,6 +16,7 @@ class Atendimento < ActiveRecord::Base
 	has_one :camcog
 	has_one :cdr
 	has_one :fluencia_verbal
+	has_one :relogio
 
 	validates_presence_of :paciente_id, :message=>" :informe um paciente"
 	validates_presence_of :tipo_atendimento_id, :message=>" :informe um tipo de atendimento"
@@ -51,6 +52,11 @@ class Atendimento < ActiveRecord::Base
   	def paciente_pessoa_nome=(nome)
   		self.paciente=Paciente.all if nome.present?#includes(:pessoa).map{|t| [t.pessoa.nome]} #find_by_nome(nome) if nome.present?
   	end
+
+	def atendido?
+    	self.status==4?true:false
+  	end
+
   	#def calcHorarioFim
   	#	if @atendimento.funcionario.ultimoHorario?(@atendimento.data_at,@atendimento.horario)
   	#		@atendimento.horario_fim=@atendimento.horario+@atendimento.tipo_atendimento.duracao.minutes

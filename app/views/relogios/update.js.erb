@@ -1,0 +1,5 @@
+<% if @relogio.errors.any? %>
+  $('#relogio').html('<%= escape_javascript(render partial: 'form') %>')
+<% else %>
+  $('#relogio').html('<%= escape_javascript(render partial: 'show') %>')
+<% end %>

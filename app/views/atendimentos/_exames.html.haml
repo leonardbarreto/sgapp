@@ -1,0 +1,142 @@
+// ABAS PARA LANÇAMENTO DOS EXAMES
+// Neuropsicologicos
+#neuro
+  %h3.muted
+    Exames Neuropsicológicos
+  %ul.nav.nav-tabs{:id=>"myTab"}
+    %li.active
+      %a{:href=>"#meem", :data=>{:toogle=>"tab"}}
+        MEEM
+    %li
+      %a{:href=>"#avd",:data=>{:toogle=>"tab"}}
+        AVD
+    %li
+      %a{:href=>"#aivd",:data=>{:toogle=>"tab"}}
+        AIVD
+    %li
+      %a{:href=>"#fluencia",:data=>{:toogle=>"tab"}}
+        Fluência Verbal
+    %li
+      %a{:href=>"#cdr",:data=>{:toogle=>"tab"}}
+        CDR
+    %li
+      %a{:href=>"#gds",:data=>{:toogle=>"tab"}}
+        GDS
+    %li
+      %a{:href=>"#relogio",:data=>{:toogle=>"tab"}}
+        Teste do relógio
+    %li
+      %a{:href=>"#evocacao",:data=>{:toogle=>"tab"}}
+        Memória de evocação
+    %li
+      %a{:href=>"#camcog",:data=>{:toogle=>"tab"}}
+        CAMCOG
+          
+  .tab-content
+    .tab-pane.active{:id=>"meem"}
+      -if @meem
+        = render 'meems/score'
+      - else
+        = link_to new_meem_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
+      
+    .tab-pane{:id=>"avd"}
+      - if @avd
+        = render 'avds/dados'
+      - else
+        = link_to new_avd_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
+
+    .tab-pane{:id=>"aivd"}
+      - if @aivd
+        = render 'aivds/show'
+      -else
+        = link_to new_aivd_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
+    .tab-pane{:id=>"fluencia"}
+      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar
+    
+    .tab-pane{:id=>"cdr"}
+      - if @cdr
+        = render 'cdrs/show'
+      - else
+        = link_to new_cdr_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
+    .tab-pane{:id=>"gds"}
+      -if @gd
+        = render 'gds/show'
+      -else
+        = link_to new_gd_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
+    .tab-pane{:id=>"relogio"}
+      -if @relogio
+        = render 'relogios/show'
+      - else
+        = link_to new_relogio_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
+    .tab-pane{:id=>"evocacao"}
+      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar
+    .tab-pane{:id=>"camcog"}
+      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar
+#complementares
+  // Complementares
+  %h3.muted
+    Exames Complementares
+  %ul.nav.nav-tabs{:id=>"myTab"}
+    %li.active
+      %a{:href=>"#glic", :data=>{:toogle=>"tab"}}
+        Glicose
+    %li
+      %a{:href=>"#tsh",:data=>{:toogle=>"tab"}}
+        TSH
+    %li
+      %a{:href=>"#b12",:data=>{:toogle=>"tab"}}
+        B12
+          
+  .tab-content
+    .tab-pane.active{:id=>"glic"}
+      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar
+    .tab-pane{:id=>"tsh"}
+      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar
+    .tab-pane{:id=>"b12"}
+      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar
+#imagem
+  // Imagem
+  %h3.muted
+    Exames de Imagem
+  %ul.nav.nav-tabs{:id=>"myTab"}
+    %li.active
+      %a{:href=>"#tc", :data=>{:toogle=>"tab"}}
+        Tomografia Computadorizada
+    %li
+      %a{:href=>"#rm",:data=>{:toogle=>"tab"}}
+        Ressonância Magnética
+    
+          
+  .tab-content
+    .tab-pane.active{:id=>"tc"}
+      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar
+    .tab-pane{:id=>"rm"}
+      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar

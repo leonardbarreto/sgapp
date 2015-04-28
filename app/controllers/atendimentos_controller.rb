@@ -21,7 +21,10 @@ class AtendimentosController < ApplicationController
 		#Carregar todos os exames realizados no atendimento
 		@meem=Meem.find_by_atendimento_id(@atendimento)
 		@avd=Avd.find_by_atendimento_id(@atendimento)
-		
+		@aivd=Aivd.find_by_atendimento_id(@atendimento)
+		@cdr=Cdr.find_by_atendimento_id(@atendimento)
+		@gd=Gd.find_by_atendimento_id(@atendimento)
+		@relogio=Relogio.find_by_atendimento_id(@atendimento)
 		respond_to do |format|
 	      format.html # show.html.erb
 	      format.js {head :ok}

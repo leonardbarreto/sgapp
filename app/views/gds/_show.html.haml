@@ -1,0 +1,9 @@
+%form.form-inline
+	%label.control-label
+		Pontos
+	%input{:type=>'text', :value=> @gd.pontos, :readonly=>true, :class=>'input-mini'}
+	
+	= link_to edit_gd_path(@gd), :class=>'btn btn-default', :remote=>true do 
+		%i.icon-edit
+		Alterar
+

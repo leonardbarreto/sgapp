@@ -13,7 +13,13 @@
 		<tr>
 			<td><%= index+1 %></td>
 			<td><%= at.tipo_atendimento.descricao %></td>
-			<td><%= dateFormat(at.data_at) %></td>
+			<td><% if at.atendido? %>
+					<%= dateFormat(at.data_at) %>
+				<% else %>
+					<%= at.status.tipo %>
+				<% end %>
+
+			</td>
 			<td><%= at.funcionario.pessoa.nome %></td>
 		</tr>
 	<% end %>

@@ -43,6 +43,7 @@ class Paciente < ActiveRecord::Base
     self.prontuario ||= Paciente.count+1
   end
 
+  
   #def countPacientes()
   #  @qtd=Paciente.count
   #end

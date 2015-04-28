@@ -1,5 +1,8 @@
 Sga::Application.routes.draw do
   
+  resources :relogios
+
+
   resources :status
 
   resources :meems

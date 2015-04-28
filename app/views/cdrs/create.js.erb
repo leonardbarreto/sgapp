@@ -1,0 +1,5 @@
+<% if @cdr.errors.any? %>
+	$('#cdr').html('<%= escape_javascript(render partial: 'form') %>')
+<% else %>
+	$('#cdr').html('<%= escape_javascript(render partial: 'show') %>')
+<% end %>

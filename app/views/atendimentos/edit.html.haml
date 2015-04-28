@@ -17,13 +17,14 @@
       .accordion{:id=>"accordionAtendimento"}
         .accordion-group
           .accordion-heading
-            %a.accordion-toggle{:href=>'#collapseOne',:data=>{:toggle=>'collapse',:parent=>'#accordionAtendimento'}}
-              Avaliação inicial
-          #collapseOne{:class=>"accordion-body.collapse.in"}
+            %a.accordion-toggle{:href=>'#collapse1',:data=>{:toggle=>'collapse',:parent=>'#accordionAtendimento'}}
+              AVALIAÇÃO INICIAL
+          #collapse1{:class=>"accordion-body.collapse.in"}
             .accordion-inner
               %ul
-                %li 
-                  =link_to 'Dados de identificação', prontuario_paciente_path(@atendimento.paciente), :remote=>true 
+                %li
+                  %a{:id=>'linkIdentificacao', :href=>'#'} Dados de identificação
+                   
                 %li 
                   Situação familiar
                 %li 
@@ -34,164 +35,71 @@
         //Aba de informações
         .accordion-group
           .accordion-heading
-            %a.accordion-toggle{:href=>'#collapseTwo',:data=>{:toggle=>'collapse',:parent=>'#accordionAtendimento'}}
-              Exames
-          #collapseTwo{:class=>"accordion-body.collapse.in"}
+            %a.accordion-toggle{:href=>'#collapse2',:data=>{:toggle=>'collapse',:parent=>'#accordionAtendimento'}}
+              EXAMES
+          #collapse2{:class=>"accordion-body.collapse.in"}
             .accordion-inner
               %ul
                 %li
-                  Neuropsicológicos
+                  %a{:id=>'linkNeuro', :href=>'#'}Neuropsicológicos
                 %li
-                  Físicos
+                  %a{:id=>'linkCompl', :href=>'#'} Complementares
                 %li
-                  Imagem
+                  %a{:id=>'linkImag', :href=>'#'} Imagem
         //Aba de informações
         .accordion-group
           .accordion-heading
-            %a.accordion-toggle{:href=>'#collapseThree',:data=>{:toggle=>'collapse',:parent=>'#accordionAtendimento'}}
-              Anamnese
-          #collapseThree{:class=>"accordion-body.collapse.in"}
+            %a.accordion-toggle{:href=>'#collapse3',:data=>{:toggle=>'collapse',:parent=>'#accordionAtendimento'}}
+              ANAMNESE
+          #collapse3{:class=>"accordion-body.collapse.in"}
             .accordion-inner
               %ul
                 %li
-                  Avaliação
-                
+                  %a{:id=>'linkAvaliacao', :href=>'#'} Avaliação
+                  
+     
     .span9
       = render 'header'
       .page-header 
       #contentArea
-        // ABAS PARA LANÇAMENTO DOS EXAMES
-        // Neuropsicologicos
-        %h3.muted
-          Exames Neuropsicológicos
-        %ul.nav.nav-tabs{:id=>"myTab"}
-          %li.active
-            %a{:href=>"#meem", :data=>{:toogle=>"tab"}}
-              MEEM
-          %li
-            %a{:href=>"#avd",:data=>{:toogle=>"tab"}}
-              AVD
-          %li
-            %a{:href=>"#aivd",:data=>{:toogle=>"tab"}}
-              AIVD
-          %li
-            %a{:href=>"#fluencia",:data=>{:toogle=>"tab"}}
-              Fluência Verbal
-          %li
-            %a{:href=>"#cdr",:data=>{:toogle=>"tab"}}
-              CDR
-          %li
-            %a{:href=>"#gds",:data=>{:toogle=>"tab"}}
-              GDS
-          %li
-            %a{:href=>"#relogio",:data=>{:toogle=>"tab"}}
-              Teste do relógio
-          %li
-            %a{:href=>"#evocacao",:data=>{:toogle=>"tab"}}
-              Memória de evocação
-          %li
-            %a{:href=>"#camcog",:data=>{:toogle=>"tab"}}
-              CAMCOG
-                
-        .tab-content
-          .tab-pane.active{:id=>"meem"}
-            -if @meem
-              = render 'meems/score'
-            - else
-              = link_to new_meem_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
-                %i.icon-plus
-                Adicionar
-            
-          .tab-pane{:id=>"avd"}
-            - if @avd
-              = render 'avds/dados'
-            - else
-              = link_to new_avd_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
-                %i.icon-plus
-                Adicionar
-
-          .tab-pane{:id=>"aivd"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"fluencia"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"cdr"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"gds"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"relogio"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"evocacao"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"camcog"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-        // Complementares
-        %h3.muted
-          Exames Complementares
-        %ul.nav.nav-tabs{:id=>"myTab"}
-          %li.active
-            %a{:href=>"#glic", :data=>{:toogle=>"tab"}}
-              Glicose
-          %li
-            %a{:href=>"#tsh",:data=>{:toogle=>"tab"}}
-              TSH
-          %li
-            %a{:href=>"#b12",:data=>{:toogle=>"tab"}}
-              B12
-                
-        .tab-content
-          .tab-pane.active{:id=>"glic"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"tsh"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"b12"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-        // Imagem
-        %h3.muted
-          Exames de Imagem
-        %ul.nav.nav-tabs{:id=>"myTab"}
-          %li.active
-            %a{:href=>"#tc", :data=>{:toogle=>"tab"}}
-              Tomografia Computadorizada
-          %li
-            %a{:href=>"#rm",:data=>{:toogle=>"tab"}}
-              Ressonância Magnética
-          
-                
-        .tab-content
-          .tab-pane.active{:id=>"tc"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
-          .tab-pane{:id=>"rm"}
-            = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-              %i.icon-plus
-              Adicionar
+        .avaliacao
+          = render 'pacientes/dadosPessoais'
+        .exames
+          = render 'exames'
   
 %script{:src=>"/assets/jquery.min.js", :type=>"text/javascript"}
 %script{:src=>"/assets/jquery.countdown.min.js", :type=>"text/javascript"}
 //%script{:src=>"/assets/jquery.countdown-pt-BR.js", :type=>"text/javascript"}
 :javascript
-// pega a duração do atendimento para o cronômetro!
+  $(function(){
+    $('.avaliacao').hide();
+    $('.exames').hide();
+    
+    $('#linkIdentificacao').click(function(){
+      $('.avaliacao').show(100);
+      $('exames').hide();
+    })
+    $('#linkNeuro, #linkCompl, #linkImag').click(function(){
+      $('.avaliacao').hide();
+      $('.exames').show(1000);
+    })
+    $('#linkNeuro').click(function(){
+      $('#neuro').show('slow');
+      $('#complementares').hide();
+      $('#imagem').hide();
+    })
+    $('#linkCompl').click(function(){
+      $('#neuro').hide();
+      $('#complementares').show('slow');
+      $('#imagem').hide();
+    })
+    $('#linkImag').click(function(){
+      $('#neuro').hide();
+      $('#complementares').hide();
+      $('#imagem').show('slow');
+    })
+  });
+  // pega a duração do atendimento para o cronômetro!
   var $at=$('#duracaoAtendimento').val(); 
   function get30secFromNow() {
     return new Date(new Date().valueOf() +   parseInt($at) * 60 * 1000);
@@ -207,3 +115,4 @@
     e.preventDefault();
     $(this).tab('show');
   });
+  

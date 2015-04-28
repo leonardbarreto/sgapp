@@ -1,0 +1,5 @@
+<% if @gd.errors.any? %>
+	$('#gds').html('<%= escape_javascript(render partial: 'form') %>')
+<% else %>
+	$('#gds').html('<%= escape_javascript(render partial: 'show') %>')
+<% end %>

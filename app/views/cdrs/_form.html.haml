@@ -1,8 +1,11 @@
-= semantic_form_for @cdr do |f|
-  = f.inputs do
-    = f.input :pontos
-    = f.input :atendimento_id
-    = f.input :tipo_exame_id
-
-  = f.actions do
-    = f.action :submit, :as => :input
+- if @cdr.errors.any?
+	= render 'layouts/errors', object: @cdr
+= form_for @cdr, :remote=> true, :html => { :class => 'form-inline' } do |f|
+	= f.hidden_field :atendimento_id
+	= f.label :pontos, :class=>'control-label'
+	= f.text_field :pontos, :class=>'input-mini'
+	
+	= f.submit class: "btn btn-primary"
+	-#= button_tag(:type=>'submit',:class=>'btn btn-primary') do
+		-#%i.icon-ok.icon-white
+		-#Salvar
