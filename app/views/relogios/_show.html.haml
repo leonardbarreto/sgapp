@@ -1,9 +1,12 @@
-%form.form-inline
-	%label.control-label
-		Pontos
-	%input{:type=>'text', :value=> @relogio.pontos, :readonly=>true, :class=>'input-mini'}
-	
-	= link_to edit_relogio_path(@relogio), :class=>'btn btn-default', :remote=>true do 
-		%i.icon-edit
-		Alterar
+.container-fluid
+	.row-fluid		
+		.span9
+			%label.control-label
+				Pontos
+			%input{:type=>'text', :value=> @relogio.pontos, :readonly=>true, :class=>'input-small'}
+		.span3
+			#label.control-label &nbsp;
+			= link_to edit_relogio_path(@relogio), :class=>'btn btn-default', :remote=>true do 
+				%i.icon-edit
+				Alterar
 

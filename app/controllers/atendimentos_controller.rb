@@ -25,6 +25,7 @@ class AtendimentosController < ApplicationController
 		@cdr=Cdr.find_by_atendimento_id(@atendimento)
 		@gd=Gd.find_by_atendimento_id(@atendimento)
 		@relogio=Relogio.find_by_atendimento_id(@atendimento)
+		@camcog=Camcog.find_by_atendimento_id(@atendimento)
 		respond_to do |format|
 	      format.html # show.html.erb
 	      format.js {head :ok}

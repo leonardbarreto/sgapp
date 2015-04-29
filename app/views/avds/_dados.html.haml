@@ -4,35 +4,30 @@
 		text-align: center;
 	}
 .container-fluid
-	.row-fluid.no-space
-		.span2
-			Banho
-		.span2
-			Vestir
-		.span2
-			Higiene
-		.span2
-			Transferência
-		.span2
-			Continência
-		.span2
-			Alimentação
-	.row-fluid
-		= form_for @avd, :remote=> true do |f|
-		
-			=f.hidden_field :atendimento_id
-			
-			= f.text_field :banho, :class=>'span2', :readonly=>true
-		
-			= f.text_field :vestir, :class=>'span2',:readonly=>true
-		
-			= f.text_field :higiene,:class=>'span2',:readonly=>true
-		
-			= f.text_field :transferencia,:class=>'span2',:readonly=>true
-		
-			= f.text_field :continencia,:class=>'span2',:readonly=>true
-		
-			= f.text_field :alimentacao,:class=>'span2',:readonly=>true
-		= link_to edit_avd_path(@avd), :class=>'btn btn-default', :remote=>true do 
-			%i.icon-edit
-			Alterar
+	= form_for @avd, :remote=> true do |f|
+		=f.hidden_field :atendimento_id
+		.row-fluid		
+			.span3
+				%label.control-label Banho
+				= f.text_field :banho, :class=>'input-small', :readonly=>true
+			.span3
+				%label.control-label Vestir
+				= f.text_field :vestir, :class=>'input-small',:readonly=>true
+			.span3
+				%label.control-label Higiene
+				= f.text_field :higiene,:class=>'input-small',:readonly=>true
+		.row-fluid
+			.span3
+				%label.control-label Transferência
+				= f.text_field :transferencia,:class=>'input-small',:readonly=>true
+			.span3
+				%label.control-label Continência
+				= f.text_field :continencia,:class=>'input-small',:readonly=>true
+			.span3
+				%label.control-label Alimentação
+				= f.text_field :alimentacao,:class=>'input-small',:readonly=>true
+			.span3
+				%label.control-label &nbsp;
+				= link_to edit_avd_path(@avd), :class=>'btn btn-default', :remote=>true do 
+					%i.icon-edit
+					Alterar

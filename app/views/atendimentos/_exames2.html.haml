@@ -1,0 +1,92 @@
+.row-fluid
+	.span12
+		%span.label MEEM
+.row-fluid
+	.span12
+		#meem2
+			-if @meem
+				= render 'meems/score'
+			- else
+				= link_to new_meem_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do
+					%i.icon-plus
+					Adicionar
+	
+.row-fluid
+	.span12
+		%span.label AVD
+.row-fluid
+	.span12
+		#avd2
+			- if @avd
+				= render 'avds/dados'
+			- else
+				= link_to new_avd_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+					%i.icon-plus
+					Adicionar
+	
+
+.row-fluid
+	.span12
+		%span.label AIVD
+.row-fluid
+	.span12
+		#aivd2
+			- if @aivd
+				= render 'aivds/show'
+			-else
+				= link_to new_aivd_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+					%i.icon-plus
+					Adicionar
+.row-fluid
+	.span12
+		%span.label Fluência Verbal
+
+.row-fluid
+	.span12
+		%span.label CDR
+.row-fluid
+	.span12
+		#aivd2
+			- if @cdr
+				= render 'cdrs/show'
+			-else
+				= link_to new_cdr_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+					%i.icon-plus
+					Adicionar
+.row-fluid
+	.span12
+		%span.label GDS
+.row-fluid
+	.span12
+		#aivd2
+			- if @gd
+				= render 'gds/show'
+			-else
+				= link_to new_gd_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+					%i.icon-plus
+					Adicionar
+
+.row-fluid
+	.span12
+		%span.label Teste do relógio
+.row-fluid
+	.span12
+		#aivd2
+			- if @relogio
+				= render 'relogios/show'
+			-else
+				= link_to new_relogio_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+					%i.icon-plus
+					Adicionar
+.row-fluid
+	.span12
+		%span.label Camcog
+.row-fluid
+	.span12
+		#camcog2
+			- if @camcog
+				= render 'camcogs/show'
+			-else
+				= link_to new_camcog_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+					%i.icon-plus
+					Adicionar

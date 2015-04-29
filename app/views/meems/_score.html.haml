@@ -1,9 +1,13 @@
 -# Renderizar o valor do exame
-%form.form-inline
-	%label.control-label
-		Score
-	%input{:type=>'text', :value=> @meem.score, :readonly=>true, :class=>'input-mini'}
-	
-	= link_to edit_meem_path(@meem), :class=>'btn btn-default', :remote=>true do 
-		%i.icon-edit
-		Alterar
+-#%form.form-inline
+.container-fluid
+	.row-fluid
+		.span9
+			%label.control-label
+				Score
+			%input{:type=>'text', :value=> @meem.score, :readonly=>true, :class=>'input-small'}
+		.span3
+			#label.control-label &nbsp;
+			= link_to edit_meem_path(@meem), :class=>'btn btn-default', :remote=>true do 
+				%i.icon-edit
+				Alterar

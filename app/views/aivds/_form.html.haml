@@ -1,12 +1,18 @@
 - if @aivd.errors.any?
 	= render 'layouts/errors', object: @aivd
-= form_for @aivd, :remote=> true, :html => { :class => 'form-inline' } do |f|
-	= f.hidden_field :atendimento_id
-	= f.label :pontos, :class=>'control-label'
-	= f.text_field :pontos, :class=>'input-mini'
-	= f.label :dependencia, :class=>'control-label'
-	= f.text_field :dependencia, :class=>'input-mini'
-	= f.submit class: "btn btn-primary"
-	-#= button_tag(:type=>'submit',:class=>'btn btn-primary') do
-		-#%i.icon-ok.icon-white
-		-#Salvar
+.container-fluid
+	= form_for @aivd, :remote=> true do |f|
+		= f.hidden_field :atendimento_id
+		.row-fluid
+			.span3
+				= f.label :pontos, :class=>'control-label'
+				= f.text_field :pontos, :class=>'input-mini'
+			.span6
+				%label.control-label Dependência
+				= f.text_field :dependencia, :class=>'input-mini'
+			.span3
+				#label.control-label &nbsp;
+				= f.submit class: "btn btn-primary"
+		-#= button_tag(:type=>'submit',:class=>'btn btn-primary') do
+			-#%i.icon-ok.icon-white
+			-#Salvar

@@ -1,13 +1,13 @@
-%p#notice= notice
-
-%form.form-inline
-	%label.control-label
-		Pontos
-	%input{:type=>'text', :value=> @aivd.pontos, :readonly=>true, :class=>'input-mini'}
-	%label.control-label
-		Dependência
-	%input{:type=>'text', :value=> @aivd.dependencia, :readonly=>true, :class=>'input-mini'}
-	
-	= link_to edit_aivd_path(@aivd), :class=>'btn btn-default', :remote=>true do 
-		%i.icon-edit
-		Alterar
+.container-fluid
+	.row-fluid
+		.span3
+			%label.control-label Pontos
+			%input{:type=>'text', :value=> @aivd.pontos, :readonly=>true, :class=>'input-mini'}
+		.span6
+			%label.control-label Dependência
+			%input{:type=>'text', :value=> @aivd.dependencia, :readonly=>true, :class=>'input-mini'}
+		.span3
+			#label.control-label &nbsp;
+			= link_to edit_aivd_path(@aivd), :class=>'btn btn-default', :remote=>true do 
+				%i.icon-edit
+				Alterar

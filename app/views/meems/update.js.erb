@@ -1,5 +1,8 @@
 <% if @meem.errors.any? %>
 	$('#meem').html('<%= escape_javascript(render partial: 'form') %>')
+	$('#meem2').html('<%= escape_javascript(render partial: 'form') %>')
 <% else %>
 	$('#meem').html('<%= escape_javascript(render partial: 'score') %>')
+	$('#meem2').html('<%= escape_javascript(render partial: 'score') %>')
+
 <% end %>

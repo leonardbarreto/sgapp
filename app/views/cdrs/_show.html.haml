@@ -1,9 +1,11 @@
-%form.form-inline
-	%label.control-label
-		Pontos
-	%input{:type=>'text', :value=> @cdr.pontos, :readonly=>true, :class=>'input-mini'}
-	
-	= link_to edit_cdr_path(@cdr), :class=>'btn btn-default', :remote=>true do 
-		%i.icon-edit
-		Alterar
+.container-fluid
+	.row-fluid
+		.span9
+			%label.control-label Pontos
+			%input{:type=>'text', :value=> @cdr.pontos, :readonly=>true, :class=>'input-small'}
+		.span3
+			%label.control-label &nbsp;
+			= link_to edit_cdr_path(@cdr), :class=>'btn btn-default', :remote=>true do 
+				%i.icon-edit
+				Alterar
 

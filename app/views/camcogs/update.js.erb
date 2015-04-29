@@ -1,0 +1,5 @@
+<% if @camcog.errors.any? %>
+	$('#camcog').html('<%= escape_javascript(render partial: 'form') %>')
+<% else %>
+	$('#camcog').html('<%= escape_javascript(render partial: 'show') %>')
+<% end %>

@@ -37,9 +37,6 @@ class MeemsController < ApplicationController
 			format.html {redirect_to @meem}
 	      	format.js 
 	      else
-	        #format.html {redirect_to :back}
-	        #format.html { redirect_to new_meem_path(:atendimento=>@atendimento),notice: 'merda'}
-			
 	        format.js
 	      end
 	    end

@@ -17,8 +17,7 @@ load_and_authorize_resource
 	       	format.html {redirect_to @gd}
 	      	format.js 
 	      else
-	        #format.html {redirect_to :back}
-	        format.html { redirect_to new_avd_path(:atendimento=>@atendimento),notice: 'merda'}
+	        format.js 
 	      end
 	    end
 	end

@@ -13,7 +13,7 @@ class Ability
           can [:create,:read,:update], [Pessoa, Funcionario,Cargo,Funcao]
         end
         if user.eqtecnica?
-          can [:create,:read,:update], [Meem,Avd, Aivd,Cdr,Gd,Relogio]
+          can [:create,:read,:update], [Meem,Avd, Aivd,Cdr,Gd,Relogio,Camcog]
           can [:read,:update],[Paciente, Atendimento]
           can [:read], Pessoa
        end

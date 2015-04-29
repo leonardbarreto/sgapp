@@ -87,9 +87,12 @@
         %i.icon-plus
         Adicionar
     .tab-pane{:id=>"camcog"}
-      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-        %i.icon-plus
-        Adicionar
+      -if @camcog
+        = render 'camcogs/show'
+      -else
+        = link_to new_camcog_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
 #complementares
   // Complementares
   %h3.muted

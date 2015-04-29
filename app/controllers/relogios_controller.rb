@@ -17,8 +17,7 @@ load_and_authorize_resource
 	       	format.html {redirect_to @relogio}
 	      	format.js 
 	      else
-	        #format.html {redirect_to :back}
-	        format.html { redirect_to new_relogio_path(:atendimento=>@atendimento),notice: 'merda'}
+	        format.js
 	      end
 	    end
 	end

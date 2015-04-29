@@ -1,10 +1,15 @@
 - if @meem.errors.any?
 	= render 'layouts/errors', object: @meem
-= form_for @meem, :remote=> true, :html => { :class => 'form-inline' } do |f|
-	= f.hidden_field :atendimento_id
-	= f.label :score, :class=>'control-label'
-	= f.text_field :score, :class=>'input-mini'
-	= f.submit class: "btn btn-primary"
-	-#= button_tag(:type=>'submit',:class=>'btn btn-primary') do
-		-#%i.icon-ok.icon-white
-		-#Salvar
+.container-fluid
+	= form_for @meem, :remote=> true do |f|
+		= f.hidden_field :atendimento_id
+		.row-fluid
+			.span9
+				= f.label :score, :class=>'control-label'
+				= f.text_field :score, :class=>'input-small'
+			.span3
+				#label.control-label &nbsp;
+				= f.submit class: "btn btn-primary"
+		-#= button_tag(:type=>'submit',:class=>'btn btn-primary') do
+			-#%i.icon-ok.icon-white
+			-#Salvar

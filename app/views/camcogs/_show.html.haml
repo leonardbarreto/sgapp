@@ -1,0 +1,11 @@
+.container-fluid
+	.row-fluid
+		.span9
+			%label.control-label Pontos
+			%input{:type=>'text', :value=> @camcog.pontos, :readonly=>true, :class=>'input-small'}
+		.span3
+			#label.control-label &nbsp;
+			= link_to edit_camcog_path(@camcog), :class=>'btn btn-default', :remote=>true do 
+				%i.icon-edit
+				Alterar
+
