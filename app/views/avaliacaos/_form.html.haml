@@ -1,0 +1,19 @@
+- if @avaliacao.errors.any?
+	= render 'layouts/errors', object: @avaliacao
+= form_for @avaliacao, :remote=> true, :html=>{:class=>'form-horizontal'} do |f|
+	= f.hidden_field :atendimento_id
+	.control.group
+		%label.control-label Queixa principal
+		.controls	
+			= f.text_field :queixa_principal, :class=>'input-xxlarge'
+	%br
+	.control.group
+		%label.control-label História
+		.controls	
+			= f.text_area :anamnese, :rows=>'6', :class=> 'input-xxlarge'
+			%br
+			%br
+			= f.submit class: "btn btn-primary"
+			-#= button_tag(:type=>'submit',:class=>'btn btn-primary') do
+				-#%i.icon-ok.icon-white
+				-#Salvar

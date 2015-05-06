@@ -1,5 +1,5 @@
 class PacientesController < InheritedResources::Base
-load_and_authorize_resource
+load_and_authorize_resource 
 # GET /pacientes
   # GET /pacientes.json
  

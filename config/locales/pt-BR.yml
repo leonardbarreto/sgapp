@@ -39,6 +39,7 @@ pt-BR:
       long: ! '%d de %B de %Y'
       short: ! '%d de %B'
     month_names:
+    - ~
     - Janeiro
     - Fevereiro
     - Março

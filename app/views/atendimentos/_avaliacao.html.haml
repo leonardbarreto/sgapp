@@ -1,1 +1,9 @@
-Avaliacao
+%h3.muted 
+	Anamnese
+#anamnese
+	- if @avaliacao
+		= render 'avaliacaos/show'
+	- else
+		= link_to new_avaliacao_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+			%i.icon-plus
+			Adicionar

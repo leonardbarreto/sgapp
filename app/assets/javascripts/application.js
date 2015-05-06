@@ -13,8 +13,9 @@
 // NÃO CHAMAR A GEM TWITTER/BOOTSTRAP
 //= require jquery 
 //= require jquery_ujs
-// require jquery.ui.datepicker
+//= require bootstrap.min
 //= require jquery.ui.all
+
 //= require_tree .
 
 

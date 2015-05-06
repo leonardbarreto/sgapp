@@ -1,0 +1,64 @@
+.container-fluid
+  .row-fluid
+    .span4
+      .form-horizontal
+        .control-group
+          %label.control-label Glicose
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.glicose, :readonly=>true}
+        .control-group
+          %label.control-label TSH
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.tsh, :readonly=>true}
+        .control-group
+          %label.control-label B12
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.b12, :readonly=>true}
+        .control-group
+          %label.control-label Ácido Fólico
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.acido_folico, :readonly=>true}
+        .control-group
+          %label.control-label VDRL
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.vdrl, :readonly=>true}
+        .control-group
+          %label.control-label Hemograma
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.hemograma, :readonly=>true}
+    .span4
+      .form-horizontal
+        .control-group
+          %label.control-label HT
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.ht, :readonly=>true}
+        .control-group
+          %label.control-label HC
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.hc, :readonly=>true}
+        .control-group
+          %label.control-label HMGL
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.hmgl, :readonly=>true}
+        .control-group
+          %label.control-label Leucócitos
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.leucocitos, :readonly=>true}
+        .control-group
+          %label.control-label Creatinina
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.creatinina, :readonly=>true}
+        .control-group
+          %label.control-label Sódio
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.sodio, :readonly=>true}
+    .span4
+      .form-horizontal
+        .control-group
+          %label.control-label Potássio
+          .controls
+            %input.input-small{:type=>'text', :value=>@exame_complementar.potassio, :readonly=>true}
+  .row-fluid
+    = link_to edit_exame_complementar_path(@exame_complementar), :class=>'btn btn-default', :remote=>true do 
+      %i.icon-edit
+      Alterar

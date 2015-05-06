@@ -9,10 +9,10 @@
             .panel-body              
               .text-center
                 .lead{:id=>"clock"}
-                = button_tag(:type=> 'submit',:class=>'btn btn-danger',:id=>'btn-reset',:rel=>'popover', :data=>{:html=>"true", :placement=>"top"}) do
-                  %i.icon-stop.icon-white
-                  Finalizar atendimento
-      
+                =form_for @atendimento do |a|
+                  = button_tag(:type=> 'submit',:class=>'btn btn-danger',:id=>'btn-reset',:rel=>'popover', :data=>{:html=>"true", :placement=>"top",:confirm=>'Deseja finalizar o atendimento?'}) do
+                    %i.icon-stop.icon-white
+                    Finalizar atendimento
       //Sidebar
       .accordion{:id=>"accordionAtendimento"}
         .accordion-group
@@ -25,13 +25,13 @@
                 %li
                   %a{:id=>'linkIdentificacao', :href=>'#'} Dados de identificação
                    
-                %li 
-                  Situação familiar
-                %li 
-                  Recursos econômicos
-                %li 
-                  HPP
-              %p
+                -#%li 
+                  -#Situação familiar
+                -#%li 
+                  -#Recursos econômicos
+                -#%li 
+                  -#HPP
+              
         //Aba de informações
         .accordion-group
           .accordion-heading
@@ -66,7 +66,10 @@
           = render 'pacientes/dadosPessoais'
         .exames
           = render 'exames'
-        -#= render 'exames2'
+        .anamnese
+          = render 'avaliacao'
+        
+
   
 %script{:src=>"/assets/jquery.min.js", :type=>"text/javascript"}
 %script{:src=>"/assets/jquery.countdown.min.js", :type=>"text/javascript"}
@@ -75,13 +78,21 @@
   $(function(){
     $('.avaliacao').hide();
     $('.exames').hide();
+    $('.anamnese').hide();
     
     $('#linkIdentificacao').click(function(){
-      $('.avaliacao').show(100);
-      $('exames').hide();
+      $('.avaliacao').show(1000);
+      $('.exames').hide();
+      $('.anamnese').hide();
+    })
+    $('#linkAvaliacao').click(function(){
+      $('.avaliacao').hide();
+      $('.exames').hide();
+      $('.anamnese').show(1000);
     })
     $('#linkNeuro, #linkCompl, #linkImag').click(function(){
       $('.avaliacao').hide();
+      $('.anamnese').hide();
       $('.exames').show(1000);
     })
     $('#linkNeuro').click(function(){

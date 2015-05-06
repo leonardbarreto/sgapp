@@ -2,9 +2,13 @@
 	<thead>
 	<tr>
 		<th>#</th>
-		<th>Tipo de atendimento</th>
+		<th>Tipo de atendimento</th>	
+		<th>Status</th>
 		<th>Atendido em</th>
+		
+		
 		<th>Funcionário(a)</th>
+
 	</tr>
 	</thead>
 	<tbody>
@@ -13,13 +17,17 @@
 		<tr>
 			<td><%= index+1 %></td>
 			<td><%= at.tipo_atendimento.descricao %></td>
+			<td><%= at.status.tipo %></td>
 			<td><% if at.atendido? %>
 					<%= dateFormat(at.data_at) %>
 				<% else %>
-					<%= at.status.tipo %>
+					--
+					<%#= at.status.tipo %>
 				<% end %>
 
 			</td>
+			
+			
 			<td><%= at.funcionario.pessoa.nome %></td>
 		</tr>
 	<% end %>

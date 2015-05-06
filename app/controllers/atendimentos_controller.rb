@@ -1,12 +1,14 @@
 class AtendimentosController < ApplicationController
-	load_and_authorize_resource
+	load_and_authorize_resource 
 	
 	def index
 		@funcionarios=Funcionario.joins(:pessoa).find(:all).map{|f| [f.pessoa.nome, f.id]}
+		#@totalMes=Atendimento.find(:all,:conditions=>['extract(month from(data_at))=? and funcionario_id=?',Date.today.month,53]).count
 		
 		#@date = params[:date] ? Date.parse(params[:date]) : Date.today
 		if params[:search]
 			@date = params[:date] ? Date.parse(params[:date]) : Date.today
+			
 			@atendimentos=Atendimento.search(params[:search]).where(:data_at=>@date).order(:horario)
 			@funcionario=Funcionario.find(params[:search])
 		else
@@ -26,6 +28,10 @@ class AtendimentosController < ApplicationController
 		@gd=Gd.find_by_atendimento_id(@atendimento)
 		@relogio=Relogio.find_by_atendimento_id(@atendimento)
 		@camcog=Camcog.find_by_atendimento_id(@atendimento)
+		@tomografia=Tomografia.find_by_atendimento_id(@atendimento)
+		@ressonancia=Ressonancia.find_by_atendimento_id(@atendimento)
+		@exame_complementar=ExameComplementar.find_by_atendimento_id(@atendimento)
+		@avaliacao=Avaliacao.find_by_atendimento_id(@atendimento)
 		respond_to do |format|
 	      format.html # show.html.erb
 	      format.js {head :ok}
@@ -38,12 +44,12 @@ class AtendimentosController < ApplicationController
 	    respond_to do |format|
 	      format.html # show.html.erb
 	      format.js {head :ok}
-
 	    end
   	end
 	
 	def create
 	 	@atendimento = Atendimento.new(params[:atendimento])
+	 	@atendimento.user_id=@current_user.id #usuário que realizou o agendamento
 	    @atendimento.horario_fim=@atendimento.horario+@atendimento.tipo_atendimento.duracao.minutes
 	    respond_to do |format|
 	      if @atendimento.save
@@ -56,10 +62,6 @@ class AtendimentosController < ApplicationController
 	
 	
 	def new
-
-		#@funcionarios=Funcionario.joins(:pessoa).find(:all).map{|f| [f.pessoa.nome, f.id]}
-		 
-
 		@atendimento=Atendimento.new
 		@horarios=Atendimento.where(:data_at=>params[:date],:funcionario_id=>params[:funcionario_id]).order(:horario);
 		@agenda=AgendaProfissional.where(:dia=>params[:date].to_date.wday,:funcionario_id=>params[:funcionario_id],:ativo=>true)
@@ -71,21 +73,24 @@ class AtendimentosController < ApplicationController
 
 	def update
     	@atendimento = Atendimento.find(params[:id])
-    	@atendimento.user_id=@current_user.id
+    	#@atendimento.user_id=@current_user.id
+    	@atendimento.status_id=4 #atendimento realizado
+	    
 	    respond_to do |format|
 	      if @atendimento.update_attributes(params[:atendimento])
-	      	if :funcionario_id
+	      	if :funcionario_id #regra para redirecionar para um funcionário (médico, enfermeiro)
 	      		format.html { redirect_to atendimentos_path(:search=>@atendimento.funcionario_id,:date=>Date.today), notice: 'Atendimento atualizado com sucesso.' }
 	      	else
-	      		format.html { redirect_to atendimentos_path, notice: 'Atendimento atualizado com sucesso.' }
+	      		format.html { redirect_to atendimentos_path, notice: 'Atendimento realizado com sucesso.' }
 	      	end
-	        #format.json { head :no_content }
+	   
 	      else
 	        format.html { render action: "edit" }
-	        #format.json { render json: @atendimento.errors, status: :unprocessable_entity }
+	   
 	      end
 	    end
 	  end
-	
+
+		
 end
 

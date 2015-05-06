@@ -1,0 +1,5 @@
+<% if @exame_complementar.errors.any? %>
+	$('#complementar').html('<%= escape_javascript(render partial: 'form') %>')
+<% else %>
+	$('#complementar').html('<%= escape_javascript(render partial: 'show') %>')
+<% end %>

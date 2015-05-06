@@ -40,4 +40,8 @@ class Funcionario < ActiveRecord::Base
     end
   end
 
+  def atendimentosMes(mes=nil)
+    mes||=Date.today.month
+    self.atendimento.where('extract(month from(data_at))=? and funcionario_id=? and status_id=?',mes,self,4).count
+  end
 end

@@ -97,49 +97,63 @@
   // Complementares
   %h3.muted
     Exames Complementares
-  %ul.nav.nav-tabs{:id=>"myTab"}
-    %li.active
-      %a{:href=>"#glic", :data=>{:toogle=>"tab"}}
-        Glicose
-    %li
-      %a{:href=>"#tsh",:data=>{:toogle=>"tab"}}
-        TSH
-    %li
-      %a{:href=>"#b12",:data=>{:toogle=>"tab"}}
-        B12
+  #complementar
+    -if @exame_complementar
+      = render 'exame_complementars/show'
+    -else
+      = link_to new_exame_complementar_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+        %i.icon-plus
+        Adicionar
+  -#%ul.nav.nav-tabs{:id=>"myTab"}
+    -#%li.active
+      -#%a{:href=>"#glic", :data=>{:toogle=>"tab"}}
+        -#Glicose
+    -#%li
+      -#%a{:href=>"#tsh",:data=>{:toogle=>"tab"}}
+        -#TSH
+    -#%li
+      -#%a{:href=>"#b12",:data=>{:toogle=>"tab"}}
+        -#B12
           
-  .tab-content
-    .tab-pane.active{:id=>"glic"}
-      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-        %i.icon-plus
-        Adicionar
-    .tab-pane{:id=>"tsh"}
-      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-        %i.icon-plus
-        Adicionar
-    .tab-pane{:id=>"b12"}
-      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-        %i.icon-plus
-        Adicionar
+  -#.tab-content
+    -#.tab-pane.active{:id=>"glic"}
+      -#= link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        -#%i.icon-plus
+        -#Adicionar
+    -#.tab-pane{:id=>"tsh"}
+      -#= link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        -#%i.icon-plus
+        -#Adicionar
+    -#.tab-pane{:id=>"b12"}
+      -#= link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
+        -#%i.icon-plus
+        -#Adicionar
 #imagem
   // Imagem
   %h3.muted
     Exames de Imagem
   %ul.nav.nav-tabs{:id=>"myTab"}
     %li.active
-      %a{:href=>"#tc", :data=>{:toogle=>"tab"}}
+      %a{:href=>"#tomografia", :data=>{:toogle=>"tab"}}
         Tomografia Computadorizada
     %li
-      %a{:href=>"#rm",:data=>{:toogle=>"tab"}}
+      %a{:href=>"#ressonancia",:data=>{:toogle=>"tab"}}
         Ressonância Magnética
     
           
   .tab-content
-    .tab-pane.active{:id=>"tc"}
-      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-        %i.icon-plus
-        Adicionar
-    .tab-pane{:id=>"rm"}
-      = link_to edit_paciente_path(@atendimento.paciente), :class=>'btn btn-mini', :remote=>true do 
-        %i.icon-plus
-        Adicionar
+    .tab-pane.active{:id=>"tomografia"}
+      -if @tomografia
+        =render 'tomografias/show'
+      -else
+        = link_to new_tomografia_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
+    .tab-pane{:id=>"ressonancia"}
+      -if @ressonancia
+        =render 'ressonancias/show'
+      -else
+        = link_to new_ressonancia_path(:atendimento=>@atendimento), :class=>'btn btn-mini', :remote=>true do 
+          %i.icon-plus
+          Adicionar
+      

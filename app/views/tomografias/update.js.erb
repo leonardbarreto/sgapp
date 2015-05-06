@@ -1,0 +1,5 @@
+<% if @tomografia.errors.any? %>
+	$('#tomografia').html('<%= escape_javascript(render partial: 'form') %>')
+<% else %>
+	$('#tomografia').html('<%= escape_javascript(render partial: 'show') %>')
+<% end %>

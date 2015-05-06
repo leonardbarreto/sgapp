@@ -1,7 +1,21 @@
 Sga::Application.routes.draw do
   
-  resources :relogios
+  resources :funcionario_reports
 
+
+  resources :atendimento_reports
+
+
+  resources :avaliacaos
+
+
+  resources :exame_complementars
+
+  resources :ressonancias
+
+  resources :tomografias
+
+  resources :relogios
 
   resources :status
 

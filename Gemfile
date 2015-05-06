@@ -11,7 +11,11 @@ gem 'inherited_resources', '~> 1.3.1'
 gem 'formtastic', '~> 2.2.0'
 
 gem 'state_machine'
+#groupdate - necessário para renderizar gráficos
+gem 'groupdate'
+gem 'chartkick' # renderizador de gráficos
 
+gem 'whenever' #cron para rails
 
 #Calendário
 #gem 'fullcalendar-rails'
@@ -39,7 +43,7 @@ group :assets do
   #gem 'twitter-bootstrap-rails'
   gem 'jquery-ui-rails'
   gem 'font-awesome-rails'
-  gem 'bootstrap_datepicker'
+  #gem 'bootstrap_datepicker'
   #gem 'jquery_datepicker'
   #gem 'bootstrap-sass', '~>2.3.2'
  

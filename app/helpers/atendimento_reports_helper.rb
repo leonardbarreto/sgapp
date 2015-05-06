@@ -1,0 +1,2 @@
+module AtendimentoReportsHelper
+end

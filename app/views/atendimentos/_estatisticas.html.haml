@@ -1,0 +1,42 @@
+%strong
+	Atendimentos
+	= Date::MONTHNAMES[Date.today.month-1].upcase
+	\/
+	=Date.today.year
+%p
+%strong
+	.well.well-small
+		CDAP
+	
+%p
+%span.badge.badge-success 
+	=Atendimento.totalAtendimentosMes
+Atendidos
+%p
+%span.badge.badge-info 
+	=Atendimento.totalAtendimentosAgendadosMes
+Agendados
+%p
+%span.badge.badge-important 
+	=Atendimento.totalAtendimentosAusentesMes
+Ausentes
+%p
+
+%p
+-if params[:search]
+	%strong
+		.well.well-small
+			=@funcionario.pessoa.nome
+	%p
+	%span.badge.badge-success
+		=@funcionario.atendimentosMes
+	Atendidos
+
+	
+	
+	
+
+	-#=@atendimentos.first.atendimentosMes unless @atendimentos.empty?
+	
+
+

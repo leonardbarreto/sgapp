@@ -1,0 +1,2 @@
+module RessonanciasHelper
+end

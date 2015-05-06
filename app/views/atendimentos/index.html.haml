@@ -5,15 +5,16 @@
       %form.form-search
         .well.well-small
           .input-append
+
             =form_tag atendimentos_path :method=>'get' do |f|
               - if @current_user.eqtecnica?
                 = hidden_field_tag :search,params[:search],:value=>@current_user.funcionario.id
                 = text_field_tag :nome, @current_user.funcionario.pessoa.nome, {:id=>'selectFuncionario',:class=>'input-large', :readonly=>true}
-              - if @current_user.admin?
-                = select_tag :search, options_for_select(@funcionarios, :selected => params[:search]),{:id=>'selectFuncionario',:class=>"input-large", :prompt => "Selecione um funcionário"}
+              - if @current_user.admin? or @current_user.administrativo?
+                = select_tag :search, options_for_select(@funcionarios, :selected => params[:search]),{:id=>'selectFuncionario',:class=>"span12", :prompt => "Selecione um funcionário"}
               %p
               .input-append.date.datepicker.no-padding(data-date-format="dd/mm/yyyy")
-                = text_field_tag :date, params[:date],{:class=>"input-medium",:size=>"16",:id=>'txtData',:value=>Date.today}
+                = text_field_tag :date, params[:date],{:class=>"input-medium",:size=>"16",:id=>'txtData',:value=>dateFormat(Date.today)}
                 %span.add-on
                   %i.icon-th
           %p
@@ -21,7 +22,7 @@
             = button_tag(:type=> 'submit',:class=>'btn btn-default',:id=>'btnCarregarAgenda',:rel=>'popover', :data=>{:html=>"true", :placement=>"top"}) do
               %i.icon-calendar
               Carregar Agenda
-      - if params[:search] && @current_user.admin?
+      - if params[:search] && (@current_user.admin? or @current_user.administrativo?)
         - if @funcionario.errors.empty?
           .text-center
             .well.well-small
@@ -30,27 +31,29 @@
                 Novo agendamento
     
       //Sidebar
-      .accordion{:id=>"accordion2"}
-        //Aba de filtros
-        .accordion-group
-          .accordion-heading
-            %a.accordion-toggle{:href=>'#collapseOne',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
-              Filtros
-          .accordion-body.collapse.in{:id=>"collapseOne"}
-            .accordion-inner
-        
-              %p
-              %label.checkbox
-                %input{:type=>'checkbox',:checked=>'true',:id=>'checkAtendido'} Exibir somente agendados  
-                
-        //Aba de informações
-        .accordion-group
-          .accordion-heading
-            %a.accordion-toggle{:href=>'#collapseTwo',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
-              Informações
-          .accordion-body.collapse.in{:id=>"collapseTwo"}
-            .accordion-inner
-              Anim pariatur cliche...
+      -if @current_user.admin?
+        .accordion{:id=>"accordion2"}
+          //Aba de filtros
+          .accordion-group
+            .accordion-heading
+              %a.accordion-toggle{:href=>'#collapseOne',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
+                Filtros
+            .accordion-body.collapse.in{:id=>"collapseOne"}
+              .accordion-inner
+          
+                %p
+                %label.checkbox
+                  %input{:type=>'checkbox',:checked=>false,:id=>'checkAtendido'} Exibir somente agendados  
+                  
+          //Aba de informações
+          .accordion-group
+            .accordion-heading
+              %a.accordion-toggle{:href=>'#collapseTwo',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
+                Informações
+            .accordion-body.collapse.in{:id=>"collapseTwo"}
+              .accordion-inner
+                = render 'estatisticas'
+                  
     .span9
       %h1.page-header
         Agenda Médica -
@@ -87,17 +90,24 @@
                   = link_to edit_atendimento_path(a), :class=>'btn btn-success'do 
                     %i.icon-play.icon-white
                     Iniciar atendimento
-                - if @current_user.admin? && a.status_id!=3
+                -#Cancelar atendimento só pode ser realizado pelo administrador quando este ainda está agendado
+                - if @current_user.admin? && a.status_id==1 && a.data_at>=Date.today 
                   = link_to atendimento_path(a, :atendimento=>{:status_id => 3}), :method=> :put, :confirm => "Are you sure?", :class=>'btn btn-danger' do
                     //= link_to a.cancelarAtendimento(a) :class=>'btn btn-danger'do 
                     %i.icon-remove.icon-white
                     Cancelar
+                -#Reabrir atendimento só pode ser realizado pelo administrador quando o paciente já foi atendido
+                - if @current_user.admin? && a.status_id==4 && a.data_at==Date.today
+                  = link_to atendimento_path(a, :atendimento=>{:status_id => 1}), :method=> :put, :confirm => "Deseja reabrir este atendimento?", :class=>'btn btn-info' do
+                    //= link_to a.cancelarAtendimento(a) :class=>'btn btn-danger'do 
+                    %i.icon-remove.icon-white
+                    Reabrir
 
 
 
 //%script{:src=>"/assets/jquery.js", :type=>"text/javascript"}
 //%script{:src=>"/assets/bootstrap-datepicker.js", :type=>"text/javascript"}
-//script{:src=>"/assets/bootstrap-datepicker.pt-BR.js", :type=>"text/javascript"}
+//%script{:src=>"/assets/bootstrap-datepicker.pt-BR.js", :type=>"text/javascript"}
 //%script{:src=>"/assets/bootstrap-modal.js", :type=>"text/javascript"}
 //%script{:src=>"/assets/javascripts/bootstrap-collapse.js", :type=>"text/javascript"}
 
@@ -105,78 +115,3 @@
   table tr a.btn { opacity:0; float:right }
   table tr:hover a.btn { opacity:1 }
 
-:javascript
-  $(document).ready(function (){
-    // evitar conflito de versões
-    var $j = jQuery.noConflict();
-    
-    //Desabilita botão para carregar agenda caso não seja
-    //informado o funcionario e a data
-    if ($('#selectFuncionario,#txtData').val()===''){
-      $('#btnCarregarAgenda').attr('disabled','disabled');
-    }
-  
-    $('.datepicker').datepicker({
-      autoclose: true,
-      format: "dd/mm/yyyy",
-      language: "pt-BR",
-      startDate: new Date()
-    });
-    
-    $('#txtData').popover({
-      //title: 'A title!',
-      //trigger: 'hover',
-      html : true,
-      trigger: 'manual',
-      delay: { 
-       show: "500", 
-       hide: "100"
-      },
-      content: 'Clique para escolher uma data!' 
-    }); 
-
-    $('#selectFuncionario').popover({
-    //  title: 'A title!',
-      trigger: 'manual',
-      placement: 'right',
-      content: 'Clique para escolher um funcionário!' 
-    });
-    
-    //Recebe foco ao carregar a página e verifica se o valor é nulo.  
-    //Caso sim, emite uma mensagem com o popover
-    $('#selectFuncionario').focus(function(){
-      if ($('#selectFuncionario').val()===''){
-        $('#selectFuncionario').popover('show');
-      }
-    }).focus();
-    
-    // Verifica escolha do valor, se nulo desabilita botões e mantém o foco
-    $('#selectFuncionario').change(function(){
-      //Verificando se valor é nulo
-      if ($('#selectFuncionario').val()===''){
-        $('#selectFuncionario').popover('show');
-        //Desabilita o botão para carregar a agenda
-        $('#btnCarregarAgenda').attr('disabled','disabled');
-        $('#selectFuncionario').focus();
-      }
-      else{
-        $('#btnCarregarAgenda').removeAttr('disabled');
-        $('#selectFuncionario').popover('hide');
-        }
-    });
-    
-    //Exibir somente agendados
-    $('#checkAtendido').change(function(){
-      if (this.checked){
-        $('tr.Atendido,tr.Cancelado,tr.Remarcado').hide();
-      }
-      else{
-        $('tr.Atendido,tr.Cancelado,tr.Remarcado').show();
-      }
-    });  
-    
-  });
-
-
-
-  

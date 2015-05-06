@@ -1,0 +1,14 @@
+%form.form-horizontal
+	.control-group
+		%label.control-label RM Realizado em:
+		.controls
+			%input{:type=>'text', :value=> @ressonancia.data_exame, :readonly=>true, :class=>'input-small'}
+	.control-group
+		%label.control-label Laudo:
+		.controls
+			%textarea{:placeholder=> @ressonancia.laudo, :readonly=>true, :class=>'input-xxlarge', :rows=>'6'}
+			%br
+			%br
+			= link_to edit_ressonancia_path(@ressonancia), :class=>'btn btn-default', :remote=>true do 
+				%i.icon-edit
+				Alterar

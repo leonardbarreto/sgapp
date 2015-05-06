@@ -12,7 +12,8 @@
 *= require bootstrap-sign
 *= require bootstrap
 *= require bootstrap-responsive
-
+*= require datepicker
+*= require jquery.datetimepicker
 *= require_self
 
   */

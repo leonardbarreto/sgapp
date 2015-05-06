@@ -10,10 +10,11 @@ class Ability
          can :manage, :all
        end
        if user.administrativo?
-          can [:create,:read,:update], [Pessoa, Funcionario,Cargo,Funcao]
+          can [:create,:read,:update], [Pessoa, Paciente,Funcionario,Cargo,Funcao, AgendaProfissional, Atendimento]
+          
         end
         if user.eqtecnica?
-          can [:create,:read,:update], [Meem,Avd, Aivd,Cdr,Gd,Relogio,Camcog]
+          can [:create,:read,:update], [Meem,Avd, Aivd,Cdr,Gd,Relogio,Camcog, Ressonancia, Tomografia, ExameComplementar, Avaliacao]
           can [:read,:update],[Paciente, Atendimento]
           can [:read], Pessoa
        end

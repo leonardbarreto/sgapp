@@ -1,0 +1,5 @@
+<% if @avaliacao.errors.any? %>
+	$('#anamnese').html('<%= escape_javascript(render partial: 'form') %>')
+<% else %>
+	$('#anamnese').html('<%= escape_javascript(render partial: 'show') %>')
+<% end %>

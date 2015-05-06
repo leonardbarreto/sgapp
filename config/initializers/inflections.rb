@@ -4,9 +4,18 @@
 # (all these examples are active by default):
  ActiveSupport::Inflector.inflections do |inflect|
 #   inflect.plural /^(ox)$/i, '\1en'
+	
+
 	inflect.irregular 'estado_civil','estados_civis'
 	inflect.irregular 'cor','cores'
 	inflect.irregular 'status','status'
+	#duas linhas acertam erro no form_for
+	inflect.irregular 'Ressonancia','Ressonancias'
+	inflect.irregular 'Tomografia','Tomografias'
+	
+	#inflect.plural /a$/i,'as'
+	#inflect.singular /a$/i,'a'
+
 	#inflect.plural /^([a-zA-z]*)r$/i, '\1res' #palavras que terminam em 'r' colocar 'es' para plural
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'

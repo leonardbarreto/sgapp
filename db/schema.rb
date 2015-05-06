@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150428144439) do
+ActiveRecord::Schema.define(:version => 20150505165015) do
 
   create_table "agenda_profissionals", :force => true do |t|
     t.integer  "dia"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20150428144439) do
     t.integer  "status_id"
     t.time     "horario_fim"
     t.integer  "user_id"
+  end
+
+  create_table "avaliacaos", :force => true do |t|
+    t.text     "queixa_principal"
+    t.text     "anamnese"
+    t.integer  "atendimento_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "avds", :force => true do |t|
@@ -104,6 +112,25 @@ ActiveRecord::Schema.define(:version => 20150428144439) do
     t.string   "descricao"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "exame_complementars", :force => true do |t|
+    t.decimal  "glicose"
+    t.decimal  "tsh"
+    t.decimal  "b12"
+    t.decimal  "acido_folico"
+    t.decimal  "vdrl"
+    t.decimal  "hemograma"
+    t.decimal  "ht"
+    t.decimal  "hc"
+    t.decimal  "hmgl"
+    t.decimal  "leucocitos"
+    t.decimal  "creatinina"
+    t.decimal  "sodio"
+    t.decimal  "potassio"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "atendimento_id"
   end
 
   create_table "exames", :force => true do |t|
@@ -277,6 +304,14 @@ ActiveRecord::Schema.define(:version => 20150428144439) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "ressonancias", :force => true do |t|
+    t.text     "laudo"
+    t.date     "data_exame"
+    t.integer  "atendimento_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
   create_table "status", :force => true do |t|
     t.string   "tipo"
     t.datetime "created_at", :null => false
@@ -288,6 +323,14 @@ ActiveRecord::Schema.define(:version => 20150428144439) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "duracao"
+  end
+
+  create_table "tomografias", :force => true do |t|
+    t.text     "laudo"
+    t.date     "data_exame"
+    t.integer  "atendimento_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "users", :force => true do |t|

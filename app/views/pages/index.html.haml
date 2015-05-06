@@ -3,7 +3,13 @@
 		.active.item
 			=image_tag("/assets/1.jpg")
 			.carousel-caption
-				%h4 Caption
+				%h4 
+					%span.badge.badge-info
+						= Atendimento.totalAtendimentosMes
+					atendimentos em 
+					=Date::MONTHNAMES[Date.today.month-1]
+					
+					
 		.item
 			=image_tag("/assets/2.jpg")
 			.carousel-caption

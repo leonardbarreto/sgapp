@@ -1,0 +1,14 @@
+%form.form-horizontal
+	.control-group
+		%label.control-label TC Realizado em:
+		.controls
+			%input{:type=>'text', :value=> @tomografia.data_exame, :readonly=>true, :class=>'input-small'}
+	.control-group
+		%label.control-label Laudo:
+		.controls
+			%textarea{:placeholder=> @tomografia.laudo, :readonly=>true, :class=>'input-xxlarge', :rows=>'6'}
+			%br
+			%br
+			= link_to edit_tomografia_path(@tomografia), :class=>'btn btn-default', :remote=>true do 
+				%i.icon-edit
+				Alterar

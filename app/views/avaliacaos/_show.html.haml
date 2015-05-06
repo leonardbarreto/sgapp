@@ -1,0 +1,14 @@
+%form.form-horizontal
+	.control-group
+		%label.control-label Queixa principal
+		.controls
+			%input{:type=>'text', :value=> @avaliacao.queixa_principal, :readonly=>true, :class=>'input-xxlarge'}
+	.control-group
+		%label.control-label História
+		.controls
+			%textarea{:placeholder=> @avaliacao.anamnese, :readonly=>true, :class=>'input-xxlarge', :rows=>'6'}
+			%br
+			%br
+			= link_to edit_avaliacao_path(@avaliacao), :class=>'btn btn-default', :remote=>true do 
+				%i.icon-edit
+				Alterar

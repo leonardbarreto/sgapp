@@ -1,0 +1,62 @@
+.conteiner-fluid
+= form_for @exame_complementar, :remote=>true, :html=>{:class=>'form-horizontal'} do |f|
+    =f.hidden_field :atendimento_id
+    .row-fluid
+        .span4
+            .control-group
+                %label.control-label Glicose
+                .controls
+                    = f.text_field :glicose, :class=>'input-small'
+            .control-group
+                %label.control-label TSH
+                .controls
+                    = f.text_field :tsh, :class=>'input-small'  
+            .control-group
+                %label.control-label B12
+                .controls
+                    = f.text_field :b12, :class=>'input-small'  
+            .control-group
+                %label.control-label Ácido Fólico
+                .controls
+                    = f.text_field :acido_folico, :class=>'input-small'
+            .control-group
+                %label.control-label VDRL
+                .controls
+                    = f.text_field :vdrl, :class=>'input-small'
+            .control-group
+                %label.control-label Hemograma
+                .controls
+                    = f.text_field :hemograma, :class=>'input-small'
+        .span4
+            .control-group
+                %label.control-label HT
+                .controls
+                    = f.text_field :ht, :class=>'input-small'
+            .control-group
+                %label.control-label HC
+                .controls
+                    = f.text_field :hc, :class=>'input-small'
+            .control-group
+                %label.control-label HMGL
+                .controls
+                    = f.text_field :hmgl, :class=>'input-small'
+            .control-group
+                %label.control-label Leucócitos
+                .controls
+                    = f.text_field :leucocitos, :class=>'input-small'
+            .control-group
+                %label.control-label Creatinina
+                .controls
+                    = f.text_field :creatinina, :class=>'input-small'
+            .control-group
+                %label.control-label Sódio
+                .controls
+                    = f.text_field :sodio, :class=>'input-small'
+        .span4
+            .control-group
+                %label.control-label Potássio
+                .controls
+                    = f.text_field :potassio, :class=>'input-small'
+    .row-fluid
+        = f.submit class: "btn btn-primary"
+
