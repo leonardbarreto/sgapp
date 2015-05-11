@@ -7,8 +7,9 @@
     %title Sistema de Gestão Ambulatorial
     = csrf_meta_tags
 
-    = stylesheet_link_tag "application", :media => "all"
 
+    = stylesheet_link_tag "application", :media => "all"
+    
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -69,10 +70,11 @@
                         %li
                           %a{:href=>atendimento_reports_path} da Unidade
                           %a{:href=>funcionario_reports_path} por profissional
-                          
-                          
                     %li
                       %a{:href=>"#"} Funcionário
+                    %li
+                      %a{:href=>paciente_reports_path} Pacientes
+
                 /%li
                 /  %a{:href=>"#"}Atendimento
 

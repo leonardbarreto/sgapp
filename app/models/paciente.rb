@@ -43,6 +43,10 @@ class Paciente < ActiveRecord::Base
     self.prontuario ||= Paciente.count+1
   end
 
+  def ultimoAtendimento
+    self.atendimento.where('status_id=?',4).order(:data_at).last
+  end
+
   
   #def countPacientes()
   #  @qtd=Paciente.count

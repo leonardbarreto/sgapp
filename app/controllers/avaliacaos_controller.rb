@@ -8,6 +8,7 @@ load_and_authorize_resource
 		@avaliacao=Avaliacao.new
 		@atendimento=Atendimento.find_by_id(params[:atendimento])
 		@avaliacao.atendimento=@atendimento
+		@doencas=Doenca.find_all_by_ativo(true)
 	end
 	
 
@@ -26,6 +27,7 @@ load_and_authorize_resource
 
 	def edit
 		@avaliacao = Avaliacao.find(params[:id])
+		@doencas=Doenca.find_all_by_ativo(true)
 		#@avaliacao=Avaliacao.find_by_atendimento_id(params[:atendimento])
 	end
 	

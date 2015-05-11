@@ -8,4 +8,8 @@ module ApplicationHelper
 	def dateFormat(data)
 		data.strftime("%D/%M%/%Y")
 	end
+	#Contabilizar a quantidade de dias desde o último atendimento até o dia atual
+	def diasCorridos(data)
+		(Date.today.to_date-data.to_date).to_i
+	end
 end

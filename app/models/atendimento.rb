@@ -81,6 +81,13 @@ class Atendimento < ActiveRecord::Base
   		#agendamentos com status=1 (atendidos). user_id=0 é system
   		Atendimento.where('data_at< ? and status_id=?',Date.today,1).update_all(:status_id=>5,:user_id=>0)
   	end
+
+  	# Verifica se um atendimento ocorreu X meses atrás
+  	def realizadoXMesesAtras?(periodo=1)
+  		# se vazio, atribui 1
+  		self.data_at.to_date < periodo.month.ago.to_date
+  	end
+  
   	#def calcHorarioFim
   	#	if @atendimento.funcionario.ultimoHorario?(@atendimento.data_at,@atendimento.horario)
   	#		@atendimento.horario_fim=@atendimento.horario+@atendimento.tipo_atendimento.duracao.minutes

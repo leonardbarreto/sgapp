@@ -32,6 +32,7 @@ class AtendimentosController < ApplicationController
 		@ressonancia=Ressonancia.find_by_atendimento_id(@atendimento)
 		@exame_complementar=ExameComplementar.find_by_atendimento_id(@atendimento)
 		@avaliacao=Avaliacao.find_by_atendimento_id(@atendimento)
+		@doencas=Doenca.find_all_by_ativo(true)
 		respond_to do |format|
 	      format.html # show.html.erb
 	      format.js {head :ok}

@@ -11,9 +11,21 @@
 		%label.control-label História
 		.controls	
 			= f.text_area :anamnese, :rows=>'6', :class=> 'input-xxlarge'
-			%br
-			%br
-			= f.submit class: "btn btn-primary"
-			-#= button_tag(:type=>'submit',:class=>'btn btn-primary') do
-				-#%i.icon-ok.icon-white
-				-#Salvar
+	%br
+	.control.group
+		%label.control-label Hipótese diagnóstica
+		.controls
+				
+			-@doencas.each_with_index do |d,index|
+				.btn.group{"data-toogle"=>"buttons-radio"}
+					-#- if ((index%5)==0 and index!=0 )
+					-#	%br
+					= f.radio_button :doenca_id,d.id
+					= d.descricao
+
+		%br
+		%br
+		= f.submit class: "btn btn-primary"
+		-#= button_tag(:type=>'submit',:class=>'btn btn-primary') do
+			-#%i.icon-ok.icon-white
+			-#Salvar

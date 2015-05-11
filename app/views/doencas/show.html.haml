@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Descricao:
+  = @doenca.descricao
+%p
+  %b Cid10:
+  = @doenca.cid10
+
+= link_to 'Edit', edit_doenca_path(@doenca)
+\|
+= link_to 'Back', doencas_path

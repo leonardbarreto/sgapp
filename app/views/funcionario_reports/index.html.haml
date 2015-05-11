@@ -1,7 +1,8 @@
 =javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+
 %h3.mute 
-	Atendimentos por funcionário
+	Atendimentos por profissional
 - @funcionario_reports.each do |f|
 	= f.pessoa.nome
-	= line_chart Atendimento.group_by_day(:data_at).where(:funcionario_id=>f.id).count 
+	= line_chart Atendimento.group_by_month(:data_at).where(:funcionario_id=>f.id).count 
 	-# colocar status_id=4 significa atendido

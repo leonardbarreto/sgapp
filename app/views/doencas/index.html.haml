@@ -1,0 +1,21 @@
+%h1 Listing doencas
+
+%table
+  %tr
+    %th Descricao
+    %th Cid10
+    %th
+    %th
+    %th
+
+  - @doencas.each do |doenca|
+    %tr
+      %td= doenca.descricao
+      %td= doenca.cid10
+      %td= link_to 'Show', doenca
+      %td= link_to 'Edit', edit_doenca_path(doenca)
+      %td= link_to 'Destroy', doenca, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Doenca', new_doenca_path

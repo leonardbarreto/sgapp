@@ -1,5 +1,11 @@
 Sga::Application.routes.draw do
   
+  resources :doencas
+
+
+  resources :paciente_reports
+
+
   resources :funcionario_reports
 
 

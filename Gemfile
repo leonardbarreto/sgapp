@@ -14,6 +14,7 @@ gem 'state_machine'
 #groupdate - necessário para renderizar gráficos
 gem 'groupdate'
 gem 'chartkick' # renderizador de gráficos
+gem 'highcharts-rails'
 
 gem 'whenever' #cron para rails
 
