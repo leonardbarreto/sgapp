@@ -9,12 +9,15 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  * bootstrap-sign => formatação para a tela de login
+ * apagado o require_self
 *= require bootstrap-sign
 *= require bootstrap
 *= require bootstrap-responsive
 *= require datepicker
 *= require jquery.datetimepicker
+*= require font-awesome
 *= require_self
+
 
   */
 

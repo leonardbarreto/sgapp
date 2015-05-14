@@ -6,7 +6,7 @@ module PacienteHelper
       end
   	end
   	def countPacientes()
-  		@qtd=Paciente.count
+  		@qtd=Paciente.find_by_staus_id(4).count
   	end
   	def producao
         @prod=Paciente.count(:group=>'date(updated_at)',:order=>'date(updated_at) desc',:distinct=>true,:limit=>3)

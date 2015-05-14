@@ -13,7 +13,7 @@
 				ATENDIMENTOS
 		%li{:class=> "'active' if params[:tab] == 'tab3'"}
 			%a{:href=>"#tab3", 'data-toggle'=>"tab"}
-				AVALIAÇÕES
+				EXAMES
 	.tab-content
 		%div{:id=>'tab1', :class=> "#{if (params[:tab] == 'tab1' || !params[:tab])then 'tab-pane active'  else 'tab-pane' end}" }
 			=render 'pacientes/dadosPessoais'

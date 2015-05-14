@@ -1,17 +1,42 @@
-%h1 Relatório de atendimentos da unidade
+.container-fluid
+  %ul.breadcrumb
+    %li 
+      Relatórios
+      %span.divider /
+    %li 
+      Atendimentos
+      %span.divider /
+  .row-fluid
+    .span3
+      %form.form-search
+      //Sidebar
+      .accordion{:id=>"accordion2"}
+        //Aba de filtros
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{:href=>'#collapseOne',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
+              por PERÍODO
+          .accordion-body.collapse.in{:id=>"collapseOne"}
+            .accordion-inner
+              %p
+              
+              = text_field_tag :inicio, params[:inicio], :class=>'input-small',:id=>"dataini"
+              = text_field_tag :fim, params[:fim], :class=>'input-small',:id=>"datafim"
 
-=javascript_include_tag "//www.google.com/jsapi", "chartkick" 
--#%script{:type=>"text/javascript", :src=>"/assets/highcharts.js"}
-%h3.mute 
-	Atendimentos em 
-	=Date.today.year
+              %p
+              .text-center
+                = link_to periodo_atendimento_reports_path, :class=>'btn', :id=>"search_link", :remote=>true do 
+                  %i.fa.fa-search
+                  Ok
+                
+        //Aba de informações
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{:href=>'#collapseTwo',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
+              Informações
+          .accordion-body.collapse.in{:id=>"collapseTwo"}
+            .accordion-inner
 
-=column_chart Atendimento.group_by_month(:data_at, :format=>"%B").where(:status_id=>4).count, library: {hAxis: {title: "Meses"}, vAxis: {title: "Atendimentos"},title: "Atendimentos em 2015",selectionMode: 'multiple', tooltip: { trigger: 'selection'},aggregationTarget: 'none'}
--# :format apresenta o nome do mês
-
-%h3.mute 
-	Atendimentos realizados
-= pie_chart Atendimento.joins(:status).group('status.tipo').count('atendimentos.status_id')
-
-
-	
+                
+    .span9
+      #contentArea

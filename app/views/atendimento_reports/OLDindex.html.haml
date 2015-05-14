@@ -1,0 +1,17 @@
+%h1 Relatório de atendimentos da unidade
+
+=javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+-#%script{:type=>"text/javascript", :src=>"/assets/highcharts.js"}
+%h3.mute 
+	Atendimentos em 
+	=Date.today.year
+
+=column_chart Atendimento.group_by_month(:data_at, :format=>"%B").where(:status_id=>4).count, library: {hAxis: {title: "Meses"}, vAxis: {title: "Atendimentos"},title: "Atendimentos em 2015",selectionMode: 'multiple', tooltip: { trigger: 'selection'},aggregationTarget: 'none'}
+-# :format apresenta o nome do mês
+
+%h3.mute 
+	Atendimentos realizados
+= pie_chart Atendimento.joins(:status).group('status.tipo').count('atendimentos.status_id')
+
+
+	

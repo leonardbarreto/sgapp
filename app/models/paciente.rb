@@ -47,7 +47,6 @@ class Paciente < ActiveRecord::Base
     self.atendimento.where('status_id=?',4).order(:data_at).last
   end
 
-  
   #def countPacientes()
   #  @qtd=Paciente.count
   #end

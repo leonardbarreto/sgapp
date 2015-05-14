@@ -12,4 +12,7 @@ module ApplicationHelper
 	def diasCorridos(data)
 		(Date.today.to_date-data.to_date).to_i
 	end
+	def total_pacientes
+		Paciente.all.count
+	end
 end

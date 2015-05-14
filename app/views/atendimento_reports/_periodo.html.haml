@@ -1,0 +1,26 @@
+%legend
+	Atendimentos entre
+	=dateFormat(params[:inicio].to_date) unless params[:inicio].nil?
+	e
+	=dateFormat(params[:fim].to_date) unless params[:fim].nil?
+%table.table.table-condensed
+	%thead
+		%th #
+		%th Data
+		%th Status
+		%th Paciente
+		%th Funcionário
+	%tbody
+		-@periodo.each_with_index do |p,ind|
+			%tr
+				%td
+					=ind+1
+				%td
+					= dateFormat(p.data_at)
+				%td
+					= p.status.tipo
+				%td
+					= p.paciente.pessoa.nome
+				%td
+					=p.funcionario.pessoa.nome
+

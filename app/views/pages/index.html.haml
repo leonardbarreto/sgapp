@@ -13,9 +13,13 @@
 		.item
 			=image_tag("/assets/2.jpg")
 			.carousel-caption
-				%h4 Caption
+				%h4 
+					%span.badge.badge-info
+						= total_pacientes
+					pacientes cadastrados em 
+					=dateFormat(Date.today)
 		.item
-			=image_tag("/assets/3.jpg")
+			=image_tag("/assets/4.jpg")
 			.carousel-caption
 				%h4 Caption
 

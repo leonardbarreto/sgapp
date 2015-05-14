@@ -1,1 +1,27 @@
-teste
+%table.table.table-hover
+	%thead
+	%tr
+		%th #
+		%th Tipo de atendimento
+		%th Status
+		%th Atendido em
+		%th Funcionário(a)
+
+	%tbody
+		-@paciente.atendimento.order(:data_at).each_with_index do |at,index|
+			- if at.status_id==4 
+				%tr
+					%td 
+						=index+1   
+					%td 
+						=at.tipo_atendimento.descricao   
+					%td  
+						=at.status.tipo   
+					%td  
+						= dateFormat(at.data_at)  
+					
+					%td  
+						=at.funcionario.pessoa.nome   
+		
+
+

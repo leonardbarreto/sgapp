@@ -3,13 +3,23 @@ Sga::Application.routes.draw do
   resources :doencas
 
 
-  resources :paciente_reports
+  resources :paciente_reports do
+    collection do
+      get :ausentes
+    end
+    #url: /paciente_reports/ausentes
+    #named route: ausentes_pacientes_reports_path
+  end
 
 
   resources :funcionario_reports
 
 
-  resources :atendimento_reports
+  resources :atendimento_reports do
+    collection do
+      get :periodo
+    end
+  end
 
 
   resources :avaliacaos

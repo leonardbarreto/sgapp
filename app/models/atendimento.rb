@@ -59,7 +59,7 @@ class Atendimento < ActiveRecord::Base
   	end
 
 	def atendido?
-    	self.status==4?true:false
+    	self.status_id==4?true:false
   	end
 
   	def atendimentosCancelados

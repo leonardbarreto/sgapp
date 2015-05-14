@@ -14,14 +14,15 @@
 								Score
 					%tbody
 						- @paciente.atendimento.order(:data_at).each do |at|
-							%tr
-								%td	
-									= dateFormat(at.created_at)	
-								%td	
-									- if (at.meem.nil?)
-										'--'
-									-else
-										= at.meem.score
+							-if at.atendido?
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td	
+										- if (at.meem.nil?)
+											'--'
+										-else
+											= at.meem.score
 	.accordion-group
 		.accordion-heading
 			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseAvd'}

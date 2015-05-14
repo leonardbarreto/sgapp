@@ -1,0 +1,31 @@
+%h1.page-header 
+	Pacientes ausentes
+	%legend 
+		período 2 meses
+
+%table.table.table-hover
+	%thead
+		%tr
+			%th Paciente
+			%th Telefone
+			%th Celular
+			%th Último atendimento em
+			%th Profissional
+	%tbody
+		- @pacientes_atendidos.each do |pr|
+		
+			-#- if(pr.ultimoAtendimento.data_at < 2.month.ago.to_date) 
+			- if(pr.ultimoAtendimento.realizadoXMesesAtras?(2))
+				-#Se o último atendimento ocorreu X meses atras....
+				%tr
+					%td= pr.pessoa.nome
+					%td= pr.pessoa.telefone
+					%td= pr.pessoa.telefonecel
+					%td
+						= dateFormat(pr.ultimoAtendimento.data_at) 
+						%strong
+							(
+							= diasCorridos(pr.ultimoAtendimento.data_at)
+							dias )
+					%td= pr.ultimoAtendimento.funcionario.pessoa.nome 
+
