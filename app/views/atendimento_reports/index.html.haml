@@ -1,3 +1,4 @@
+=javascript_include_tag "//www.google.com/jsapi", "chartkick" 
 .container-fluid
   %ul.breadcrumb
     %li 
@@ -15,28 +16,80 @@
         .accordion-group
           .accordion-heading
             %a.accordion-toggle{:href=>'#collapseOne',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
-              por PERÍODO
+              Atendimentos por período
           .accordion-body.collapse.in{:id=>"collapseOne"}
             .accordion-inner
               %p
-              
-              = text_field_tag :inicio, params[:inicio], :class=>'input-small',:id=>"dataini"
-              = text_field_tag :fim, params[:fim], :class=>'input-small',:id=>"datafim"
-
-              %p
               .text-center
-                = link_to periodo_atendimento_reports_path, :class=>'btn', :id=>"search_link", :remote=>true do 
-                  %i.fa.fa-search
-                  Ok
-                
+              = form_tag periodo_atendimento_reports_path, :remote=>true, :method=>'get' do
+                .span6 
+                  %strong Data de Início
+                .span5 
+                  %strong Data fim
+                .span6
+                  = text_field_tag :inicio, params[:inicio],:class=>'input-small datepicker'
+                .span5
+                  = text_field_tag :fim,params[:fim], :class=>'input-small datepicker'
+                -#= hidden_field_tag :funcionario, '51'
+                .span11
+                  %strong Funcionário
+                .span12
+                  = select_tag :funcionario, options_for_select(@funcionarios, :selected => params[:funcionario]),{:class=>"input-large", :prompt => "Todos os funcionários"} 
+                .text-center
+                  = button_tag(type: 'submit', :class=>'btn') do
+                    %i.icon-search
+                    Ok
+        
         //Aba de informações
         .accordion-group
           .accordion-heading
             %a.accordion-toggle{:href=>'#collapseTwo',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
-              Informações
+              Opções
           .accordion-body.collapse.in{:id=>"collapseTwo"}
             .accordion-inner
+              %strong Listar pacientes...
+              %p
+              - @status.each do |s|
+                -#.btn.group{"data-toogle"=>"buttons-radio"}
+                = radio_button_tag :status_id, s.tipo.pluralize
+                = s.tipo
+                %p
 
-                
+        //Aba de informações
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{:href=>'#collapseTwo',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
+              Gráficos
+          .accordion-body.collapse.in{:id=>"collapseTwo"}
+            .accordion-inner
+              -#<!-- Button to trigger modal -->
+              %ul
+                %li
+                  %a{:href=>"#myModal",:role=>"button",  "data-toggle"=>"modal"}
+                    Status de atendimento
+                %li
+                  %a{:href=>"#myModal2",:role=>"button",  "data-toggle"=>"modal"}
+                    Atendimentos no mês
     .span9
       #contentArea
+
+      -#<!-- Modal -->
+#myModal{"class"=>"modal hide fade", "tabindex"=>"-1", "role"=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true"}
+  .modal-header
+    %button{:type=>"button", :class=>"close", "data-dismiss"=>"modal", "aria-hidden"=>"true"} ×
+    %h3#myModalLabel Gráficos - Status de atendimento
+  .modal-body
+    = pie_chart Atendimento.joins(:status).group('status.tipo').count('atendimentos.status_id')
+  .modal-footer
+    %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Close
+    -#%button.btn.btn-primary Save changes
+
+#myModal2{"class"=>"modal hide fade", "tabindex"=>"-1", "role"=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true"}
+  .modal-header
+    %button{:type=>"button", :class=>"close", "data-dismiss"=>"modal", "aria-hidden"=>"true"} ×
+    %h3#myModalLabel Gráficos - Atendimentos no mês
+  .modal-body
+    =column_chart Atendimento.group_by_month(:data_at, :format=>"%B").where(:status_id=>4).count, library: {hAxis: {title: "Meses"}, vAxis: {title: "Atendimentos"},title: "Atendimentos em 2015",selectionMode: 'multiple', tooltip: { trigger: 'selection'},aggregationTarget: 'none'}
+  .modal-footer
+    %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Close
+    -#%button.btn.btn-primary Save changes

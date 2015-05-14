@@ -5,14 +5,14 @@
     // evitar conflito de versões
     //var $j = jQuery.noConflict(); // não comentando as abas do bootstrap não funciona
   
-  $('#dataini, #datafim').datetimepicker({
+  $('.datepicker, #dataini, #datafim').datetimepicker({
   yearOffset:000,
   lang:'pt-BR',
   timepicker:false,
   format:'d/m/Y',
   formatDate:'d/m/Y',
   closeOnDateSelect: true,
-  minDate:'-1970/01/02', // yesterday is minimum date
+  //minDate:'-1970/01/02', // yesterday is minimum date
   //maxDate:'+1970/01/02' // and tommorow is maximum date calendar
 });
   $("#dataini, #datafim").change(function(){
