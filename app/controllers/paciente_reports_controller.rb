@@ -16,6 +16,7 @@ class PacienteReportsController < InheritedResources::Base
 			end
 		else
 			@pacientes_ausentes=[]
+			
 		end
 	end
 end

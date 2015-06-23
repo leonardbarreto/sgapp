@@ -61,17 +61,17 @@
                     Relatório
                     %b.caret
                   %ul.dropdown-menu
-                    %li.dropdown-submenu
-                      %a{:href=>"#"} Atendimentos  
-                      %ul.dropdown-menu
-
-                        %li.dropdown-header Produção
-                        %li.divider
-                        %li
-                          %a{:href=>atendimento_reports_path} da Unidade
-                          %a{:href=>funcionario_reports_path} por profissional
                     %li
-                      %a{:href=>"#"} Funcionário
+                      -#.dropdown-submenu
+                      %a{:href=>atendimento_reports_path} Atendimentos  
+                      -#%ul.dropdown-menu
+                        -#%li.dropdown-header Produção
+                        -#%li.divider
+                        -#%li
+                          -#%a{:href=>atendimento_reports_path} da Unidade
+                          -#%a{:href=>funcionario_reports_path} por profissional
+                    -#%li
+                      -#%a{:href=>"#"} Funcionário
                     %li
                       %a{:href=>paciente_reports_path} Pacientes
 

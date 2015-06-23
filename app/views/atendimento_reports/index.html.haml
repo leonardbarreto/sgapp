@@ -1,4 +1,13 @@
 =javascript_include_tag "//www.google.com/jsapi", "chartkick" 
+:css
+  body .modal{
+    width: 80%;
+    //height: 80%;
+    margin-left: -40%;
+    //max-height: 80%;
+    //overflow-y: auto;
+  }
+
 .container-fluid
   %ul.breadcrumb
     %li 
@@ -9,38 +18,24 @@
       %span.divider /
   .row-fluid
     .span3
-      %form.form-search
+      .well.well-small
+        %strong Atendimentos por período
+        %p
+        = form_tag periodo_atendimento_reports_path, :remote=>true, :method=>'get', :class=>'form-search' do
+          = text_field_tag :inicio, params[:inicio],:class=>'input-small datepicker',:placeholder=>"Data inicial",:id=>'inputDataIni'
+          = text_field_tag :fim,params[:fim], :class=>'input-small datepicker', :id=>'inputDataFim' ,:placeholder=>"Data final"
+          %p
+          %label Funcionário
+          %p
+          = select_tag :funcionario, options_for_select(@funcionarios, :selected => params[:funcionario]),{:class=>"input-large", :prompt => "Todos os funcionários"} 
+          %p
+          .text-center
+            = button_tag(type: 'submit', :class=>'btn',:id=>'btnListar') do
+              %i.icon-search
+              Listar
       //Sidebar
       .accordion{:id=>"accordion2"}
         //Aba de filtros
-        .accordion-group
-          .accordion-heading
-            %a.accordion-toggle{:href=>'#collapseOne',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
-              Atendimentos por período
-          .accordion-body.collapse.in{:id=>"collapseOne"}
-            .accordion-inner
-              %p
-              .text-center
-              = form_tag periodo_atendimento_reports_path, :remote=>true, :method=>'get' do
-                .span6 
-                  %strong Data de Início
-                .span5 
-                  %strong Data fim
-                .span6
-                  = text_field_tag :inicio, params[:inicio],:class=>'input-small datepicker'
-                .span5
-                  = text_field_tag :fim,params[:fim], :class=>'input-small datepicker'
-                -#= hidden_field_tag :funcionario, '51'
-                .span11
-                  %strong Funcionário
-                .span12
-                  = select_tag :funcionario, options_for_select(@funcionarios, :selected => params[:funcionario]),{:class=>"input-large", :prompt => "Todos os funcionários"} 
-                .text-center
-                  = button_tag(type: 'submit', :class=>'btn') do
-                    %i.icon-search
-                    Ok
-        
-        //Aba de informações
         .accordion-group
           .accordion-heading
             %a.accordion-toggle{:href=>'#collapseTwo',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
@@ -81,15 +76,19 @@
   .modal-body
     = pie_chart Atendimento.joins(:status).group('status.tipo').count('atendimentos.status_id')
   .modal-footer
-    %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Close
+    %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Fechar
     -#%button.btn.btn-primary Save changes
 
 #myModal2{"class"=>"modal hide fade", "tabindex"=>"-1", "role"=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true"}
   .modal-header
     %button{:type=>"button", :class=>"close", "data-dismiss"=>"modal", "aria-hidden"=>"true"} ×
-    %h3#myModalLabel Gráficos - Atendimentos no mês
+    %h3#myModalLabel2 Gráficos - Atendimentos no mês
   .modal-body
-    =column_chart Atendimento.group_by_month(:data_at, :format=>"%B").where(:status_id=>4).count, library: {hAxis: {title: "Meses"}, vAxis: {title: "Atendimentos"},title: "Atendimentos em 2015",selectionMode: 'multiple', tooltip: { trigger: 'selection'},aggregationTarget: 'none'}
+    #graficoColuna
+      =column_chart Atendimento.group_by_month(:data_at, :format=>"%B").where(:status_id=>4).count, library: {hAxis: {title: "Meses"}, vAxis: {title: "Atendimentos"},title: "Atendimentos em 2015",selectionMode: 'multiple', tooltip: { trigger: 'selection'},aggregationTarget: 'none'}
+      
+
   .modal-footer
-    %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Close
+    %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true", "onclick"=>"$('#graficoColuna').printElement();"} Imprimir
+    %button.btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"} Fechar
     -#%button.btn.btn-primary Save changes

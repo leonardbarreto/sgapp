@@ -10,7 +10,7 @@ class Paciente < ActiveRecord::Base
   belongs_to :encaminhamento, :foreign_key=>'encaminhamento_id'
   has_many :atendimento
   validates_presence_of :prontuario,:residencia_id,:moradia_id,:relacionamento_id
-  validates_presence_of :slug
+  #validates_presence_of :slug
   #friendly_id :prontuario, :use => [:slugged, :history]
 	#accepts_nested_attributes_for - aceita edição/criação de atributos em um mesmo form
   accepts_nested_attributes_for :pessoa

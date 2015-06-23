@@ -1,10 +1,9 @@
-=stylesheet_link_tag "metisMenu.min", :media => "all"
-=stylesheet_link_tag "timeline"
-=stylesheet_link_tag "sb-admin-2", :media => "all"
-=stylesheet_link_tag "morris"
+-#=stylesheet_link_tag "metisMenu.min", :media => "all"
+-#=stylesheet_link_tag "timeline"
+-#=stylesheet_link_tag "sb-admin-2", :media => "all"
+-#=stylesheet_link_tag "morris"
 
-
-#wrapper
+.container-fluid
   %ul.breadcrumb
     %li 
       Relatórios
@@ -12,68 +11,27 @@
     %li 
       Pacientes
       %span.divider /
-  .navbar-default.sidebar{:role=>"navigation"}
-    .sidebar-nav.navbar-collapse
-      %ul.nav{:id=>"side-menu"}
-        %li
-          %a{:href=>"#", :id=>'lnkPacientesAusente'}
-            %i.fa.fa-dashboard.fa-fw 
-            Pacientes ausentes
-            %span.fa.arrow
-          %ul.nav.nav-second-level
-            %li
-              %label Informe o período (em meses)
-              -#%input.input-medium.search-query{:type=>'text'}
-              %form.form-search
-                = text_field_tag :periodo, params[:periodo],{:class=>"input-small",:size=>"16",:id=>'my_input'}
-                = link_to ausentes_paciente_reports_path, :class=>'btn', :id=>"search_link", :remote=>true do 
-                  %i.fa.fa-search
+  .row-fluid
+    .span3
+      
+      //Sidebar
+      .accordion{:id=>"accordion2"}
+        //Aba de filtros
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{:href=>'#collapseOne',:data=>{:toggle=>'collapse',:parent=>'#accordion2'}}
+              Pacientes ausentes
+          .accordion-body.collapse.in{:id=>"collapseOne"}
+            .accordion-inner
+              = form_tag ausentes_paciente_reports_path, :remote=>true, :method=>'get', :class=>'form-search' do
+                %strong Informe o período (em meses)
+                %br
+                = text_field_tag :periodo,params[:periodo], :class=>'input-small'
+            
+                = button_tag(type: 'submit', :class=>'btn') do
+                  %i.icon-search
                   Ok
-              
-        %li
-          %a{:href=>"#"}
-            %i.fa.fa-bar-chart-o.fa-fw 
-            Gráficos
-            %span.fa.arrow
-          %ul.nav.nav-second-level
-            %li
-              %a{:href=>"flot.html"} Flot Charts
-            %li
-              %a{:href=>"morris.html"} Morris.js Charts
-        %li
-          %a{:href=>"tables.html"} 
-            %i.fa.fa-table.fa-fw 
-            Tabelas
-        %li
-          %a{:href=>"forms.html"} 
-            %i.fa.fa-edit.fa-fw 
-            Forms
-        %li
-          %a{:href=>"#"} 
-            %i.fa.fa-wrench.fa-fw 
-            UI Elements
-            %span.fa.arrow
-          %ul.nav.nav-second-level
-            %li
-              %a{:href=>"panels-wells.html"} Panels and Wells
-            
-            %li
-              %a{:href=>"buttons.html"} Buttons
-            
-            %li
-              %a{:href=>"notifications.html"} Notifications
-            
-            %li
-              %a{:href=>"typography.html"} Typography
-            
-            %li
-              %a{:href=>"icons.html"} Icons
-            
-            %li
-              %a{:href=>"grid.html"}Grid
-       
-       
-        
-  #page-wrapper
-    #pacientes
-      -#= render 'ausentes' unless @pacientes_ausentes.nil?
+    .span9
+      #page-wrapper
+        #pacientes
+          -#= render 'ausentes' unless @pacientes_ausentes.nil?
