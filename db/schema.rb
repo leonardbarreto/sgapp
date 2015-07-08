@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150511145902) do
+ActiveRecord::Schema.define(:version => 20150707232325) do
 
   create_table "agenda_profissionals", :force => true do |t|
     t.integer  "dia"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20150511145902) do
     t.integer  "atendimento_id"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+    t.integer  "pontos"
   end
 
   create_table "camcogs", :force => true do |t|
@@ -93,6 +94,16 @@ ActiveRecord::Schema.define(:version => 20150511145902) do
     t.integer  "tipo_exame_id"
     t.datetime "created_at",                  :null => false
     t.datetime "updated_at",                  :null => false
+  end
+
+  create_table "cerads", :force => true do |t|
+    t.integer  "pontos"
+    t.integer  "tentativa1"
+    t.integer  "tentativa2"
+    t.integer  "tentativa3"
+    t.integer  "atendimento_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "cores", :force => true do |t|
@@ -161,18 +172,9 @@ ActiveRecord::Schema.define(:version => 20150511145902) do
     t.integer  "tipo_exame_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.integer  "animais"
+    t.integer  "frutas"
   end
-
-  create_table "friendly_id_slugs", :force => true do |t|
-    t.string   "slug",                         :null => false
-    t.integer  "sluggable_id",                 :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.datetime "created_at"
-  end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
-  add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
-  add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "funcaos", :force => true do |t|
     t.string   "descricao"
@@ -266,9 +268,10 @@ ActiveRecord::Schema.define(:version => 20150511145902) do
     t.string   "religiao",               :limit => 40
     t.string   "plano_de_saude",         :limit => 15
     t.integer  "encaminhamento_id"
+    t.integer  "doenca_id"
+    t.integer  "diabetes"
+    t.integer  "has"
   end
-
-  add_index "pacientes", ["slug"], :name => "index_pacientes_on_slug", :unique => true
 
   create_table "pessoas", :force => true do |t|
     t.string   "nome"
@@ -337,6 +340,71 @@ ActiveRecord::Schema.define(:version => 20150511145902) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "duracao"
+  end
+
+  create_table "tmppacientes", :force => true do |t|
+    t.integer  "peso"
+    t.date     "data_obito"
+    t.integer  "prontuario"
+    t.integer  "pessoa_id"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.string   "slug"
+    t.integer  "residencia_id"
+    t.integer  "relacionamento_id"
+    t.integer  "moradia_id"
+    t.string   "atremuneracaoant",       :limit => 1
+    t.string   "descatremuneradaant",    :limit => 25
+    t.string   "atremuneradatual",       :limit => 1
+    t.string   "descatremuneracaoatual", :limit => 25
+    t.integer  "previdencia_id"
+    t.string   "ajudafamiliar",          :limit => 1
+    t.string   "outrasrendas",           :limit => 1
+    t.string   "descoutrasrendas",       :limit => 25
+    t.string   "descrelacionamento",     :limit => 35
+    t.text     "hpp"
+    t.string   "it1",                    :limit => 1
+    t.string   "it2",                    :limit => 1
+    t.string   "it3",                    :limit => 1
+    t.string   "it4",                    :limit => 1
+    t.string   "it5",                    :limit => 1
+    t.text     "outras"
+    t.text     "alimentacao"
+    t.text     "sono"
+    t.text     "disturbio"
+    t.string   "etilismo",               :limit => 1
+    t.string   "etilismo_tipo",          :limit => 100
+    t.string   "etilismo_dose",          :limit => 100
+    t.integer  "etilismo_duracao"
+    t.string   "tabagismo",              :limit => 1
+    t.integer  "tabagismo_duracao"
+    t.string   "tabagismo_quantidade",   :limit => 50
+    t.string   "religiao",               :limit => 40
+    t.string   "plano_de_saude",         :limit => 15
+    t.integer  "encaminhamento_id"
+  end
+
+  create_table "tmppessoas", :force => true do |t|
+    t.string   "nome"
+    t.string   "sexo"
+    t.string   "naturalidade",      :limit => 20
+    t.string   "nacionalidade",     :limit => 20
+    t.string   "identidade",        :limit => 10
+    t.string   "cpf",               :limit => 14
+    t.string   "nome_pai"
+    t.string   "nome_mae"
+    t.string   "endereco"
+    t.string   "bairro",            :limit => 30
+    t.integer  "municipio_id"
+    t.string   "telefone",          :limit => 14
+    t.string   "telefonecel",       :limit => 14
+    t.integer  "estado_civil_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "cor_id"
+    t.datetime "data_nas"
+    t.integer  "grau_instrucao_id"
+    t.string   "gi_completo"
   end
 
   create_table "tomografias", :force => true do |t|

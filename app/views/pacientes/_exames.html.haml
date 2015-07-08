@@ -203,6 +203,62 @@
 							%th 
 								Realizado em
 							%th 
+								Animais
+							%th
+								Frutas
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							- if (at.aivd.nil? == false)
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td
+										= at.fluencia_verbal.animais unless at.fluencia_verbal.nil? 
+									%td 
+										= at.fluencia_verbal.frutas unless at.fluencia_verbal.nil?
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseFluencia'}
+				LISTAS DE PALAVRAS DO CERAD
+					
+		.accordion-body.collapse.in{:id=>'collapseFluencia'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
+								1a Tentativa
+							%th
+								2a Tentativa
+							%th
+								3a Tentativa
+					%tbody
+						- @paciente.atendimento.order(:data_at).each do |at|
+							- if (at.aivd.nil? == false)
+								%tr
+									%td	
+										= dateFormat(at.created_at)	
+									%td
+										= at.cerad.tentativa1 unless at.cerad.nil? 
+									%td 
+										= at.cerad.tentativa2 unless at.cerad.nil?
+									%td 
+										= at.cerad.tentativa3 unless at.cerad.nil?
+	.accordion-group
+		.accordion-heading
+			%a.accordion-toggle{'data-toggle'=>'collapse','data-parent'=>'#accordion2', :href=>'#collapseFluencia'}
+				TESTE DO RELÓGIO
+					
+		.accordion-body.collapse.in{:id=>'collapseFluencia'}
+			.accordion-inner
+				%table.table.table-condensed
+					%thead
+						%tr
+							%th 
+								Realizado em
+							%th 
 								Pontos
 					%tbody
 						- @paciente.atendimento.order(:data_at).each do |at|
@@ -211,7 +267,5 @@
 									%td	
 										= dateFormat(at.created_at)	
 									%td
-										-if (at.fluencia_verbal.nil?) 
-											"--"
-										-else 
-											= at.fluencia_verbal.pontos 
+										= at.relogio.pontos unless at.relogio.nil? 
+									

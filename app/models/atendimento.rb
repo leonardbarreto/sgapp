@@ -21,6 +21,7 @@ class Atendimento < ActiveRecord::Base
 	has_one :ressonancia
 	has_one :exame_complementar
 	has_one :avaliacao
+	has_one :cerad
 	
 
 	validates_presence_of :paciente_id, :message=>" :informe um paciente"

@@ -1,0 +1,2 @@
+module CeradsHelper
+end

@@ -187,6 +187,12 @@
 					%dt Outras co-morbidades
 					%dd 
 						=@paciente.outras
+					%dt Hipertensão?
+					%dd 
+						=@paciente.has.to_bs
+					%dt Diabetes?
+					%dd 
+						=@paciente.diabetes.to_bs
 	.accordion-group
 		.accordion-heading
 			%a.accordion-toggle{:href=>'#collapseFive',:data=>{:toggle=>'collapse',:parent=>'#accordion'}}

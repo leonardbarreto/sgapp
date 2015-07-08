@@ -28,6 +28,7 @@ class AtendimentosController < ApplicationController
 		@gd=Gd.find_by_atendimento_id(@atendimento)
 		@relogio=Relogio.find_by_atendimento_id(@atendimento)
 		@camcog=Camcog.find_by_atendimento_id(@atendimento)
+		@cerad=Cerad.find_by_atendimento_id(@atendimento)
 		@tomografia=Tomografia.find_by_atendimento_id(@atendimento)
 		@ressonancia=Ressonancia.find_by_atendimento_id(@atendimento)
 		@exame_complementar=ExameComplementar.find_by_atendimento_id(@atendimento)

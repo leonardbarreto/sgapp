@@ -1,0 +1,27 @@
+%h1 Listing cerads
+
+%table
+  %tr
+    %th Pontos
+    %th Tentativa1
+    %th Tentativa2
+    %th Tentativa3
+    %th Atendimento
+    %th
+    %th
+    %th
+
+  - @cerads.each do |cerad|
+    %tr
+      %td= cerad.pontos
+      %td= cerad.tentativa1
+      %td= cerad.tentativa2
+      %td= cerad.tentativa3
+      %td= cerad.atendimento_id
+      %td= link_to 'Show', cerad
+      %td= link_to 'Edit', edit_cerad_path(cerad)
+      %td= link_to 'Destroy', cerad, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Cerad', new_cerad_path

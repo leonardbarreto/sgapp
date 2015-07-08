@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Pontos:
+  = @cerad.pontos
+%p
+  %b Tentativa1:
+  = @cerad.tentativa1
+%p
+  %b Tentativa2:
+  = @cerad.tentativa2
+%p
+  %b Tentativa3:
+  = @cerad.tentativa3
+%p
+  %b Atendimento:
+  = @cerad.atendimento_id
+
+= link_to 'Edit', edit_cerad_path(@cerad)
+\|
+= link_to 'Back', cerads_path

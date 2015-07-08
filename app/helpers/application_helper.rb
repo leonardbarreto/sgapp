@@ -1,3 +1,4 @@
+# encoding: utf-8
 module ApplicationHelper
 	def paginate_bootstrap(objeto)
 		will_paginate(objeto,  renderer: BootstrapPagination::Rails)
@@ -15,4 +16,18 @@ module ApplicationHelper
 	def total_pacientes
 		Paciente.all.count
 	end
+	
+end
+#converter Fixnum (ou boolean) para string
+class Object
+  def to_bs
+      return 'SIM' if self == 1
+      return 'NÃO' if self == 0
+      return 'NÃO INFORMADO' if self.class==NilClass
+      
+      #return 'no' if [FalseClass, NilClass].include?(self.class) 
+      #return 'yes' if self.class == TrueClass
+      self
+  end 
+   
 end
